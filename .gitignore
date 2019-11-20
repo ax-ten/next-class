@@ -6,3 +6,7 @@
 ~$RF.docx
 
 *.tmp
+
+*.bak_000f
+
+.Diagrammi UML.vpp.lck
