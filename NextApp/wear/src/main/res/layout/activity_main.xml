@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.wear.widget.BoxInsetLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.wear.widget.BoxInsetLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,14 +13,20 @@
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="@dimen/inner_frame_layout_padding"
-        app:boxedEdges="all">
+        android:padding="@dimen/inner_frame_layout_padding">
 
-        <TextView
-            android:id="@+id/text"
+
+        <Button
+            android:id="@+id/buttonNotify"
+            style="@android:style/Widget.DeviceDefault.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/hello_world" />
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="77dp"
+            android:layout_marginEnd="50dp"
+            android:text="@string/notify_me"
+            tools:layout_editor_absoluteX="50dp"
+            android:onClick="notifyme"/>
 
     </FrameLayout>
 </androidx.wear.widget.BoxInsetLayout>
