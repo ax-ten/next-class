@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <class id ="31">
+        <name>nomenome</name>
+        <room>31</room>
+        <teacher>asdad</teacher>
+        <year>dasdada</year>
+        <startTime>dfeefefe</startTime>
+        <endTime>vcvcvcv</endTime>
+        <day>jujujuj</day>
+    </class>
+    <class id ="322">
+        <name>nome2</name>
+        <room>312</room>
+        <teacher>asdad2</teacher>
+        <year>dasdada2</year>
+        <startTime>dfeefefe2</startTime>
+        <endTime>vcvcvcv2</endTime>
+        <day>jujujuj2</day>
+    </class>
+</resources>
