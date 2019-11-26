@@ -2,7 +2,6 @@ package com.example.next_app;
 
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.Parser;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -25,12 +24,14 @@ public class xmlpullparser {
         try {
             DocumentBuilder dBuilder = factory.newDocumentBuilder();
             Document doc = dBuilder.parse(path+"/scheduleStubs.xml");
-            NodeList schedule =  doc.getElementsByTagName("class");
+            NodeList schedule =  doc.getElementsByTagName("day");
             for (int i=0; i<schedule.getLength();i++){
                Node node = schedule.item(i);
                if (node.getNodeType() == Node.ELEMENT_NODE){
                    Element stub =(Element) node;
-                   System.out.println("id: " +stub.getAttribute("id"));
+                   String day = stub.getAttribute("day");
+                   String[] days = new String[] {"lunedì", "martedì", "mercoledì", "giovedì", "venerdì"};
+                   System.out.println("day: " + days[Integer.parseInt(day)]);
                    NodeList attributes = stub.getChildNodes();
                    for(int j=0; j<attributes.getLength();j++){
                        if( attributes.item(j).getNodeType() == Node.ELEMENT_NODE){
