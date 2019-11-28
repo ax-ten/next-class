@@ -32,43 +32,149 @@
             tools:text="Next" />
 
         <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="52dp"
-            android:layout_height="53dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="28dp"
+            android:id="@+id/Teacher_photo"
+            android:layout_width="64dp"
+            android:layout_height="58dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="12dp"
+            android:layout_marginBottom="1dp"
             android:contentDescription="@string/Teacher"
             android:src="@drawable/fototeacher"
+            app:layout_constraintBottom_toTopOf="@+id/FasciaOraria_layout"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Teacher_layout"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/avatars[0]" />
 
         <ImageView
-            android:id="@+id/imageView3"
-            android:layout_width="61dp"
-            android:layout_height="89dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
+            android:id="@+id/Map"
+            android:layout_width="59dp"
+            android:layout_height="55dp"
+            android:layout_marginStart="7dp"
+            android:layout_marginTop="59dp"
+            android:layout_marginEnd="4dp"
+            android:layout_marginBottom="3dp"
             android:contentDescription="@string/Room"
+            app:layout_constraintBottom_toTopOf="@+id/Room_layout"
+            app:layout_constraintEnd_toStartOf="@+id/Teacher_layout"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:src="@tools:sample/backgrounds/scenic[5]" />
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/FasciaOraria_layout"
+            android:layout_width="119dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="1dp"
+            android:layout_marginEnd="51dp"
+            android:layout_marginBottom="3dp"
+            app:layout_constraintBottom_toTopOf="@+id/button"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Room_layout"
+            app:layout_constraintTop_toBottomOf="@+id/Teacher_photo">
+
+            <TextView
+                android:id="@+id/EndTime"
+                android:layout_width="58dp"
+                android:layout_height="22dp"
+                android:layout_marginStart="1dp"
+                android:baselineAligned="false"
+                android:fontFamily="sans-serif-thin"
+                android:text="@string/EndTime"
+                app:layout_constraintBottom_toBottomOf="@+id/StartTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/StartTime"
+                app:layout_constraintTop_toTopOf="@+id/StartTime"
+                tools:text="@string/EndTime" />
+
+            <TextView
+                android:id="@+id/StartTime"
+                android:layout_width="60dp"
+                android:layout_height="22dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginEnd="1dp"
+                android:layout_marginBottom="8dp"
+                android:baselineAligned="false"
+                android:fontFamily="sans-serif-thin"
+                android:text="@string/StartTime"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/EndTime"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/FasciaOraria"
+                tools:text="@string/StartTime" />
+
+            <TextView
+                android:id="@+id/FasciaOraria"
+                android:layout_width="119dp"
+                android:layout_height="19dp"
+                android:layout_marginTop="1dp"
+                android:layout_marginBottom="1dp"
+                android:fontFamily="serif"
+                android:text="@string/FasciaOraria"
+                app:layout_constraintBottom_toTopOf="@+id/EndTime"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="@string/FasciaOraria" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
         <LinearLayout
-            android:id="@+id/linearLayout3"
-            android:layout_width="79dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginTop="9dp"
-            android:layout_marginEnd="2dp"
+            android:id="@+id/Teacher_layout"
+            android:layout_width="92dp"
+            android:layout_height="51dp"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="5dp"
             android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
+            app:layout_constraintBottom_toTopOf="@+id/FasciaOraria_layout"
+            app:layout_constraintEnd_toEndOf="@+id/Classname_layout"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/Classname_layout"
+            app:layout_constraintTop_toBottomOf="@+id/Classname_layout">
+
+            <TextView
+                android:id="@+id/Teacher"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="serif"
+                android:text="@string/Teacher"
+                tools:layout_conversion_absoluteHeight="19dp"
+                tools:layout_conversion_absoluteWidth="80dp"
+                tools:layout_editor_absoluteX="84dp"
+                tools:layout_editor_absoluteY="45dp"
+                tools:text="@string/Teacher" />
+
+            <TextView
+                android:id="@+id/Teacher_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-thin"
+                android:text="@string/valoreY"
+                tools:layout_conversion_absoluteHeight="19dp"
+                tools:layout_conversion_absoluteWidth="80dp"
+                tools:layout_editor_absoluteX="84dp"
+                tools:layout_editor_absoluteY="64dp"
+                tools:text="@string/valoreY" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/Classname_layout"
+            android:layout_width="92dp"
+            android:layout_height="51dp"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="78dp"
+            android:layout_marginBottom="2dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toTopOf="@+id/Teacher_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/Map"
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/Classname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
@@ -76,7 +182,7 @@
                 tools:text="@string/Classname" />
 
             <TextView
-                android:id="@+id/textView4"
+                android:id="@+id/Classname_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
@@ -86,105 +192,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linearLayout4"
-            android:layout_width="79dp"
-            android:layout_height="38dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="2dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout"
-            app:layout_constraintEnd_toStartOf="@+id/imageView"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
-
-            <TextView
-                android:id="@+id/textView5"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="serif"
-                android:text="@string/Teacher"
-                tools:text="@string/Teacher" />
-
-            <TextView
-                android:id="@+id/textView6"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:fontFamily="sans-serif-thin"
-                android:text="@string/valoreY"
-                tools:text="@string/valoreY" />
-        </LinearLayout>
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/linearLayout"
-            android:layout_width="136dp"
-            android:layout_height="36dp"
-            android:layout_marginStart="2dp"
-            android:layout_marginEnd="25dp"
-            android:layout_marginBottom="2dp"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/imageView3"
-            app:layout_constraintTop_toBottomOf="@+id/imageView">
-
-            <TextView
-                android:id="@+id/textView8"
-                android:layout_width="70dp"
-                android:layout_height="19dp"
-                android:layout_marginEnd="1dp"
-                android:baselineAligned="false"
-                android:fontFamily="sans-serif-thin"
-                android:text="@string/EndTime"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/textView10"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"
-                tools:text="@string/EndTime" />
-
-            <TextView
-                android:id="@+id/textView10"
-                android:layout_width="65dp"
-                android:layout_height="19dp"
-                android:layout_marginBottom="1dp"
-                android:baselineAligned="false"
-                android:fontFamily="sans-serif-thin"
-                android:text="@string/StartTime"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/textView8"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"
-                tools:text="@string/StartTime" />
-
-            <TextView
-                android:id="@+id/textView11"
-                android:layout_width="120dp"
-                android:layout_height="16dp"
-                android:layout_marginEnd="16dp"
-                android:fontFamily="serif"
-                android:text="@string/FasciaOraria"
-                app:layout_constraintBottom_toTopOf="@+id/textView8"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="@string/FasciaOraria" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="81dp"
+            android:id="@+id/Room_layout"
+            android:layout_width="46dp"
             android:layout_height="37dp"
-            android:layout_marginStart="19dp"
-            android:layout_marginTop="2dp"
-            android:layout_marginEnd="140dp"
-            android:layout_marginBottom="12dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="18dp"
             android:orientation="vertical"
             app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView3">
+            app:layout_constraintTop_toBottomOf="@+id/Map">
 
             <TextView
-                android:id="@+id/textView14"
+                android:id="@+id/Room"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
@@ -192,7 +212,7 @@
                 tools:text="@string/Room" />
 
             <TextView
-                android:id="@+id/textView13"
+                android:id="@+id/Room_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
