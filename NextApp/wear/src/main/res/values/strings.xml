@@ -4,6 +4,14 @@
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.
     -->
+    <string name="Classname">Classname</string>
+    <string name="valoreX">valoreX</string>
+    <string name="Teacher">Teacher</string>
+    <string name="valoreY">valoreY</string>
+    <string name="FasciaOraria">Fascia Oraria</string>
+    <string name="StartTime">StartTime</string>
+    <string name="EndTime">EndTime</string>
+    <string name="Room">Room</string>
     <string name="hello_world">Hello Square World!</string>
     <string name="notify_me">Next!</string>
 
