@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="Classname">Classname</string>
+    <string name="valoreX">valoreX</string>
+    <string name="Teacher">Teacher</string>
+    <string name="valoreY">valoreY</string>
+    <string name="FasciaOraria">Fascia Oraria</string>
+    <string name="StartTime">StartTime</string>
+    <string name="EndTime">EndTime</string>
+    <string name="Room">Room</string>
+    <string name="valoreZ">valoreZ</string>
+</resources>
