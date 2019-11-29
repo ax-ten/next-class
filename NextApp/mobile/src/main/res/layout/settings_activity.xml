@@ -22,47 +22,73 @@
 
         <Switch
             android:id="@+id/switch3"
-            android:layout_width="329dp"
-            android:layout_height="78dp"
+            android:layout_width="316dp"
+            android:layout_height="65dp"
+            android:layout_marginStart="37dp"
+            android:layout_marginEnd="45dp"
+            android:layout_marginBottom="1000dp"
             android:switchTextAppearance="@style/TextAppearance.AppCompat.Large"
             android:text="@string/attiva_notifiche"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            tools:layout_editor_absoluteX="37dp"
-            tools:layout_editor_absoluteY="188dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
         <TextView
             android:id="@+id/textView"
-            android:layout_width="330dp"
-            android:layout_height="67dp"
+            android:layout_width="331dp"
+            android:layout_height="62dp"
+            android:layout_marginStart="170dp"
+            android:layout_marginTop="305dp"
+            android:layout_marginEnd="697dp"
+            android:layout_marginBottom="364dp"
             android:text="Minuti anticipo"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            tools:layout_editor_absoluteX="36dp"
-            tools:layout_editor_absoluteY="305dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button3"
             android:layout_width="58dp"
             android:layout_height="37dp"
+            android:layout_marginStart="40dp"
+            android:layout_marginTop="94dp"
+            android:layout_marginEnd="150dp"
+            android:layout_marginBottom="920dp"
             android:text="edit"
-            tools:layout_editor_absoluteX="308dp"
-            tools:layout_editor_absoluteY="314dp" />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/textView"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
         <TextView
             android:id="@+id/textView2"
             android:layout_width="249dp"
             android:layout_height="62dp"
+            android:layout_marginStart="181dp"
+            android:layout_marginTop="900dp"
+            android:layout_marginEnd="790dp"
             android:text="Seleziona lingua"
             android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            tools:layout_editor_absoluteX="35dp"
-            tools:layout_editor_absoluteY="408dp" />
+            app:layout_constraintBottom_toTopOf="@+id/imageButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/imageButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <Button
             android:id="@+id/button4"
-            android:layout_width="83dp"
-            android:layout_height="41dp"
+            android:layout_width="82dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="550dp"
+            android:layout_marginTop="520dp"
             android:text="Change"
-            tools:layout_editor_absoluteX="293dp"
-            tools:layout_editor_absoluteY="419dp" />
+            app:layout_constraintBottom_toTopOf="@+id/imageButton"
+            app:layout_constraintEnd_toStartOf="@+id/imageButton"
+            app:layout_constraintStart_toEndOf="@+id/textView2"
+            app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
