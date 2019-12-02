@@ -5,18 +5,10 @@
     <!-- Preference Titles -->
     <string name="messages_header">Messages</string>
     <string name="sync_header">Sync</string>
-    <string name="maintitle_header">Next</string>
 
     <!-- Messages Preferences -->
     <string name="signature_title">Your signature</string>
     <string name="reply_title">Default reply action</string>
-    <string name="settings_description">Edit settings</string>
-    <string name="addNew_description">Create new schedule file</string>
-
-    <!-- Settings Preferences -->
-    <string name="checkbox_notifies">Notify me</string>
-    <string name="text_insert_minutes">Minutes early </string>
-    <string name="selection_language">Select Language</string>
 
     <!-- Sync Preferences -->
     <string name="sync_title">Sync email periodically</string>

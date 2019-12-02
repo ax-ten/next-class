@@ -86,7 +86,7 @@ public class Stub {
                 case XmlPullParser.START_TAG:
                     eltName = parser.getName();
                     if ("class".equals(eltName)){
-                        currentStub = new Stub();
+                        currentStub = new Stub()
                     }
             }
         }

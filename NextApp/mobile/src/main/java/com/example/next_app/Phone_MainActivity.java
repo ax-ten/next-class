@@ -35,6 +35,14 @@ public class Phone_MainActivity extends AppCompatActivity implements GoogleApiCl
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        b=(ImageButton) findViewById(R.id.imageButton);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Phone_MainActivity.this,Main2Activity.class);
+                startActivity(i);
+            }
+        });
 
         /**
          if(null == mGoogleApiClient) {
