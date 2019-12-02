@@ -98,8 +98,7 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_phone);
 
-
-
+        /**
         if(null == mGoogleApiClient) {
             mGoogleApiClient = new GoogleApiClient.Builder(this)
                     .addApi(Wearable.API)
@@ -113,37 +112,31 @@ public class PhoneActivity extends Activity implements GoogleApiClient.Connectio
             mGoogleApiClient.connect();
             Log.v(TAG, "Connecting to GoogleApiClient..");
         }
+        */
 
-        startService(new Intent(this, PhoneService.class));
-        setContentView(R.layout.activity_phone);
+        //startService(new Intent(this, PhoneService.class));
+        //todo riattivare lo start del service
+
+
         try {
-            readFeed(this.getResources().getXml(R.xml.schedule_stubs));
+            new Stub().readFeed(getAssets().open("stubtest.xml"));
         } catch (XmlPullParserException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-    private List readFeed(XmlResourceParser parser) throws XmlPullParserException, IOException {
-        List entries = new ArrayList();
-        int xmlTAG = parser.getEventType();
-
-        while (xmlTAG != XmlPullParser.END_TAG){
-            String name = parser.getName();
-            Log.d(TAG, parser.getText() );
-            parser.nextTag();
-        }
-        return entries;
     }
 
     @Override protected void onStart() {
         super.onStart();
-        Log.v(TAG, "onStart called");
+       //Log.v(TAG, "onStart called");
     }
-    @Override public void onConnectionSuspended(int cause)                      {Log.v(TAG,"onConnectionSuspended called");}
-    @Override public void onConnectionFailed(ConnectionResult connectionResult) {Log.v(TAG,"onConnectionFailed called");}
-    @Override public void onConnected(Bundle connectionHint)                    {Log.v(TAG,"onConnected called");}
+    @Override public void onConnectionSuspended(int cause)
+        {Log.v(TAG,"onConnectionSuspended called");}
+    @Override public void onConnectionFailed(ConnectionResult connectionResult)
+        {Log.v(TAG,"onConnectionFailed called");}
+    @Override public void onConnected(Bundle connectionHint)
+        {Log.v(TAG,"onConnected called");}
 
     public void configStart(View view){new SendActivityPhoneMessage(CONFIG_START,"").start();}
     public void configStop(View view){new SendActivityPhoneMessage(CONFIG_STOP,"").start();}

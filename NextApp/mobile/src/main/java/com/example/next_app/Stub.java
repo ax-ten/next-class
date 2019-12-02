@@ -13,8 +13,10 @@ import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.FileSystems;
 import java.nio.file.Path;
 import java.util.ArrayList;
@@ -25,16 +27,12 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
 public class Stub {
-    private int id;
-    private int year;
-    private int day;
-    private String courseName;
-    private String teacherName;
-    private String room;
-    private double startTime;
-    private double endTime;
+    private int id,year, day;
+    private String courseName, teacherName, room;
+    private double startTime, endTime;
 
-    public Stub(Context context, int y, int d, int id){
+    //Constructors
+    public Stub(int y, int d, int id){
         this.id = id;
         this.year = y;
         this.day = d;
@@ -48,52 +46,50 @@ public class Stub {
         this.teacherName = ;
          */
 
-        XmlResourceParser xml = context.getResources().getXml(R.xml.schedule_stubs);
-        String relativePath = "mobile/src/main/java/com/example/next_app";
-        Path path = FileSystems.getDefault().getPath(relativePath);
-        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        try {
-            DocumentBuilder dBuilder = factory.newDocumentBuilder();
-            Document doc = dBuilder.parse(path+"/schedule_stubs.xml");
-            NodeList schedule =  doc.getElementsByTagName("day");
-            for (int i=0; i<schedule.getLength();i++){
-                Node node = schedule.item(i);
-                if (node.getNodeType() == Node.ELEMENT_NODE){
-                    Element stub =(Element) node;
-                    String day = stub.getAttribute("day");
+
+    }
+    public Stub(){}
 
 
-                    String[] days = getDays(context);
-                    System.out.println("day: " + days[Integer.parseInt(day)]);
+    //Public methods
+    public List readFeed(InputStream is) throws XmlPullParserException, IOException{
+        List entries = new ArrayList();
+        XmlPullParserFactory parserFactory;
 
-                    NodeList attributes = stub.getChildNodes();
-                    for(int j=0; j<attributes.getLength();j++){
-                        if( attributes.item(j).getNodeType() == Node.ELEMENT_NODE){
-                            Element classElement = (Element) attributes.item(j);
-                            System.out.println(classElement.getTagName()+ ": " + classElement.getTextContent());
-                        }
-                    }
-                }
-            }
-        } catch (ParserConfigurationException e ){
+        try{
+           parserFactory  = XmlPullParserFactory.newInstance();
+           XmlPullParser parser = parserFactory.newPullParser();
+           parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
+           parser.setInput(is,null);
+
+           processParsing(parser);
+        } catch (XmlPullParserException e) {
             e.printStackTrace();
-        } catch (SAXException e){
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
+        }catch (IOException e) {
         }
+
+        return entries;
     }
 
-    private List readFeed(XmlPullParser parser) throws XmlPullParserException, IOException{
-        List entries = new ArrayList();
-        while (parser.next() != XmlPullParser.END_TAG){
-            String name = parser.getName();
-            if (name.equals("year"))
-                entries.add(parser.getText());
-            Log.d("roba",parser.getText() );
-            parser.nextTag();
+
+
+    //Other methods
+    private void processParsing(XmlPullParser parser) throws  IOException, XmlPullParserException{
+        ArrayList<Stub> stubs = new ArrayList<>();
+        int eventType = parser.getEventType();
+        Stub currentStub = null;
+
+        while (eventType != XmlPullParser.END_DOCUMENT){
+            String eltName = null;
+
+            switch (eventType){
+                case XmlPullParser.START_TAG:
+                    eltName = parser.getName();
+                    if ("class".equals(eltName)){
+                        currentStub = new Stub()
+                    }
+            }
         }
-        return entries;
     }
 
     private String[] getDays(Context context){
