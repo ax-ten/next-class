@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <class>
+        <name>Materiali per l'ing Elettrica</name>
+        <teacher>ACCIANI Giuseppe</teacher>
+        <room>8</room>
+        <start_time>08.30</start_time>
+        <end_time>11.00</end_time>
+        <day>0</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Reti elettriche</name>
+        <teacher>CARNIMEO Leonarda</teacher>
+        <room>8</room>
+        <start_time>11.00</start_time>
+        <end_time>13.30</end_time>
+        <day>0</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Illuminazione artificiale</name>
+        <teacher>CAVONE Giuseppe</teacher>
+        <room>24</room>
+        <start_time>14.00</start_time>
+        <end_time>16.30</end_time>
+        <day>0</day>
+        <year>0</year>
+    </class>
+
+    <class>
+        <name>Macchine ed Energetica</name>
+        <teacher>TORRESI Marco</teacher>
+        <room>24</room>
+        <start_time>08.30</start_time>
+        <end_time>11.00</end_time>
+        <day>1</day>
+        <year>0</year>
+    </class>
+
+    <class>
+        <name>Reti elettriche</name>
+        <teacher>CARNIMEO Leonarda</teacher>
+        <room>4</room>
+        <start_time>11.00</start_time>
+        <end_time>13.30</end_time>
+        <day>1</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Controllo digitale</name>
+        <teacher>MAIONE Guido</teacher>
+        <room>21</room>
+        <start_time>14.00</start_time>
+        <end_time>16.30</end_time>
+        <day>1</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Illuminazione artificiale</name>
+        <teacher>CAVONE Giuseppe</teacher>
+        <room>21</room>
+        <start_time>16.30</start_time>
+        <end_time>19.00</end_time>
+        <day>1</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Macchine ed Energetica</name>
+        <teacher>TORRESI Marco</teacher>
+        <room>13</room>
+        <start_time>08.30</start_time>
+        <end_time>11.00</end_time>
+        <day>2</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Reti elettriche</name>
+        <teacher>CARNIMEO Leonarda</teacher>
+        <room>6</room>
+        <start_time>11.00</start_time>
+        <end_time>13.30</end_time>
+        <day>2</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Dynamical Systems Theory </name>
+        <teacher>DOTOLI Mariagrazia</teacher>
+        <room>12</room>
+        <start_time>14.00</start_time>
+        <end_time>16.30</end_time>
+        <day>2</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Dynamical Systems Theory </name>
+        <teacher>DOTOLI Mariagrazia</teacher>
+        <room>12</room>
+        <start_time>08.30</start_time>
+        <end_time>11.00</end_time>
+        <day>3</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Gest. Intel. Impianti Elettrici</name>
+        <teacher>BRONZINI Marco</teacher>
+        <room>8</room>
+        <start_time>11.00</start_time>
+        <end_time>13.30</end_time>
+        <day>3</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>null</name>
+        <start_time>14.00</start_time>
+        <end_time>16.30</end_time>
+        <day>3</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Materiali per l'ing Elettrica</name>
+        <teacher>ACCIANI Giuseppe</teacher>
+        <room>4</room>
+        <start_time>16.30</start_time>
+        <end_time>19.00</end_time>
+        <day>3</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Controllo digitale</name>
+        <teacher>MAIONE Guido</teacher>
+        <room>26</room>
+        <start_time>08.30</start_time>
+        <end_time>11.00</end_time>
+        <day>4</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Reti elettriche</name>
+        <teacher>CARNIMEO Leonarda</teacher>
+        <room>11</room>
+        <start_time>11.00</start_time>
+        <end_time>13.30</end_time>
+        <day>4</day>
+        <year>0</year>
+    </class>
+    <class>
+        <name>Gest. Intel. Impianti Elettrici</name>
+        <teacher>BRONZINI Marco</teacher>
+        <room>8</room>
+        <start_time>14.00</start_time>
+        <end_time>16.30</end_time>
+        <day>4</day>
+        <year>0</year>
+    </class>
+</resources>
