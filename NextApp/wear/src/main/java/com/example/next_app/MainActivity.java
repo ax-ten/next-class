@@ -6,15 +6,28 @@ import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.content.Context;
 import android.support.wearable.activity.WearableActivity;
+import android.util.Log;
 import android.widget.TextView;
 import android.view.View;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-public class MainActivity extends WearableActivity {
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.wearable.DataApi;
+import com.google.android.gms.wearable.DataEvent;
+import com.google.android.gms.wearable.DataEventBuffer;
+import com.google.android.gms.wearable.DataMapItem;
+import com.google.android.gms.wearable.Wearable;
+
+
+public class MainActivity extends WearableActivity implements MyListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private TextView mTextView;
+    private GoogleApiClient googleApiClient;
+    private MyListener myListener;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +54,10 @@ public class MainActivity extends WearableActivity {
         nmc.notify(1,notification);
     }
 
+    public void open_menu(View view){
+        //todo
+    }
+
     private NotificationChannel createChannel(NotificationManager nManager){
         String id ="my_channel_01";
         CharSequence name =  "channel-name";
@@ -56,5 +73,52 @@ public class MainActivity extends WearableActivity {
         nManager.createNotificationChannel(nChannel);
 
         return nChannel;
+    }
+
+    @Override
+    public void onConnected(Bundle bundle) {
+
+        Wearable.DataApi.addListener(googleApiClient, (DataApi.DataListener) this);
+    }
+
+    @Override
+    public void onConnectionSuspended(int i) {
+
+    }
+
+    public void onDataChanged(DataEventBuffer dataEvents) {
+
+        for (DataEvent event: dataEvents) {
+
+            Log.d("[DEBUG] DeviceService - onDataChanged",
+                    "Event received: " + event.getDataItem().getUri());
+
+            String eventUri = event.getDataItem().getUri().toString();
+
+            if (eventUri.contains ("/myapp/myevent")) {
+
+                DataMapItem dataItem = DataMapItem.fromDataItem (event.getDataItem());
+                String[] data = dataItem.getDataMap().getStringArray("contents");
+
+                Log.d("[DEBUG] DeviceService - onDataChanged", "Sending timeline to the listener");
+
+                myListener.onDataReceived(data);
+            }
+        }
+    }
+
+    @Override
+    public void callback(View view, String result) {
+
+    }
+
+    @Override
+    public void onDataReceived(String[] data) {
+
+    }
+
+    @Override
+    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
+
     }
 }
