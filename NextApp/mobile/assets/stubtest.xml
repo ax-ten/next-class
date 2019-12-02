@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <course id ="0" type ="string"/>
+    <course id ="1"/>
+    <course id ="2"/>
+</resources>
