@@ -23,7 +23,7 @@ import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
 
-public class MainActivity extends WearableActivity implements MyListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class Wearable_MainActivity extends WearableActivity implements MyListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private TextView mTextView;
     private GoogleApiClient googleApiClient;
