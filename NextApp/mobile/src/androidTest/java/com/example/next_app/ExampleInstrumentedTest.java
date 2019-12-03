@@ -8,8 +8,6 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
 import org.xmlpull.v1.XmlPullParserFactory;
@@ -34,7 +32,7 @@ public class ExampleInstrumentedTest {
         String TAG = "TESTING >>>>>>>";
 
         Log.v(TAG, "caricamento file");
-        InputStream resource = appContext.getResources().openRawResource(R.xml.schedule_stubs);
+        InputStream resource = appContext.getResources().openRawResource(R.raw.schedule_stubs);
         Log.v(TAG, "parse iniziato");
         LinkedList<Stub> stubList = parseXML(resource);
         Log.v(TAG, "parse terminato");
@@ -53,7 +51,7 @@ public class ExampleInstrumentedTest {
             factory.setNamespaceAware(true);
             parser = factory.newPullParser();
             parser.setInput(istream, null);
-            String text;
+            String text = "test";
             Stub stub= new Stub(1,1,null,null,null,1,1);
 
             eventType = parser.getEventType();
@@ -63,18 +61,7 @@ public class ExampleInstrumentedTest {
                     case XmlPullParser.START_TAG:
                         if (tagname.equalsIgnoreCase("course")) {
                             // create a new instance of Stub
-                            stub = new Stub(
-                                    /**
-                                    Integer.parseInt(getNodeValue("year", stubElement)),
-                                    Integer.parseInt(getNodeValue("day", stubElement)),
-                                    getNodeValue("name", stubElement),
-                                    getNodeValue("teacher", stubElement),
-                                    getNodeValue("room", stubElement),
-                                    Double.parseDouble(getNodeValue("startTime", stubElement)),
-                                    Double.parseDouble(getNodeValue("endTime", stubElement))
-                                     */
-                                    1,1,null,null,null,1,1
-                            );
+                            stub = new Stub();
                         }
                         break;
 
@@ -86,12 +73,12 @@ public class ExampleInstrumentedTest {
                         if (tagname.equalsIgnoreCase("course")) {
                             // add employee object to list
                             schedule.add(stub);
-                        } else if (tagname.equalsIgnoreCase("id")) {
-                            stub.setId(Integer.parseInt(text));
+                        } else if (tagname.equalsIgnoreCase("teacher")) {
+                            stub.setTeacherName(text);
                         } else if (tagname.equalsIgnoreCase("name")) {
-                            stub.setName(text);
-                        } else if (tagname.equalsIgnoreCase("salary")) {
-                            stub.setSalary(Float.parseFloat(text));
+                            stub.setCourseName(text);
+                        } else if (tagname.equalsIgnoreCase("day")) {
+                            stub.setDay(Integer.parseInt(text));
                         }
                         break;
 
@@ -107,22 +94,4 @@ public class ExampleInstrumentedTest {
 
         return schedule;
     }
-
-        protected String getNodeValue(String tag, Element element) {
-        NodeList nodeList = element.getElementsByTagName(tag);
-        org.w3c.dom.Node node = nodeList.item(0);
-        if(node!=null) {
-            if (node.hasChildNodes()) {
-                org.w3c.dom.Node child = node.getFirstChild();
-                while (child != null) {
-                    if (child.getNodeType() == org.w3c.dom.Node.TEXT_NODE) {
-                        return child.getNodeValue();
-                    }
-                }
-            }
-        }
-        return "";
-    }
-
-
 }
