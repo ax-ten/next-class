@@ -3,6 +3,9 @@ package com.example.next_app;
 import android.content.Context;
 import android.content.res.Resources;
 
+/** Stub class implementation. The class has 7 attributes linked to the specific lesson that will be
+send by intent to the smartwatch**/
+
 public class Stub {
     private int year, day;
     private String courseName, teacherName, room;
@@ -24,7 +27,7 @@ public class Stub {
         //empty
     }
 
-
+/** getter and setter methods implementation for parameters of Stub class **/
     //Setters
     public void setYear(int year) {
         this.year = year;
