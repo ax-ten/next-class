@@ -125,10 +125,6 @@ public class Phone_MainActivity extends AppCompatActivity
         //todo
     }
 
-    //Method called when clicked on button "parse"
-    public void onClick_parse(View view){
-        updateStubList();
-    }
 
 
     //UPDATING METHODS
