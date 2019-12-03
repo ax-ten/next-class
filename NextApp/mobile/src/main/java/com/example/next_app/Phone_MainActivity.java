@@ -1,6 +1,5 @@
 package com.example.next_app;
 
-import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -18,38 +17,25 @@ import java.io.InputStream;
 import java.util.LinkedList;
 
 public class Phone_MainActivity extends AppCompatActivity
+        //todo implementare librerie per Listener
         //implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
     {
+    //TAG useful for debugging Logs
     private static final String TAG = "Phone_MainActivity";
-    /**
-     * public static final String CONFIG_START = "config/start";
-     * public static final String CONFIG_STOP= "config/stop";
-     * GoogleApiClient mGoogleApiClient;
-     **/
-
+    private InputStream inputStream;
+    private LinkedList<Stub> stubList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_main_activity);
+        this.getSupportActionBar().hide();
 
-        //PARSE
-        InputStream inputStream;
-        String TAG = "TESTING >>>>>>>";
+        //update stubList containing all stubs for the semester
+        updateStubList();
 
-        Log.v(TAG, "caricamento file");
-        inputStream = getStream();
-        Log.v(TAG, "parse iniziato");
-        LinkedList<Stub> stubList = parseXML(inputStream);
-        Log.v(TAG, "parse terminato");
-
-        LinearLayout linLayout = findViewById(R.id.scheduleList);
-        LayoutInflater inflater = LayoutInflater.from(this);
-        View view;
-        for (Stub stub: stubList){
-            view = inflater.inflate(R.layout.stub_view,linLayout,false);
-            linLayout.addView(view);
-        }
+        //update the LinearLayout containing all Schedules made
+        updateScheduleList();
 
     }
     /**
@@ -139,18 +125,32 @@ public class Phone_MainActivity extends AppCompatActivity
         //todo
     }
 
+    //Method called when clicked on button "parse"
     public void onClick_parse(View view){
-        AssetManager am = this.getAssets();
-        InputStream istream;
-
-        Log.v(TAG, "caricamento file");
-        istream = getStream();
-        Log.v(TAG, "parse iniziato");
-        LinkedList<Stub> stubList = parseXML(istream);
-        Log.v(TAG, "parse terminato");
-
+        updateStubList();
     }
 
+
+    //UPDATING METHODS
+    private void updateScheduleList(){
+        //linLayout is the layout where all the
+        LinearLayout linLayout = findViewById(R.id.scheduleList);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view;
+        for (Stub stub: stubList){
+            view = inflater.inflate(R.layout.stub_view,linLayout,false);
+            linLayout.addView(view);
+        }
+    }
+
+
+    private void updateStubList(){
+        Log.v(TAG, "caricamento file");
+        inputStream = getStream();
+        Log.v(TAG, "parse iniziato");
+        stubList = parseXML(inputStream);
+        Log.v(TAG, "parse terminato");
+    }
 
     //PARSING
     public  LinkedList<Stub> parseXML(InputStream istream) {
@@ -208,6 +208,7 @@ public class Phone_MainActivity extends AppCompatActivity
         return schedule;
     }
 
+    //Returns the xml file as an InputStream
     public InputStream getStream(){
         return this.getResources().openRawResource(R.raw.schedule_stubs);
     }
