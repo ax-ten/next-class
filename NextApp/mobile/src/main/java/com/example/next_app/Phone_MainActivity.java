@@ -3,23 +3,19 @@ package com.example.next_app;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.Arrays;
 import java.util.LinkedList;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
 
 public class Phone_MainActivity extends AppCompatActivity
         //implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
@@ -36,6 +32,7 @@ public class Phone_MainActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_main_activity);
+
 
         /**
          if(null == mGoogleApiClient) {
@@ -61,24 +58,24 @@ public class Phone_MainActivity extends AppCompatActivity
 
         //PARSE
         InputStream inputStream;
-        String filename = "schedule_stubs.xml";
-        AssetManager am = this.getAssets();
 
-        try {
+        //PARSE
+        String TAG = "TESTING >>>>>>>";
 
-            final String[] filenames = am.list("");
-            Log.v(TAG,"filenames: "+ Arrays.toString(filenames));
-            final String[] directories = am.list("/");
-            Log.v(TAG,"directories: "+ Arrays.toString(directories));
+        Log.v(TAG, "caricamento file");
+        inputStream = getStream();
+        Log.v(TAG, "parse iniziato");
+        LinkedList<Stub> stubList = parseXML(inputStream);
+        Log.v(TAG, "parse terminato");
 
-            Log.v(TAG, "caricamento file");
-            inputStream = am.open(filename);
-            Log.v(TAG, "parse iniziato");
-            LinkedList<Stub> stubList = parseXML(inputStream);
-            Log.v(TAG, "parse terminato");
-        } catch (IOException e) {
-            e.printStackTrace();
+        LinearLayout linLayout = findViewById(R.id.scheduleList);
+        LayoutInflater inflater = LayoutInflater.from(this);
+        View view;
+        for (Stub stub: stubList){
+            view = inflater.inflate(R.layout.stub_view,linLayout,false);
+            linLayout.addView(view);
         }
+
     }
     /**
     //NOTIFICATIONS
@@ -169,69 +166,75 @@ public class Phone_MainActivity extends AppCompatActivity
 
     public void onClick_parse(View view){
         AssetManager am = this.getAssets();
-        InputStream istream = null;
-        try {
-            Log.v(TAG, "caricamento file");
-            istream = am.open("schedule_stubs.xml");
-            Log.v(TAG, "parse iniziato");
-            LinkedList<Stub> stubList = parseXML(istream);
-            Log.v(TAG, "parse terminato");
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        InputStream istream;
+
+        Log.v(TAG, "caricamento file");
+        istream = getStream();
+        Log.v(TAG, "parse iniziato");
+        LinkedList<Stub> stubList = parseXML(istream);
+        Log.v(TAG, "parse terminato");
+
     }
+
 
     //PARSING
-    public  LinkedList<Stub> parseXML(InputStream istream){
-        LinkedList<Stub> stubList = new LinkedList<>();
-        try{
-            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(istream);
+    public  LinkedList<Stub> parseXML(InputStream istream) {
+        LinkedList<Stub> schedule = new LinkedList<>();
+        XmlPullParserFactory factory;
+        XmlPullParser parser;
+        int eventType;
 
-            NodeList courses = doc.getElementsByTagName("class");
-            for(int i =0;i<courses.getLength();i++){
-                Element elm = (Element)courses.item(i);
-                Stub stub = new Stub(
-                        /**Integer.parseInt(getNodeValue("year",elm)),
-                        Integer.parseInt(getNodeValue("day",elm)),
-                        getNodeValue("name",elm),
-                        getNodeValue("teacher",elm),
-                        getNodeValue("room",elm),
-                        Double.parseDouble(getNodeValue("startTime",elm)),
-                        Double.parseDouble(getNodeValue("endTime",elm))
-                         */
-                        i,i,getNodeValue("name",elm),null, null,i,i
-                );
-                stubList.add(stub);
+        try {
+            factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            parser = factory.newPullParser();
+            parser.setInput(istream, null);
+            String text = "test";
+            Stub stub= new Stub(1,1,null,null,null,1,1);
 
-            }
-        }
-        catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParserConfigurationException e) {
-            e.printStackTrace();
-        } catch (SAXException e) {
-            e.printStackTrace();
-        }
-        return stubList;
-    }
-    protected String getNodeValue(String tag, Element element) {
-        NodeList nodeList = element.getElementsByTagName(tag);
-        org.w3c.dom.Node node = nodeList.item(0);
-        if(node!=null) {
-            if (node.hasChildNodes()) {
-                org.w3c.dom.Node child = node.getFirstChild();
-                while (child != null) {
-                    if (child.getNodeType() == org.w3c.dom.Node.TEXT_NODE) {
-                        return child.getNodeValue();
-                    }
+            eventType = parser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String tagname = parser.getName();
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                        if (tagname.equalsIgnoreCase("course")) {
+                            // create a new instance of Stub
+                            stub = new Stub();
+                        }
+                        break;
+
+                    case XmlPullParser.TEXT:
+                        text = parser.getText();
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        if (tagname.equalsIgnoreCase("course")) {
+                            // add employee object to list
+                            schedule.add(stub);
+                        } else if (tagname.equalsIgnoreCase("teacher")) {
+                            stub.setTeacherName(text);
+                        } else if (tagname.equalsIgnoreCase("name")) {
+                            stub.setCourseName(text);
+                        } else if (tagname.equalsIgnoreCase("day")) {
+                            stub.setDay(Integer.parseInt(text));
+                        }
+                        break;
+
+                    default:
+                        break;
                 }
+                eventType = parser.next();
             }
+
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
         }
-        return "";
+
+        return schedule;
     }
 
-
+    public InputStream getStream(){
+        return this.getResources().openRawResource(R.raw.schedule_stubs);
+    }
 
 }
