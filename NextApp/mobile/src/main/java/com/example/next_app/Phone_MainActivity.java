@@ -153,11 +153,12 @@ public class Phone_MainActivity extends AppCompatActivity implements GoogleApiCl
 
     //BUTTONS
     public void onClick_addNew(View view){
-        Log.v(TAG,"addnew")
+        Log.v(TAG,"add new");
         //todo
     }
 
     public void onClick_settings(View view){
+        Log.v(TAG,"settings");
         //todo
     }
 
