@@ -36,6 +36,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.0" />
 
+        <!-- ImageButtom implementation aimed to explore and configure -->
         <ImageButton
             android:id="@+id/headerSettings"
             android:layout_width="43dp"
@@ -51,6 +52,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_settings" />
 
+        <!-- calls a method to create a new schedule -->
         <ImageButton
             android:id="@+id/headerAddNew"
             android:layout_width="44dp"
