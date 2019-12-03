@@ -18,6 +18,9 @@ public class Stub {
         this.startTime = sT;
         this.endTime = eT;
     }
+    public Stub(){
+        //empty
+    }
 
     //Other methods
     private final String[] getDays(Context context){
