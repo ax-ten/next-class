@@ -1,24 +1,11 @@
 package com.example.next_app;
 
-import android.app.Notification;
-import android.app.NotificationChannel;
-import android.app.NotificationManager;
-import android.content.Context;
 import android.content.res.AssetManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.MessageApi;
-import com.google.android.gms.wearable.Node;
-import com.google.android.gms.wearable.NodeApi;
-import com.google.android.gms.wearable.Wearable;
 
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -27,18 +14,22 @@ import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
 import java.util.LinkedList;
-import java.util.List;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
-public class Phone_MainActivity extends AppCompatActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class Phone_MainActivity extends AppCompatActivity
+        //implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
+    {
     private static final String TAG = "Phone_MainActivity";
-    public static final String CONFIG_START = "config/start";
-    public static final String CONFIG_STOP= "config/stop";
-    GoogleApiClient mGoogleApiClient;
+    /**
+     * public static final String CONFIG_START = "config/start";
+     * public static final String CONFIG_STOP= "config/stop";
+     * GoogleApiClient mGoogleApiClient;
+     **/
 
 
     @Override
@@ -69,19 +60,27 @@ public class Phone_MainActivity extends AppCompatActivity implements GoogleApiCl
         //builder.addApi(Wearable.API);
 
         //PARSE
+        InputStream inputStream;
+        String filename = "schedule_stubs.xml";
         AssetManager am = this.getAssets();
-        InputStream istream = null;
+
         try {
+
+            final String[] filenames = am.list("");
+            Log.v(TAG,"filenames: "+ Arrays.toString(filenames));
+            final String[] directories = am.list("/");
+            Log.v(TAG,"directories: "+ Arrays.toString(directories));
+
             Log.v(TAG, "caricamento file");
-            istream = am.open("schedule_stubs.xml");
+            inputStream = am.open(filename);
             Log.v(TAG, "parse iniziato");
-            LinkedList<Stub> stubList = parseXML(istream);
+            LinkedList<Stub> stubList = parseXML(inputStream);
             Log.v(TAG, "parse terminato");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
+    /**
     //NOTIFICATIONS
     class SendActivityPhoneMessage extends Thread {
         String path;
@@ -150,6 +149,12 @@ public class Phone_MainActivity extends AppCompatActivity implements GoogleApiCl
     {Log.v(TAG,"onConnectionFailed called");}
     @Override public void onConnected(Bundle connectionHint)
     {Log.v(TAG,"onConnected called");}
+
+    public void configStart(View view){new Phone_MainActivity.SendActivityPhoneMessage(CONFIG_START,"").start();}
+    public void configStop(View view){new Phone_MainActivity.SendActivityPhoneMessage(CONFIG_STOP,"").start();}
+
+    */
+
 
     //BUTTONS
     public void onClick_addNew(View view){
@@ -227,8 +232,6 @@ public class Phone_MainActivity extends AppCompatActivity implements GoogleApiCl
         return "";
     }
 
-    public void configStart(View view){new Phone_MainActivity.SendActivityPhoneMessage(CONFIG_START,"").start();}
-    public void configStop(View view){new Phone_MainActivity.SendActivityPhoneMessage(CONFIG_STOP,"").start();}
 
 
 }
