@@ -26,11 +26,10 @@ import com.google.android.gms.wearable.Wearable;
 import java.util.LinkedList;
 
 
-public class Wearable_MainActivity extends WearableActivity implements MyListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class Wearable_MainActivity extends WearableActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private TextView mTextView;
     private GoogleApiClient googleApiClient;
-    private MyListener myListener;
     private LinkedList<IResultReceiver.Stub> stubList;
 
     @Override
@@ -119,19 +118,12 @@ public class Wearable_MainActivity extends WearableActivity implements MyListene
 
                 Log.d("[DEBUG] DeviceService - onDataChanged", "Sending timeline to the listener");
 
-                myListener.onDataReceived(data);
+                //myListener.onDataReceived(data);
             }
         }
     }
 
-    @Override
-    public void callback(View view, String result) {
-    }
 
-    @Override
-    public void onDataReceived(String[] data) {
-
-    }
 
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
