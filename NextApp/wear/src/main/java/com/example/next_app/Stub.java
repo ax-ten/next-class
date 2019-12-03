@@ -83,6 +83,7 @@ public class Stub {
     }
 
     //Other methods
+    /**
     private final String[] getDays(Context context){
         Resources resources = context.getResources();
         String[] days = new String[]
@@ -93,4 +94,5 @@ public class Stub {
                 resources.getString(R.string.friday)};
         return days;
     }
+     */
 }

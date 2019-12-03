@@ -5,12 +5,10 @@ import android.os.Bundle;
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.content.Context;
-import android.support.v4.os.IResultReceiver;
 import android.support.wearable.activity.WearableActivity;
 import android.widget.TextView;
 import android.view.View;
 
-import 
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -28,18 +26,37 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
 
     private TextView mTextView;
     private GoogleApiClient googleApiClient;
-    private LinkedList<IResultReceiver.Stub> stubList;
+    private LinkedList<Stub> stubList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        Double d = 11.2;
+        Stub stub = getcurrentStub(stubList, d);
+
+        setTxtView(R.id.teacher_text, stub.getTeacherName());
+        setTxtView(R.id.classname, stub.getCourseName());
+        setTxtView(R.id.room, stub.getRoom());
+        setTxtView(R.id.startTime, Double.toString(stub.getStartTime()));
+        setTxtView(R.id.endTime, Double.toString(stub.getEndTime()));
+
         setContentView(R.layout.wearable_main_activity);
 
-        mTextView = findViewById(R.id.text);
+    }
 
-        // Enables Always-on
-        setAmbientEnabled();
-        Stub stub;
+    private Stub getcurrentStub(LinkedList<Stub> stublist, double cTime){
+        for(Stub stub: stublist){
+            if (cTime > stub.getStartTime() && cTime < stub.getEndTime())
+                return stub;
+        }
+        return null;
+        //todo
+    }
+
+    private void setTxtView(int campotisesto, String valore){
+        mTextView = findViewById(campotisesto);
+        mTextView.setText(valore);
     }
 
     public void notifyme(View view){
