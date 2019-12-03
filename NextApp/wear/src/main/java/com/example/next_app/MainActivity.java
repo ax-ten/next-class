@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.app.NotificationManager;
 import android.app.NotificationChannel;
 import android.content.Context;
+import android.support.v4.os.IResultReceiver;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.widget.TextView;
@@ -22,17 +23,20 @@ import com.google.android.gms.wearable.DataEventBuffer;
 import com.google.android.gms.wearable.DataMapItem;
 import com.google.android.gms.wearable.Wearable;
 
+import java.util.LinkedList;
+
 
 public class MainActivity extends WearableActivity implements MyListener, GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
 
     private TextView mTextView;
     private GoogleApiClient googleApiClient;
     private MyListener myListener;
+    private LinkedList<IResultReceiver.Stub> stubList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.wearable_main_activity);
 
         mTextView = findViewById(R.id.text);
 
@@ -52,6 +56,11 @@ public class MainActivity extends WearableActivity implements MyListener, Google
 
         NotificationManagerCompat nmc = NotificationManagerCompat.from(this);
         nmc.notify(1,notification);
+    }
+
+    public void getNextStub(View view){
+        //todo
+        //todo getstub
     }
 
     public void open_menu(View view){
@@ -109,7 +118,6 @@ public class MainActivity extends WearableActivity implements MyListener, Google
 
     @Override
     public void callback(View view, String result) {
-
     }
 
     @Override
