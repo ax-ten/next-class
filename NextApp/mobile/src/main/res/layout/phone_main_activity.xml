@@ -12,9 +12,11 @@
         android:id="@+id/headerBar"
         android:layout_width="393dp"
         android:layout_height="70dp"
+        android:layout_marginTop="16dp"
         android:background="@color/colorPrimaryDark"
         app:layout_constraintBottom_toTopOf="@+id/scrollView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -70,8 +72,8 @@
 
     <ScrollView
         android:id="@+id/scrollView"
-        android:layout_width="393dp"
-        android:layout_height="737dp"
+        android:layout_width="397dp"
+        android:layout_height="716dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
