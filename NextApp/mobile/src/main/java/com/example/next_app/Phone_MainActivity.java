@@ -33,33 +33,8 @@ public class Phone_MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_main_activity);
 
-
-        /**
-         if(null == mGoogleApiClient) {
-         mGoogleApiClient = new GoogleApiClient.Builder(this)
-         .addApi(Wearable.API)
-         .addConnectionCallbacks(this)
-         .addOnConnectionFailedListener(this)
-         .build();
-         Log.v(TAG, "GoogleApiClient created");
-         }
-
-         if(!mGoogleApiClient.isConnected()){
-         mGoogleApiClient.connect();
-         Log.v(TAG, "Connecting to GoogleApiClient..");
-         }
-         */
-
-        //startService(new Intent(this, PhoneService.class));
-        //todo riattivare lo start del service
-
-        //GoogleApiClient.Builder builder = new GoogleApiClient.Builder(this);
-        //builder.addApi(Wearable.API);
-
         //PARSE
         InputStream inputStream;
-
-        //PARSE
         String TAG = "TESTING >>>>>>>";
 
         Log.v(TAG, "caricamento file");
