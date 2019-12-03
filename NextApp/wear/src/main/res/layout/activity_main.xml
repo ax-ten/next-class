@@ -75,21 +75,21 @@
             app:layout_constraintTop_toBottomOf="@+id/Teacher_photo">
 
             <TextView
-                android:id="@+id/EndTime"
+                android:id="@+id/endTime"
                 android:layout_width="58dp"
                 android:layout_height="22dp"
                 android:layout_marginStart="1dp"
                 android:baselineAligned="false"
                 android:fontFamily="sans-serif-thin"
                 android:text="@string/EndTime"
-                app:layout_constraintBottom_toBottomOf="@+id/StartTime"
+                app:layout_constraintBottom_toBottomOf="@+id/startTime"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/StartTime"
-                app:layout_constraintTop_toTopOf="@+id/StartTime"
+                app:layout_constraintStart_toEndOf="@+id/startTime"
+                app:layout_constraintTop_toTopOf="@+id/startTime"
                 tools:text="@string/EndTime" />
 
             <TextView
-                android:id="@+id/StartTime"
+                android:id="@+id/startTime"
                 android:layout_width="60dp"
                 android:layout_height="22dp"
                 android:layout_marginTop="1dp"
@@ -99,20 +99,20 @@
                 android:fontFamily="sans-serif-thin"
                 android:text="@string/StartTime"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/EndTime"
+                app:layout_constraintEnd_toStartOf="@+id/endTime"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/FasciaOraria"
+                app:layout_constraintTop_toBottomOf="@+id/fasciaOraria"
                 tools:text="@string/StartTime" />
 
             <TextView
-                android:id="@+id/FasciaOraria"
+                android:id="@+id/fasciaOraria"
                 android:layout_width="119dp"
                 android:layout_height="19dp"
                 android:layout_marginTop="1dp"
                 android:layout_marginBottom="1dp"
                 android:fontFamily="serif"
                 android:text="@string/FasciaOraria"
-                app:layout_constraintBottom_toTopOf="@+id/EndTime"
+                app:layout_constraintBottom_toTopOf="@+id/endTime"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
@@ -134,7 +134,7 @@
             app:layout_constraintTop_toBottomOf="@+id/Classname_layout">
 
             <TextView
-                android:id="@+id/Teacher"
+                android:id="@+id/teacher"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
@@ -146,7 +146,7 @@
                 tools:text="@string/Teacher" />
 
             <TextView
-                android:id="@+id/Teacher_text"
+                android:id="@+id/teacher_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
@@ -173,7 +173,7 @@
             app:layout_constraintTop_toTopOf="parent">
 
             <TextView
-                android:id="@+id/Classname"
+                android:id="@+id/classname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
@@ -181,7 +181,7 @@
                 tools:text="@string/Classname" />
 
             <TextView
-                android:id="@+id/Classname_text"
+                android:id="@+id/classname_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
@@ -203,7 +203,7 @@
             app:layout_constraintTop_toBottomOf="@+id/Map">
 
             <TextView
-                android:id="@+id/Room"
+                android:id="@+id/room"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="serif"
@@ -211,7 +211,7 @@
                 tools:text="@string/Room" />
 
             <TextView
-                android:id="@+id/Room_text"
+                android:id="@+id/room_text"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-thin"
