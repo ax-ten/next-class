@@ -8,26 +8,18 @@ import androidx.test.platform.app.InstrumentationRegistry;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 import static org.junit.Assert.assertEquals;
 
-/**
- * Instrumented test, which will execute on an Android device.
- *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
- */
 @RunWith(AndroidJUnit4.class)
 public class ExampleInstrumentedTest {
 
@@ -50,36 +42,73 @@ public class ExampleInstrumentedTest {
     }
 
     //PARSING
-    public  LinkedList<Stub> parseXML(InputStream istream){
-        LinkedList<Stub> stubList = new LinkedList<>();
-        try{
-            DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder docBuilder = builderFactory.newDocumentBuilder();
-            Document doc = docBuilder.parse(istream);
+    public  LinkedList<Stub> parseXML(InputStream istream) {
+        LinkedList<Stub> schedule = new LinkedList<>();
+        XmlPullParserFactory factory;
+        XmlPullParser parser;
+        int eventType;
 
-            NodeList courses = doc.getElementsByTagName("class");
-            for(int i =0;i<courses.getLength();i++){
-                Element elm = (Element)courses.item(i);
-                Stub stub = new Stub(
-                         Integer.parseInt(getNodeValue("year",elm)),
-                         Integer.parseInt(getNodeValue("day",elm)),
-                         getNodeValue("name",elm),
-                         getNodeValue("teacher",elm),
-                         getNodeValue("room",elm),
-                         Double.parseDouble(getNodeValue("startTime",elm)),
-                         Double.parseDouble(getNodeValue("endTime",elm))
-                );
-                stubList.add(stub);
+        try {
+            factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+            parser = factory.newPullParser();
+            parser.setInput(istream, null);
+            String text;
+            Stub stub= new Stub(1,1,null,null,null,1,1);
 
+            eventType = parser.getEventType();
+            while (eventType != XmlPullParser.END_DOCUMENT) {
+                String tagname = parser.getName();
+                switch (eventType) {
+                    case XmlPullParser.START_TAG:
+                        if (tagname.equalsIgnoreCase("course")) {
+                            // create a new instance of Stub
+                            stub = new Stub(
+                                    /**
+                                    Integer.parseInt(getNodeValue("year", stubElement)),
+                                    Integer.parseInt(getNodeValue("day", stubElement)),
+                                    getNodeValue("name", stubElement),
+                                    getNodeValue("teacher", stubElement),
+                                    getNodeValue("room", stubElement),
+                                    Double.parseDouble(getNodeValue("startTime", stubElement)),
+                                    Double.parseDouble(getNodeValue("endTime", stubElement))
+                                     */
+                                    1,1,null,null,null,1,1
+                            );
+                        }
+                        break;
+
+                    case XmlPullParser.TEXT:
+                        text = parser.getText();
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        if (tagname.equalsIgnoreCase("course")) {
+                            // add employee object to list
+                            schedule.add(stub);
+                        } else if (tagname.equalsIgnoreCase("id")) {
+                            stub.setId(Integer.parseInt(text));
+                        } else if (tagname.equalsIgnoreCase("name")) {
+                            stub.setName(text);
+                        } else if (tagname.equalsIgnoreCase("salary")) {
+                            stub.setSalary(Float.parseFloat(text));
+                        }
+                        break;
+
+                    default:
+                        break;
+                }
+                eventType = parser.next();
             }
-        }
-        catch (IOException | ParserConfigurationException | SAXException e) {
+
+        } catch (XmlPullParserException | IOException e) {
             e.printStackTrace();
         }
-        return stubList;
+
+        return schedule;
     }
 
-    protected String getNodeValue(String tag, Element element) {
+        protected String getNodeValue(String tag, Element element) {
         NodeList nodeList = element.getElementsByTagName(tag);
         org.w3c.dom.Node node = nodeList.item(0);
         if(node!=null) {
