@@ -40,13 +40,6 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
         // Enables Always-on
         setAmbientEnabled();
         Stub stub;
-
-        @Override
-        private onRefresh(View view){
-            TextView teacherName= findViewById(R.id.teacher_text);
-            teacherName.setText(stub.getTeacherName());
-            TextView classname=findViewById(R.id.classname_text);
-        }
     }
 
     public void notifyme(View view){
