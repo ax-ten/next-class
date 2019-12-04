@@ -9,27 +9,22 @@ import android.support.wearable.activity.WearableActivity;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-
-import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.api.GoogleApiClient;
-import com.google.android.gms.wearable.DataApi;
-import com.google.android.gms.wearable.Wearable;
 
 import java.util.LinkedList;
 
 
-public class Wearable_MainActivity extends WearableActivity implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
+public class Wearable_MainActivity extends WearableActivity {
 
     private TextView mTextView;
-    private GoogleApiClient googleApiClient;
     private LinkedList<Stub> stubList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        stubList = getStubList();
 
         Double d = 11.2;
         Stub stub = getcurrentStub(stubList, d);
@@ -56,11 +51,6 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
 
     public void getNextStub(View view){
         //todo
-    }
-
-    //PULSANTI
-    private void buttonManager(View view){
-
     }
 
 
@@ -95,18 +85,7 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
         nmc.notify(1,notification);
     }
 
-    @Override
-    public void onConnected(Bundle bundle) {
-        Wearable.DataApi.addListener(googleApiClient, (DataApi.DataListener) this);
-    }
-    @Override
-    public void onConnectionSuspended(int i) {
-        //todo
-    }
-    @Override
-    public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
-        //todo
-    }
+
     private void setTxtView(int campotisesto, String valore){
         mTextView = findViewById(campotisesto);
         mTextView.setText(valore);
