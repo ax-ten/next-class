@@ -38,6 +38,10 @@ public class Wearable_MainActivity extends WearableActivity {
 
     }
 
+    private LinkedList<Stub> getStubList(){
+        return new LinkedList<>();
+    }
+
     private Stub getcurrentStub(LinkedList<Stub> stublist, double cTime){
         for(Stub stub: stublist){
             if (cTime > stub.getStartTime() && cTime < stub.getEndTime())
