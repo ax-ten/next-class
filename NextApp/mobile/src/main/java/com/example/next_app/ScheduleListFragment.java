@@ -26,7 +26,8 @@ public class ScheduleListFragment extends ListFragment implements AdapterView.On
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
 
-        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(getActivity(),R.array.filenamelist, android.R.layout.simple_list_item_1);
+        ArrayAdapter arrayAdapter = ArrayAdapter.createFromResource(
+                getActivity(),R.array.filenamelist, android.R.layout.simple_list_item_1);
         setListAdapter(arrayAdapter);
         getListView().setOnItemClickListener(this);
         getListView().setOnLongClickListener(this);

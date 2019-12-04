@@ -12,7 +12,7 @@ import androidx.appcompat.app.AppCompatActivity;
 public class Phone_MenuActivity extends AppCompatActivity {
 
     Switch bt_switch;
-    EditText bt_number;
+    EditText minuteEarly;
     Spinner bt_spinner;
 
     @SuppressLint("WrongViewCast")
@@ -21,13 +21,16 @@ public class Phone_MenuActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_menu_activity);
 
-        bt_switch = (Switch) findViewById(R.id.notifySwitch);
-        bt_number = (EditText) findViewById(R.id.minutesEarly);
-        bt_spinner = (Spinner) findViewById(R.id.languageSelector);
+        bt_switch =  findViewById(R.id.notifySwitch);
+
+        minuteEarly =  findViewById(R.id.minutesEarly);
+
+        bt_spinner = findViewById(R.id.languageSelector);
 
         String[] lingua = {"Italiano","English","Español","Francais"};
 
-        bt_spinner.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lingua));
+        bt_spinner.setAdapter(
+                new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lingua));
 
 
     }
