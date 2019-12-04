@@ -1,8 +1,5 @@
 package com.example.next_app;
 
-import android.content.Context;
-import android.content.res.Resources;
-
 /** Stub class implementation. The class has 7 attributes linked to the specific lesson that will be
 send by intent to the smartwatch**/
 
@@ -84,19 +81,5 @@ public class Stub {
     public double getEndTime() {
         return endTime;
     }
-
-    //Other
-    /**
-    private final String[] getDays(Context context){
-        Resources resources = context.getResources();
-        String[] days = new String[]
-                {resources.getString(R.string.monday),
-                resources.getString(R.string.tuesday),
-                resources.getString(R.string.wednesday),
-                resources.getString(R.string.thursday),
-                resources.getString(R.string.friday)};
-        return days;
-
-    }
-     */
+    
 }

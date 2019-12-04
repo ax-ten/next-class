@@ -33,7 +33,7 @@ public class Phone_MainActivity extends AppCompatActivity
         this.getSupportActionBar().hide();
 
         //update stubList containing all stubs for the semester
-        updateStubList();
+        stubList = updateStubList();
 
         //update the LinearLayout containing all Schedules made
         updateScheduleList();
@@ -168,12 +168,13 @@ public class Phone_MainActivity extends AppCompatActivity
     }
 
 
-    private void updateStubList(){
+    private LinkedList<Stub> updateStubList(){
         Log.v(TAG, "caricamento file");
         inputStream = getStream();
         Log.v(TAG, "parse iniziato");
         stubList = parseXML(inputStream);
         Log.v(TAG, "parse terminato");
+        return stubList;
     }
 
     //PARSING
