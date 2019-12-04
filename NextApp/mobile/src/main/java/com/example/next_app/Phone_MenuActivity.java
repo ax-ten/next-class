@@ -24,6 +24,7 @@ public class Phone_MenuActivity extends AppCompatActivity {
         bt_switch =  findViewById(R.id.notifySwitch);
 
         minuteEarly =  findViewById(R.id.minutesEarly);
+        minuteEarly.setHint(R.string.minutes_early);
 
         bt_spinner = findViewById(R.id.languageSelector);
 
