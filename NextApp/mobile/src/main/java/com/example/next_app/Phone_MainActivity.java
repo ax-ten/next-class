@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -117,13 +118,15 @@ public class Phone_MainActivity extends AppCompatActivity
 
     //BUTTONS
     public void onClick_addNew(View view){
-        Log.v(TAG,"add new");
         //todo
+        Log.v(TAG,"add new");
+        Toast.makeText(this, "Yet to implement", Toast.LENGTH_SHORT).show();
     }
 
     public void onClick_settings(View view){
-        Log.v(TAG,"settings");
         //todo
+        Log.v(TAG,"settings");
+        Toast.makeText(this, "Yet to implement", Toast.LENGTH_SHORT).show();
     }
 
     //UPDATING METHODS
@@ -153,6 +156,7 @@ public class Phone_MainActivity extends AppCompatActivity
                 @Override
                 public boolean onLongClick(View v) {
                     Log.v(TAG,"longpress detected");
+                    Toast.makeText(v.getContext(), "Yet to implement", Toast.LENGTH_SHORT).show();
                     //todo apri visualizzatore orario
                     return true;
                 }
