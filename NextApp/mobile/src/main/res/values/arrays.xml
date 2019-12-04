@@ -9,4 +9,12 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="filenamelist">
+        <item>A</item>
+        <item>b</item>
+        <item>c</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
 </resources>

@@ -1,11 +1,9 @@
 package com.example.next_app;
 
-import android.graphics.Color;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -36,8 +34,6 @@ public class Phone_MainActivity extends AppCompatActivity
         //update stubList containing all stubs for the semester
         stubList = updateStubList();
 
-        //update the LinearLayout containing all Schedules made
-        updateScheduleList();
 
     }
     /**
@@ -128,48 +124,6 @@ public class Phone_MainActivity extends AppCompatActivity
         Intent intent = new Intent (this, Phone_MenuActivity.class);
         startActivity(intent);
         Toast.makeText(this, "Yet to implement", Toast.LENGTH_SHORT).show();
-    }
-
-    //UPDATING METHODS
-    private void updateScheduleList(){
-        Log.v(TAG,"ScheduleList update");
-        //linLayout is the layout where all the
-        LinearLayout linLayout = findViewById(R.id.scheduleList);
-        String[] filenames = {"Lorem ipsum", "dolor sit amet,","consectetur","adipiscing","elit, sed do","eiusmod tempor","incididunt ut labore"};
-
-        for (int i=0; i<filenames.length; i++){
-
-            LinearLayout.LayoutParams params =
-                    new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT,120);
-            params.setMargins(50,40,10,0);
-
-            LinearLayout inner = new LinearLayout(this);
-            inner.setLayoutParams(params);
-            inner.setOrientation(LinearLayout.VERTICAL);
-
-            TextView filename = new TextView(this);
-            filename.setText(filenames[i]);
-            filename.setTextSize(18);
-            inner.addView(filename);
-
-            inner.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    Log.v(TAG,"longpress detected");
-                    Toast.makeText(v.getContext(), "Yet to implement", Toast.LENGTH_SHORT).show();
-                    //todo apri visualizzatore orario
-                    return true;
-                }
-            });
-            linLayout.addView(inner);
-            Log.v(TAG,"added n°" +i+" to view");
-
-            LinearLayout separator = new LinearLayout(this);
-            separator.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT,10));
-            separator.setBackgroundColor(Color.LTGRAY);
-            linLayout.addView(separator);
-        }
     }
 
 

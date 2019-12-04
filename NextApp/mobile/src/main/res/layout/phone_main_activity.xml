@@ -10,15 +10,13 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/headerBar"
-        android:layout_width="393dp"
+        android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:layout_marginTop="30dp"
         android:background="@color/colorPrimaryDark"
-        app:layout_constraintBottom_toTopOf="@+id/scrollView"
+        app:layout_constraintBottom_toTopOf="@+id/fragment"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toStartOf="parent">
 
         <TextView
             android:id="@+id/headerTitle"
@@ -74,20 +72,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <ScrollView
-        android:id="@+id/scrollView"
-        android:layout_width="403dp"
-        android:layout_height="710dp"
+    <fragment
+        android:id="@+id/fragment"
+        android:name="com.example.next_app.ScheduleListFragment"
+        android:layout_width="match_parent"
+        android:layout_height="680dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/headerBar">
-
-        <LinearLayout
-            android:id="@+id/scheduleList"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
-    </ScrollView>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
