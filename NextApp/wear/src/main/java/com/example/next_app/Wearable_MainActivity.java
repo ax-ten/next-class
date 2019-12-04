@@ -35,11 +35,10 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
         Double d = 11.2;
         Stub stub = getcurrentStub(stubList, d);
 
-        setTxtView(R.id.teacher_text, stub.getTeacherName());
+        setTxtView(R.id.teacherText, stub.getTeacherName());
         setTxtView(R.id.classname, stub.getCourseName());
-        setTxtView(R.id.room, stub.getRoom());
-        setTxtView(R.id.startTime, Double.toString(stub.getStartTime()));
-        setTxtView(R.id.endTime, Double.toString(stub.getEndTime()));
+        setTxtView(R.id.classroom, stub.getRoom());
+        setTxtView(R.id.timeStub, stub.getStartTime() +" : "+stub.getEndTime() );
 
         setContentView(R.layout.wearable_main_activity);
 
