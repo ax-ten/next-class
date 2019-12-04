@@ -1,14 +1,13 @@
 package com.example.next_app;
 
 import android.app.Notification;
-import android.os.Bundle;
-import android.app.NotificationManager;
 import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
+import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
-import android.widget.TextView;
 import android.view.View;
-
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.NotificationCompat;
@@ -53,15 +52,19 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
         //todo
     }
 
-    private void setTxtView(int campotisesto, String valore){
-        mTextView = findViewById(campotisesto);
-        mTextView.setText(valore);
-    }
+
 
     public void getNextStub(View view){
         //todo
     }
 
+    //PULSANTI
+    private void buttonManager(View view){
+
+    }
+
+
+    //NOTIFICHE
     private NotificationChannel createChannel(NotificationManager nManager){
         String id ="my_channel_01";
         CharSequence name =  "channel-name";
@@ -103,5 +106,9 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
         //todo
+    }
+    private void setTxtView(int campotisesto, String valore){
+        mTextView = findViewById(campotisesto);
+        mTextView.setText(valore);
     }
 }
