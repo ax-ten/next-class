@@ -59,25 +59,9 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
         mTextView.setText(valore);
     }
 
-    public void notifyme(View view){
-        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-
-        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, createChannel(mNotificationManager).getId());
-        builder.setContentTitle("titolo della notifica");
-        builder.setContentText("contenuto della notifica");
-        builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark);
-
-        Notification notification = builder.build();
-
-        NotificationManagerCompat nmc = NotificationManagerCompat.from(this);
-        nmc.notify(1,notification);
-    }
-
     public void getNextStub(View view){
         //todo
-        //todo getstub
     }
-
 
     private NotificationChannel createChannel(NotificationManager nManager){
         String id ="my_channel_01";
@@ -95,12 +79,24 @@ public class Wearable_MainActivity extends WearableActivity implements GoogleApi
 
         return nChannel;
     }
+    public void notifyme(View view){
+        NotificationManager mNotificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+
+        NotificationCompat.Builder builder = new NotificationCompat.Builder(this, createChannel(mNotificationManager).getId());
+        builder.setContentTitle("titolo della notifica");
+        builder.setContentText("contenuto della notifica");
+        builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark);
+
+        Notification notification = builder.build();
+
+        NotificationManagerCompat nmc = NotificationManagerCompat.from(this);
+        nmc.notify(1,notification);
+    }
 
     @Override
     public void onConnected(Bundle bundle) {
         Wearable.DataApi.addListener(googleApiClient, (DataApi.DataListener) this);
     }
-
     @Override
     public void onConnectionSuspended(int i) {
         //todo
