@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".MainActivity"
+    tools:context=".Wearable_MainActivity"
     tools:deviceIds="wear">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -74,10 +74,9 @@
                     android:id="@+id/classroom"
                     android:layout_width="74dp"
                     android:layout_height="22dp"
-                    android:layout_marginEnd="3dp"
+                    android:layout_marginStart="2dp"
                     android:text="@string/Room"
-                    android:textAppearance="@android:style/TextAppearance.Material.Display1"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toTopOf="@+id/timeStub"
                     app:layout_constraintEnd_toStartOf="@+id/classroom_text"
                     app:layout_constraintStart_toStartOf="parent"
@@ -102,8 +101,8 @@
                     android:id="@+id/classroom_text"
                     android:layout_width="55dp"
                     android:layout_height="22dp"
-                    android:layout_marginStart="1dp"
                     android:layout_marginTop="1dp"
+                    android:layout_marginEnd="1dp"
                     android:layout_marginBottom="1dp"
                     android:text="@string/valoreZ"
                     android:textAppearance="@android:style/TextAppearance.Material.Body1"
@@ -163,13 +162,13 @@
                 android:layout_width="87dp"
                 android:layout_height="87dp"
                 android:layout_marginStart="8dp"
+                android:src="@tools:sample/avatars[6]"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/map_icon"
-                app:layout_constraintVertical_bias="0.0"
-                tools:src="@tools:sample/avatars[6]" />
+                app:layout_constraintVertical_bias="0.0" />
 
             <ImageView
                 android:id="@+id/map_icon"
