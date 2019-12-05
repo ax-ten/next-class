@@ -60,7 +60,7 @@ public class ExampleInstrumentedTest {
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
                         if (tagname.equalsIgnoreCase("course")) {
-                            // create a new instance of Stub
+                            // create a new instance of com.poliba.mylibrary.Stub
                             stub = new Stub();
                         }
                         break;
