@@ -32,14 +32,29 @@ public class Wearable_MainActivity extends WearableActivity {
         setTxtView(R.id.teacherText, stub.getTeacherName());
         setTxtView(R.id.classname, stub.getCourseName());
         setTxtView(R.id.classroom, stub.getRoom());
-        setTxtView(R.id.timeStub, stub.getStartTime() +" : "+stub.getEndTime() );
+        setTxtView(R.id.timeStart_text,  Double.toString(stub.getStartTime()));
+        setTxtView(R.id.timeEnd_text,  Double.toString(stub.getEndTime()) );
 
         setContentView(R.layout.wearable_main_activity);
 
     }
 
     private LinkedList<Stub> getStubList(){
+        stubList.add(new Stub(1,1,"wow","wow","wowissimo",1.5,1.5));
         return new LinkedList<>();
+    }
+
+    //BUTTONS
+    private void mapIntent(View v){
+
+    }
+
+    private void teacherIntent(View v){
+
+    }
+
+    private void nextIntent(View v){
+
     }
 
     private Stub getcurrentStub(LinkedList<Stub> stublist, double cTime){
