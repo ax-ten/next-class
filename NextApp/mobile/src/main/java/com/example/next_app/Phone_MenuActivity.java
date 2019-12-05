@@ -20,6 +20,7 @@ public class Phone_MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_menu_activity);
+        this.getSupportActionBar().hide();
 
         bt_switch =  findViewById(R.id.notifySwitch);
 

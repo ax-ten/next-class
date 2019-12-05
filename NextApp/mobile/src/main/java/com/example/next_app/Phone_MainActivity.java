@@ -123,7 +123,6 @@ public class Phone_MainActivity extends AppCompatActivity
         Log.v(TAG,"settings");
         Intent intent = new Intent (this, Phone_MenuActivity.class);
         startActivity(intent);
-        Toast.makeText(this, "Yet to implement", Toast.LENGTH_SHORT).show();
     }
 
 
