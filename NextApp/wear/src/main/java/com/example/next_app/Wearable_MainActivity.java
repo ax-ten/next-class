@@ -15,6 +15,9 @@ import androidx.core.app.NotificationManagerCompat;
 import java.util.LinkedList;
 
 
+import com.poliba.mylibrary.Stub;
+
+
 public class Wearable_MainActivity extends WearableActivity {
 
     private TextView mTextView;
