@@ -9,13 +9,13 @@ import android.support.wearable.activity.WearableActivity;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 
-import java.util.LinkedList;
-
-
 import com.poliba.mylibrary.Stub;
+
+import java.util.LinkedList;
 
 
 public class Wearable_MainActivity extends WearableActivity {
@@ -39,6 +39,11 @@ public class Wearable_MainActivity extends WearableActivity {
         setTxtView(R.id.timeEnd_text,  Double.toString(stub.getEndTime()) );
 
         setContentView(R.layout.wearable_main_activity);
+
+    }
+
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState){
 
     }
 

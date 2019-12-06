@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -86,7 +87,7 @@ class CustomListAdapter extends ArrayAdapter {
         //this code gets references to objects in the listview_row.xml file
         TextView nameTextField = (TextView) itemView.findViewById(R.id.filename);
 
-        Button button = (Button)
+        Button button = itemView.findViewById(R.id.popupmenuOpener);
         //this code sets the values of the objects to values from the arrays
         nameTextField.setText(nameArray[position]);
 
