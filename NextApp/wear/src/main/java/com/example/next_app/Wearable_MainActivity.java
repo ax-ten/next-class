@@ -17,6 +17,7 @@ import android.widget.TextView;
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
+import androidx.core.view.MotionEventCompat;
 
 import com.poliba.mylibrary.Stub;
 
@@ -48,9 +49,30 @@ public class Wearable_MainActivity extends WearableActivity {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState){
+    public boolean onTouchEvent(MotionEvent event) {
 
-    }
+        int action = MotionEventCompat.getActionMasked(event);
+        String DEBUG_TAG = "testing_wearable";
+        switch(action) {
+            case (MotionEvent.ACTION_DOWN):
+                Log.d(DEBUG_TAG, "Action was DOWN");
+                return true;
+            case (MotionEvent.ACTION_MOVE):
+                Log.d(DEBUG_TAG, "Action was MOVE");
+                return true;
+            case (MotionEvent.ACTION_UP):
+                Log.d(DEBUG_TAG, "Action was UP");
+                return true;
+            case (MotionEvent.ACTION_CANCEL):
+                Log.d(DEBUG_TAG, "Action was CANCEL");
+                return true;
+            case (MotionEvent.ACTION_OUTSIDE):
+                Log.d(DEBUG_TAG, "Movement occurred outside bounds " +
+                        "of current screen element");
+                return true;
+            default:
+                return super.onTouchEvent(event);
+        }
 
     private LinkedList<Stub> getStubList(){
         stubList.add(new Stub(1,1,"wow","wow","wowissimo",1.5,1.5));
