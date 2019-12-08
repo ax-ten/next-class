@@ -29,7 +29,7 @@ public class Phone_MenuActivity extends AppCompatActivity {
 
         bt_spinner = findViewById(R.id.languageSelector);
 
-        String[] lingua = {"Italiano","English","Español","Francais"};
+        String[] lingua = getResources().getStringArray(R.array.languages);
 
         bt_spinner.setAdapter(
                 new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, lingua));
