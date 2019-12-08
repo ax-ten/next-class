@@ -18,10 +18,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
 
-public class Phone_MainActivity extends AppCompatActivity
-        //todo implementare librerie per Listener
-        //implements GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener
-    {
+public class Phone_MainActivity extends AppCompatActivity{
+
     //TAG useful for debugging Logs
     private static final String TAG = "Phone_MainActivity";
     private InputStream inputStream;
@@ -32,8 +30,6 @@ public class Phone_MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_main_activity);
         this.getSupportActionBar().hide();
-
-        //update stubList containing all stubs for the semester
         stubList = updateStubList();
 
 
@@ -122,8 +118,7 @@ public class Phone_MainActivity extends AppCompatActivity
     }
 
     public void onClick_settings(View view){
-        Log.v(TAG,"settings");
-        Intent intent = new Intent (this, Phone_MenuActivity.class);
+        Intent intent = new Intent (this, Phone_SettingsActivity.class);
         startActivity(intent);
     }
 

@@ -18,11 +18,17 @@
         <item>E</item>
     </string-array>
 
-    <string-array name="languages"
-        tools:ignore="ExtraTranslation">
+    <string-array name="languages">
         <item>Italian</item>
         <item>English</item>
         <item>Español</item>
         <item>Francais</item>
+    </string-array>
+
+    <string-array name="languageAlias">
+        <item>IT</item>
+        <item>EN</item>
+        <item>ES</item>
+        <item>FR</item>
     </string-array>
 </resources>
