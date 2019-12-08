@@ -81,7 +81,8 @@ public class Wearable_MainActivity extends WearableActivity {
 
     //BUTTONS
     private void mapIntent(View v){
-
+        Intent intent = new Intent (this, Wearable_mapActivity.class);
+        startActivity(intent);
     }
 
     private void teacherIntent(View v){
