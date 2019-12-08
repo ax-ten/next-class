@@ -14,7 +14,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.MotionEventCompat;
@@ -34,15 +33,18 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
         super.onCreate(savedInstanceState);
 
         stubList = new ArrayList<>();
+        setStubList();
 
+        /**
         Double d = 11.2;
-        Stub stub = getcurrentStub(stubList, d);
+        Stub stub = stubList.get(getCurrentStubIndex(stubList, d));
 
         setTxtView(R.id.teacherText, stub.getTeacherName());
         setTxtView(R.id.classname, stub.getCourseName());
         setTxtView(R.id.classroom, stub.getRoom());
         setTxtView(R.id.timeStart_text,  Double.toString(stub.getStartTime()));
         setTxtView(R.id.timeEnd_text,  Double.toString(stub.getEndTime()) );
+        */
 
         setContentView(R.layout.wearable_main_activity);
 
@@ -86,11 +88,11 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
         Intent intent = new Intent (this, Wearable_mapActivity.class);
         startActivity(intent);
     }
-
+    /**
     private void teacherIntent(View v){
 
     }
-
+    */
     private void nextIntent(View v){
 
     }
@@ -101,13 +103,6 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
                 return i;
         }
         return null;
-        //todo
-    }
-
-
-
-    public void getNextStub(View view){
-        //todo
     }
 
 
@@ -150,9 +145,11 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
 
 
     private void setTxtView(int campotisesto, String valore){
-        mTextView = findViewById(campotisesto);
-        mTextView.setText(valore);
+        TextView tw;
+        tw = findViewById(campotisesto);
+        tw . setText(valore);
     }
+
     @Override
     public void onFragmentInteraction(Uri uri) {
 
