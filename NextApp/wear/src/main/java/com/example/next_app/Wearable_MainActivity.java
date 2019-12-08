@@ -21,19 +21,19 @@ import androidx.core.view.MotionEventCompat;
 
 import com.poliba.mylibrary.Stub;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 
 public class Wearable_MainActivity extends WearableActivity {
 
-    private TextView mTextView;
-    private LinkedList<Stub> stubList;
+    private ArrayList<Stub> stubList;
+    private int tempStub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        stubList = getStubList();
+        stubList = new ArrayList<>();
 
         Double d = 11.2;
         Stub stub = getcurrentStub(stubList, d);
@@ -92,10 +92,10 @@ public class Wearable_MainActivity extends WearableActivity {
 
     }
 
-    private Stub getcurrentStub(LinkedList<Stub> stublist, double cTime){
-        for(Stub stub: stublist){
-            if (cTime > stub.getStartTime() && cTime < stub.getEndTime())
-                return stub;
+    private Integer getCurrentStubIndex(ArrayList<Stub> stublist, double cTime){
+        for(int i=0; i<stublist.size();i++){
+            if (cTime > stubList.get(i).getStartTime() && cTime < stubList.get(i).getEndTime())
+                return i;
         }
         return null;
         //todo
