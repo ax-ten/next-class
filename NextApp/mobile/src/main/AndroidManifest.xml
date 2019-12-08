@@ -13,8 +13,12 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".ScheduleViewerActivity"
+            android:name=".Phone_SettingsActivity"
+            android:label="@string/title_activity_settings" />
+        <activity
+            android:name=".Phone_ScheduleViewerActivity"
             android:label="@string/title_activity_schedule_viewer"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Phone_MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
