@@ -24,7 +24,7 @@ import com.poliba.mylibrary.Stub;
 import java.util.ArrayList;
 
 
-public class Wearable_MainActivity extends WearableActivity {
+public class Wearable_MainActivity extends WearableActivity implements StubFragment.OnFragmentInteractionListener{
 
     private ArrayList<Stub> stubList;
     private int tempStub;
@@ -74,9 +74,11 @@ public class Wearable_MainActivity extends WearableActivity {
                 return super.onTouchEvent(event);
         }
 
-    private LinkedList<Stub> getStubList(){
-        stubList.add(new Stub(1,1,"wow","wow","wowissimo",1.5,1.5));
-        return new LinkedList<>();
+    }
+    private void setStubList() {
+        stubList.clear();
+        stubList.add(new Stub(1,1,"1","1","1",1.1,1.1));
+        stubList.add(new Stub(2,2,"2","2","2",2.2,2.2));
     }
 
     //BUTTONS
@@ -150,5 +152,9 @@ public class Wearable_MainActivity extends WearableActivity {
     private void setTxtView(int campotisesto, String valore){
         mTextView = findViewById(campotisesto);
         mTextView.setText(valore);
+    }
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 }
