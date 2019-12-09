@@ -1,13 +1,24 @@
 package com.example.next_app;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
+
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Stub;
 
 import org.xmlpull.v1.XmlPullParser;
@@ -17,6 +28,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class Phone_MainActivity extends AppCompatActivity{
 
@@ -24,6 +37,10 @@ public class Phone_MainActivity extends AppCompatActivity{
     private static final String TAG = "Phone_MainActivity";
     private InputStream inputStream;
     private LinkedList<Stub> stubList;
+    private int current_file_id = R.raw.schedule_stubs;
+    protected Handler myHandler;
+    String path = "/my_path";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,9 +48,73 @@ public class Phone_MainActivity extends AppCompatActivity{
         setContentView(R.layout.phone_main_activity);
         this.getSupportActionBar().hide();
         stubList = updateStubList();
+        myHandler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message msg) {
+                Bundle stuff = msg.getData();
+                messageText(stuff.getString("messageText"));
+                return true;
+            }
+        });
 
-
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new Receiver(),
+                new IntentFilter(Intent.ACTION_SEND)
+        );
     }
+
+    public class Receiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String message = "i received a message from the wearable";
+            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void messageText(String message){
+        new NewThread(path,message).start();
+    }
+
+    class NewThread extends Thread{
+        String path;
+        String message;
+
+        NewThread(String p, String m){
+            path = p;
+            message = m;
+        }
+
+        public void run(){
+            Task<List<Node>> wearableList =
+                    Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
+            try{
+                List<Node> nodes = Tasks.await(wearableList);
+                for (Node node : nodes){
+                    Task<Integer> sendMessageTask =
+                            Wearable.getMessageClient(Phone_MainActivity.this).sendMessage(node.getId(), path, message.getBytes());
+
+                    try{
+                        Integer result = Tasks.await(sendMessageTask);
+                        messageText("I sent a message to the wearable");
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+
+
+
+
     /**
     //NOTIFICATIONS
     class SendActivityPhoneMessage extends Thread {
@@ -188,9 +269,8 @@ public class Phone_MainActivity extends AppCompatActivity{
         return schedule;
     }
 
-    //Returns the xml file as an InputStream
     public InputStream getStream(){
-        return this.getResources().openRawResource(R.raw.schedule_stubs);
+        return this.getResources().openRawResource(current_file_id);
     }
 
 }
