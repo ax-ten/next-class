@@ -28,6 +28,11 @@
     <string name="teachername">Teacher Name</string>
     <string name="classname">Class</string>
 
+    <!-- Add New Schedule Activity -->
+    <string name="create">Create</string>
+    <string name="degree">Degree</string>
+    <string name="year">Year</string>
+
     <!-- Week days -->
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -35,4 +40,5 @@
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
     <string name="title_activity_schedule_viewer">ScheduleViewer</string>
+    <string name="title_activity_phone__add_new_schedule_">Phone_AddNewSchedule_Activity</string>
 </resources>
