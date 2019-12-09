@@ -7,4 +7,5 @@
     tools:context=".Phone_Activity_ScheduleViewer"
     tools:showIn="@layout/phone_activity_scheduleviewer">
 
+    <!-- todo: qui ci sarà la lista di item dailystub-->
 </androidx.constraintlayout.widget.ConstraintLayout>

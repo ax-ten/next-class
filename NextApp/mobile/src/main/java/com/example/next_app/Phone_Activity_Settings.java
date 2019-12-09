@@ -8,6 +8,7 @@ import androidx.preference.PreferenceFragmentCompat;
 
 public class Phone_Activity_Settings extends AppCompatActivity {
 
+    //TODO le impostazioni sono modificabili ma non cambiano nulla
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

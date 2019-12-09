@@ -36,6 +36,11 @@ import java.util.concurrent.ExecutionException;
 public class Wearable_Activity_Main extends WearableActivity
         implements Wearable_Fragment_Stub.OnFragmentInteractionListener{
 
+
+    //TODO Implementare swipe per passare tra le attività
+    //TODO passare tramite intento l'aula che si vuole visualizzare sulla mappa
+    //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
+    //todo trovare un modo per accedere a tutti i profili dei professori e listarne almeno le mail
     private ArrayList<Stub> stubList;
     private int tempStub;
     String path = "/my_path";

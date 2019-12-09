@@ -17,6 +17,7 @@ import androidx.fragment.app.ListFragment;
 
 public class Phone_Fragment_ScheduleList extends ListFragment{
 
+    //TODO deve accedere direttamente ad una cartella di file xml nel dispositivo e listare questi file
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
        View view = inflater.inflate(R.layout.phone_fragment_schedulelist, container, false);
@@ -40,7 +41,7 @@ class CustomListAdapter extends ArrayAdapter {
 
     public CustomListAdapter(Activity context, String[] nameArray){
 
-        super(context,R.layout.phone_item_schedulelist, nameArray);
+        super(context,R.layout.phone_item_schedule, nameArray);
         this.context=context;
         this.nameArray = nameArray;
     }
@@ -53,7 +54,7 @@ class CustomListAdapter extends ArrayAdapter {
         ImageButton optionsButton;
 
         LayoutInflater inflater= context.getLayoutInflater();
-        View itemView=inflater.inflate(R.layout.phone_item_schedulelist, null,true);
+        View itemView=inflater.inflate(R.layout.phone_item_schedule, null,true);
 
         scheduleNameField = itemView.findViewById(R.id.filename);
         scheduleNameField . setText(nameArray[position]);

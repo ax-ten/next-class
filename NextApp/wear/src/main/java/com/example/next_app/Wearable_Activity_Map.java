@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class Wearable_Activity_Map extends AppCompatActivity {
     ImageView iv;
+    //TODO bisogna salvare tutte le posizioni delle aule  in values.room_coordinates.xml
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -1,5 +1,9 @@
 package com.example.next_app;
 
+//TODO ci sono 2 messaggi da interpretare
+// -utente presente
+// -richiesta quotidiana dell'orario
+
 import android.content.Intent;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
