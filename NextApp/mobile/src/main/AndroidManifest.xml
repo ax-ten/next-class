@@ -24,12 +24,12 @@
         </service>
 
         <activity
-            android:name=".Phone_SettingsActivity"
+            android:name=".Phone_Activity_Settings"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".Phone_ScheduleViewerActivity"
+            android:name=".Phone_Activity_ScheduleViewer"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".Phone_MainActivity">
+        <activity android:name=".Phone_Activity_Main">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
