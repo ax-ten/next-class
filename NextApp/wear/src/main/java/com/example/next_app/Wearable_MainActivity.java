@@ -4,8 +4,10 @@ import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
+import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
@@ -17,37 +19,36 @@ import android.widget.TextView;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
 import androidx.core.view.MotionEventCompat;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import com.google.android.gms.tasks.Task;
+import com.google.android.gms.tasks.Tasks;
+import com.google.android.gms.wearable.Node;
+import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Stub;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 
 public class Wearable_MainActivity extends WearableActivity implements StubFragment.OnFragmentInteractionListener{
 
     private ArrayList<Stub> stubList;
     private int tempStub;
+    String path = "/my_path";
+    String TAG = "Wearable_device";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         stubList = new ArrayList<>();
         setStubList();
-
-        /**
-        Double d = 11.2;
-        Stub stub = stubList.get(getCurrentStubIndex(stubList, d));
-
-        setTxtView(R.id.teacherText, stub.getTeacherName());
-        setTxtView(R.id.classname, stub.getCourseName());
-        setTxtView(R.id.classroom, stub.getRoom());
-        setTxtView(R.id.timeStart_text,  Double.toString(stub.getStartTime()));
-        setTxtView(R.id.timeEnd_text,  Double.toString(stub.getEndTime()) );
-        */
-
         setContentView(R.layout.wearable_main_activity);
-
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new Receiver(),
+                new IntentFilter(Intent.ACTION_SEND)
+                );
     }
 
     @Override
@@ -77,6 +78,7 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
         }
 
     }
+
     private void setStubList() {
         stubList.clear();
         stubList.add(new Stub(1,1,"1","1","1",1.1,1.1));
@@ -88,12 +90,10 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
         Intent intent = new Intent (this, Wearable_mapActivity.class);
         startActivity(intent);
     }
-    /**
     private void teacherIntent(View v){
 
     }
-    */
-    private void nextIntent(View v){
+    private void nextStubIntent(View v){
 
     }
 
@@ -123,7 +123,7 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
 
         return nChannel;
     }
-    public void teacherIntent(View view){
+    public void getNotified(View view){
         NotificationManager mNotificationManager = (
                 NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
@@ -143,7 +143,51 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
         nmc.notify(1,notification);
     }
 
+    //COMMUNICATION
+    public void sendCommunication(){
+        new SendMessage(path, "I just sent the handheld a message").start();
+    }
+    public class Receiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.v(TAG, "just received a message");
+        }
+    }
+    class SendMessage extends Thread{
+        String path;
+        String message;
 
+        SendMessage(String p, String m){
+            path=p;
+            message=m;
+        }
+        public void run(){
+            Task<List<com.google.android.gms.wearable.Node>> nodeListTask =
+                    Wearable.getNodeClient(getApplicationContext()).getConnectedNodes();
+            try{
+                List<com.google.android.gms.wearable.Node> nodes = Tasks.await(nodeListTask);
+                for(Node node:nodes){
+                    Task<Integer> sendMessageTask=
+                            Wearable.getMessageClient(Wearable_MainActivity.this).sendMessage(
+                                    node.getId(), path, message.getBytes()
+                            );
+                    try {
+                        Integer result = Tasks.await(sendMessageTask);
+                    } catch (ExecutionException e) {
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    //OTHERS
     private void setTxtView(int campotisesto, String valore){
         TextView tw;
         tw = findViewById(campotisesto);

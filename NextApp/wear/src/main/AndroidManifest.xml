@@ -13,8 +13,13 @@
         android:supportsRtl="true"
         android:theme="@android:style/Theme.DeviceDefault">
         <service
+            android:name=".MessageService"
+            android:enabled="true"
+            android:exported="true"></service>
+        <service
             android:name=".AttendanceService"
-            android:exported="false"></service>
+            android:exported="false" />
+
         <activity
             android:name=".Wearable_mapActivity"
             android:label="@string/title_activity_wearable_map" />
