@@ -1,0 +1,34 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+    <string-array name="filenamelist">
+        <item>A</item>
+        <item>b</item>
+        <item>c</item>
+        <item>D</item>
+        <item>E</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>Italian</item>
+        <item>English</item>
+        <item>Español</item>
+        <item>Francais</item>
+    </string-array>
+
+    <string-array name="languageAlias">
+        <item>IT</item>
+        <item>EN</item>
+        <item>ES</item>
+        <item>FR</item>
+    </string-array>
+</resources>

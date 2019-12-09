@@ -15,4 +15,8 @@
 
 *.bak_002d
 
-*.bak_003d
+NextApp/.idea/dictionaries/ggdam.xml
+
+NextApp/.idea/inspectionProfiles/Project_Default.xml
+
+NextApp/mobile/src/main/res/xml/stubtest.xml

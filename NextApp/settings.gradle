@@ -1,0 +1,2 @@
+include ':mobile', ':wear', ':mylibrary'
+rootProject.name='Next-App'
