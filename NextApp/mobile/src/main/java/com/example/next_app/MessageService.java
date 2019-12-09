@@ -9,6 +9,7 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 public class MessageService extends WearableListenerService {
     String path = "/my_path";
+    String payloadName = "stubArrayList";
 
     public MessageService() {
     }
@@ -19,7 +20,7 @@ public class MessageService extends WearableListenerService {
             final String message = new String(messageEvent.getData());
             Intent messageIntent = new Intent();
             messageIntent.setAction(Intent.ACTION_SEND);
-            messageIntent.putExtra("message", message);
+            messageIntent.putExtra(payloadName, message);
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
         } else {
