@@ -86,14 +86,8 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
     }
 
     //BUTTONS
-    private void mapIntent(View v){
-        Intent intent = new Intent (this, Wearable_mapActivity.class);
-        startActivity(intent);
-    }
-    private void teacherIntent(View v){
 
-    }
-    private void nextStubIntent(View v){
+    public void nextStubIntent(View v){
 
     }
 
@@ -196,6 +190,21 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
 
     @Override
     public void onFragmentInteraction(Uri uri) {
+        ImageButton mapButton = findViewById(R.id.mapImagebutton);
+        ImageButton teacherButton = findViewById(R.id.teacherImageButton);
 
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent (getApplicationContext(), Wearable_mapActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        teacherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+            }
+        });
     }
 }
