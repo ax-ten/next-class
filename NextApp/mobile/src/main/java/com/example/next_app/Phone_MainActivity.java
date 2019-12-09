@@ -27,6 +27,8 @@ import org.xmlpull.v1.XmlPullParserFactory;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
@@ -36,19 +38,24 @@ public class Phone_MainActivity extends AppCompatActivity{
     //TAG useful for debugging Logs
     private static final String TAG = "Phone_MainActivity";
     private InputStream inputStream;
-    private LinkedList<Stub> stubList;
+    private ArrayList<Stub> stubList;
+    private ArrayList<Stub> dailyStubList;
     private int current_file_id = R.raw.schedule_stubs;
-    protected Handler myHandler;
+    protected Handler messageHandler;
     String path = "/my_path";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.phone_main_activity);
         this.getSupportActionBar().hide();
+
         stubList = updateStubList();
-        myHandler = new Handler(new Handler.Callback() {
+        dailyStubList = updateDailyStubList();
+
+        messageHandler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
                 Bundle stuff = msg.getData();
@@ -63,6 +70,7 @@ public class Phone_MainActivity extends AppCompatActivity{
         );
     }
 
+    //COMMUNICATION
     public class Receiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -109,10 +117,6 @@ public class Phone_MainActivity extends AppCompatActivity{
             }
         }
     }
-
-
-
-
 
 
     /**
@@ -203,10 +207,24 @@ public class Phone_MainActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    private ArrayList<Stub> updateDailyStubList(){
+        if (dailyStubList == null)
+            dailyStubList = new ArrayList<>();
+        else
+            dailyStubList.clear();
 
-    private LinkedList<Stub> updateStubList(){
+        int day = Calendar.getInstance().get(Calendar.DAY_OF_WEEK);
+        for (Stub stub : stubList){
+            if (stub.getDay() == day)
+                dailyStubList.add(stub);
+        }
+
+        return dailyStubList;
+    }
+
+    private ArrayList<Stub> updateStubList(){
         Log.v(TAG, "caricamento file");
-        inputStream = getStream();
+        inputStream = this.getResources().openRawResource(current_file_id);
         Log.v(TAG, "parse iniziato");
         stubList = parseXML(inputStream);
         Log.v(TAG, "parse terminato");
@@ -214,23 +232,26 @@ public class Phone_MainActivity extends AppCompatActivity{
     }
 
     //PARSING
-    public  LinkedList<Stub> parseXML(InputStream istream) {
-        LinkedList<Stub> schedule = new LinkedList<>();
+    public ArrayList<Stub> parseXML(InputStream istream) {
+        ArrayList<Stub> schedule = new ArrayList<>();
         XmlPullParserFactory factory;
+        String text = "";
+        Stub stub= new Stub();
         XmlPullParser parser;
         int eventType;
 
         try {
             factory = XmlPullParserFactory.newInstance();
             factory.setNamespaceAware(true);
+
             parser = factory.newPullParser();
             parser.setInput(istream, null);
-            String text = "test";
-            Stub stub= new Stub(1,1,null,null,null,1,1);
 
             eventType = parser.getEventType();
+
             while (eventType != XmlPullParser.END_DOCUMENT) {
                 String tagname = parser.getName();
+
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
                         if (tagname.equalsIgnoreCase("course")) {
@@ -247,10 +268,13 @@ public class Phone_MainActivity extends AppCompatActivity{
                         if (tagname.equalsIgnoreCase("course")) {
                             // add employee object to list
                             schedule.add(stub);
+
                         } else if (tagname.equalsIgnoreCase("teacher")) {
                             stub.setTeacherName(text);
+
                         } else if (tagname.equalsIgnoreCase("name")) {
                             stub.setCourseName(text);
+
                         } else if (tagname.equalsIgnoreCase("day")) {
                             stub.setDay(Integer.parseInt(text));
                         }
@@ -268,9 +292,4 @@ public class Phone_MainActivity extends AppCompatActivity{
 
         return schedule;
     }
-
-    public InputStream getStream(){
-        return this.getResources().openRawResource(current_file_id);
-    }
-
 }
