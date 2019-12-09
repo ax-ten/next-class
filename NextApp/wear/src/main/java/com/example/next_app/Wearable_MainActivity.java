@@ -14,6 +14,7 @@ import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import androidx.core.app.NotificationCompat;
@@ -28,11 +29,13 @@ import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Stub;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class Wearable_MainActivity extends WearableActivity implements StubFragment.OnFragmentInteractionListener{
+public class Wearable_MainActivity extends WearableActivity
+        implements StubFragment.OnFragmentInteractionListener{
 
     private ArrayList<Stub> stubList;
     private int tempStub;
@@ -42,42 +45,23 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //aggiorna la lista di stub
         stubList = new ArrayList<>();
         setStubList();
+
+        //Costruisci il layout
         setContentView(R.layout.wearable_main_activity);
+
+        //Ricevitore di messaggi
+        //discerne tra i messaggi che arrivano al messageService quelli che gli interessano
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 new Receiver(),
                 new IntentFilter(Intent.ACTION_SEND)
                 );
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
 
-        int action = MotionEventCompat.getActionMasked(event);
-        String DEBUG_TAG = "testing_wearable";
-        switch(action) {
-            case (MotionEvent.ACTION_DOWN):
-                Log.d(DEBUG_TAG, "Action was DOWN");
-                return true;
-            case (MotionEvent.ACTION_MOVE):
-                Log.d(DEBUG_TAG, "Action was MOVE");
-                return true;
-            case (MotionEvent.ACTION_UP):
-                Log.d(DEBUG_TAG, "Action was UP");
-                return true;
-            case (MotionEvent.ACTION_CANCEL):
-                Log.d(DEBUG_TAG, "Action was CANCEL");
-                return true;
-            case (MotionEvent.ACTION_OUTSIDE):
-                Log.d(DEBUG_TAG, "Movement occurred outside bounds " +
-                        "of current screen element");
-                return true;
-            default:
-                return super.onTouchEvent(event);
-        }
-
-    }
 
     private void setStubList() {
         stubList.clear();
@@ -139,19 +123,23 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
 
     //COMMUNICATION
     public void sendCommunication(){
-        new SendMessage(path, "I just sent the handheld a message").start();
+        new MessageSenderThread(path, "I just sent the handheld a message").start();
     }
+
+
     public class Receiver extends BroadcastReceiver{
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.v(TAG, "just received a message");
         }
     }
-    class SendMessage extends Thread{
+
+
+    class MessageSenderThread extends Thread{
         String path;
         String message;
 
-        SendMessage(String p, String m){
+        MessageSenderThread(String p, String m){
             path=p;
             message=m;
         }
@@ -167,6 +155,7 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
                             );
                     try {
                         Integer result = Tasks.await(sendMessageTask);
+                        Log.v(TAG, String.valueOf(result));
                     } catch (ExecutionException e) {
                         e.printStackTrace();
                     } catch (InterruptedException e) {
@@ -189,6 +178,33 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
     }
 
     @Override
+    public boolean onTouchEvent(MotionEvent event) {
+
+        int action = MotionEventCompat.getActionMasked(event);
+        String DEBUG_TAG = "testing_wearable";
+        switch(action) {
+            case (MotionEvent.ACTION_DOWN):
+                Log.d(DEBUG_TAG, "Action was DOWN");
+                return true;
+            case (MotionEvent.ACTION_MOVE):
+                Log.d(DEBUG_TAG, "Action was MOVE");
+                return true;
+            case (MotionEvent.ACTION_UP):
+                Log.d(DEBUG_TAG, "Action was UP");
+                return true;
+            case (MotionEvent.ACTION_CANCEL):
+                Log.d(DEBUG_TAG, "Action was CANCEL");
+                return true;
+            case (MotionEvent.ACTION_OUTSIDE):
+                Log.d(DEBUG_TAG, "Movement occurred outside bounds " +
+                        "of current screen element");
+                return true;
+            default:
+                return super.onTouchEvent(event);
+        }
+
+    }
+    @Override
     public void onFragmentInteraction(Uri uri) {
         ImageButton mapButton = findViewById(R.id.mapImagebutton);
         ImageButton teacherButton = findViewById(R.id.teacherImageButton);
@@ -204,6 +220,7 @@ public class Wearable_MainActivity extends WearableActivity implements StubFragm
         teacherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
             }
         });
     }
