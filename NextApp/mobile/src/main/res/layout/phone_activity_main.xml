@@ -74,7 +74,7 @@
 
     <fragment
         android:id="@+id/fragment"
-        android:name="com.example.next_app.ScheduleListFragment"
+        android:name="com.example.next_app.Phone_Fragment_ScheduleList"
         android:layout_width="match_parent"
         android:layout_height="680dp"
         app:layout_constraintBottom_toBottomOf="parent"

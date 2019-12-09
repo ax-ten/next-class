@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.ListFragment;
 
-public class ScheduleListFragment extends ListFragment{
+public class Phone_Fragment_ScheduleList extends ListFragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){

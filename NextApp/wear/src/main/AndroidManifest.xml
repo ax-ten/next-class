@@ -21,8 +21,7 @@
             android:exported="false" />
 
         <activity
-            android:name=".Wearable_Activity_Map"
-            android:label="@string/title_activity_wearable_map" />
+            android:name=".Wearable_Activity_Map"/>
 
         <uses-library
             android:name="com.google.android.wearable"

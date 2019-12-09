@@ -1,40 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <classroom name="1">
+    <string name="q">
         <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
+        <y>83</y></string>
+    <string name="w">
         <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
+        <y>83</y></string>
+    <string name="e">
         <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
+        <y>83</y></string>
+    <string name="r">
         <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
+        <y>83</y></string>
+    <string name="t">
         <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
+        <y>83</y></string>
+    <string name="y">
         <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
-        <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
-        <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
-        <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
-        <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
-        <x>54</x>
-        <y>83</y></classroom>
-    <classroom name="1">
-        <x>54</x>
-        <y>83</y></classroom>
-
+        <y>83</y></string>
 </resources>
