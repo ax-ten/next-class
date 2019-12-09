@@ -29,14 +29,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
-public class Phone_MainActivity extends AppCompatActivity{
+public class Phone_Activity_Main extends AppCompatActivity{
 
     //TAG useful for debugging Logs
-    private static final String TAG = "Phone_MainActivity";
+    private static final String TAG = "Phone_Activity_Main";
     private InputStream inputStream;
     private ArrayList<Stub> stubList;
     private ArrayList<Stub> dailyStubList;
@@ -49,7 +48,7 @@ public class Phone_MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.phone_main_activity);
+        setContentView(R.layout.phone_activity_main);
         this.getSupportActionBar().hide();
 
         stubList = updateStubList();
@@ -99,7 +98,7 @@ public class Phone_MainActivity extends AppCompatActivity{
                 List<Node> nodes = Tasks.await(wearableList);
                 for (Node node : nodes){
                     Task<Integer> sendMessageTask =
-                            Wearable.getMessageClient(Phone_MainActivity.this).sendMessage(node.getId(), path, message.getBytes());
+                            Wearable.getMessageClient(Phone_Activity_Main.this).sendMessage(node.getId(), path, message.getBytes());
 
                     try{
                         Integer result = Tasks.await(sendMessageTask);
@@ -189,8 +188,8 @@ public class Phone_MainActivity extends AppCompatActivity{
     @Override public void onConnected(Bundle connectionHint)
     {Log.v(TAG,"onConnected called");}
 
-    public void configStart(View view){new Phone_MainActivity.SendActivityPhoneMessage(CONFIG_START,"").start();}
-    public void configStop(View view){new Phone_MainActivity.SendActivityPhoneMessage(CONFIG_STOP,"").start();}
+    public void configStart(View view){new Phone_Activity_Main.SendActivityPhoneMessage(CONFIG_START,"").start();}
+    public void configStop(View view){new Phone_Activity_Main.SendActivityPhoneMessage(CONFIG_STOP,"").start();}
 
     */
 
@@ -203,7 +202,7 @@ public class Phone_MainActivity extends AppCompatActivity{
     }
 
     public void onClick_settings(View view){
-        Intent intent = new Intent (this, Phone_SettingsActivity.class);
+        Intent intent = new Intent (this, Phone_Activity_Settings.class);
         startActivity(intent);
     }
 

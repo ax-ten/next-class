@@ -5,6 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ScheduleViewerActivity"
-    tools:showIn="@layout/phone_scheduleviewer_activity">
+    tools:showIn="@layout/phone_activity_scheduleviewer">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

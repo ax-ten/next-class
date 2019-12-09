@@ -5,14 +5,14 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Wearable_mapActivity extends AppCompatActivity {
+public class Wearable_Activity_Map extends AppCompatActivity {
     ImageView iv;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         updatePinPosition();
-        setContentView(R.layout.wearable_map_activity);
+        setContentView(R.layout.wearable_activity_map);
 
     }
 

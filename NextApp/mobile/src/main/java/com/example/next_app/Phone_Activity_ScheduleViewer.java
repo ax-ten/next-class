@@ -4,12 +4,12 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class Phone_ScheduleViewerActivity extends AppCompatActivity {
+public class Phone_Activity_ScheduleViewer extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phone_scheduleviewer_activity);
+        setContentView(R.layout.phone_activity_scheduleviewer);
 
     }
 

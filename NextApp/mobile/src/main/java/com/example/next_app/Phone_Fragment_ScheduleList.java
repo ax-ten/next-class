@@ -19,7 +19,7 @@ public class ScheduleListFragment extends ListFragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-       View view = inflater.inflate(R.layout.schedule_list_fragment, container, false);
+       View view = inflater.inflate(R.layout.phone_fragment_schedulelist, container, false);
        return view;
     }
 
@@ -40,7 +40,7 @@ class CustomListAdapter extends ArrayAdapter {
 
     public CustomListAdapter(Activity context, String[] nameArray){
 
-        super(context,R.layout.schedule_list_item , nameArray);
+        super(context,R.layout.phone_item_schedulelist, nameArray);
         this.context=context;
         this.nameArray = nameArray;
     }
@@ -53,7 +53,7 @@ class CustomListAdapter extends ArrayAdapter {
         ImageButton optionsButton;
 
         LayoutInflater inflater= context.getLayoutInflater();
-        View itemView=inflater.inflate(R.layout.schedule_list_item, null,true);
+        View itemView=inflater.inflate(R.layout.phone_item_schedulelist, null,true);
 
         scheduleNameField = itemView.findViewById(R.id.filename);
         scheduleNameField . setText(nameArray[position]);

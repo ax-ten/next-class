@@ -9,46 +9,31 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.poliba.mylibrary.Stub;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StubFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link StubFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
-
-public class StubFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class Wearable_Fragment_Stub extends Fragment {
+    private String teacher;
+    private String course;
+    private String classroom;
+    private String startTime;
+    private String endTime;
 
     private OnFragmentInteractionListener mListener;
 
-    public StubFragment() {
+    public Wearable_Fragment_Stub() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StubFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StubFragment newInstance(String param1, String param2) {
-        StubFragment fragment = new StubFragment();
+    public static Wearable_Fragment_Stub newInstance(Stub stub) {
+        Wearable_Fragment_Stub fragment = new Wearable_Fragment_Stub();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
+        args.putString("teacher", stub.getTeacherName());
+        args.putString("course", stub.getCourseName());
+        args.putString("classroom", stub.getRoom());
+        args.putString("start time", String.valueOf(stub.getStartTime()));
+        args.putString("end time", String.valueOf(stub.getEndTime()));
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,8 +42,11 @@ public class StubFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            teacher = getArguments().getString("teacher");
+            course = getArguments().getString("course");
+            classroom = getArguments().getString("classroom");
+            startTime = getArguments().getString("start time");
+            endTime = getArguments().getString("end time");
         }
     }
 
@@ -66,7 +54,7 @@ public class StubFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_stub, container, false);
+        return inflater.inflate(R.layout.wearable_fragment_stub, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

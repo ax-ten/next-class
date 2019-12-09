@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/dark_grey"
-    tools:context=".Wearable_MainActivity"
+    tools:context=".Wearable_Activity_Main"
     tools:deviceIds="wear">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -29,7 +29,7 @@
 
         <fragment
             android:id="@+id/fragment"
-            android:name="com.example.next_app.StubFragment"
+            android:name="com.example.next_app.Wearable_Fragment_Stub"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             app:layout_constraintStart_toStartOf="parent"

@@ -29,13 +29,12 @@ import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Stub;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class Wearable_MainActivity extends WearableActivity
-        implements StubFragment.OnFragmentInteractionListener{
+public class Wearable_Activity_Main extends WearableActivity
+        implements Wearable_Fragment_Stub.OnFragmentInteractionListener{
 
     private ArrayList<Stub> stubList;
     private int tempStub;
@@ -51,7 +50,7 @@ public class Wearable_MainActivity extends WearableActivity
         setStubList();
 
         //Costruisci il layout
-        setContentView(R.layout.wearable_main_activity);
+        setContentView(R.layout.wearable_activity_main);
 
         //Ricevitore di messaggi
         //discerne tra i messaggi che arrivano al messageService quelli che gli interessano
@@ -150,7 +149,7 @@ public class Wearable_MainActivity extends WearableActivity
                 List<com.google.android.gms.wearable.Node> nodes = Tasks.await(nodeListTask);
                 for(Node node:nodes){
                     Task<Integer> sendMessageTask=
-                            Wearable.getMessageClient(Wearable_MainActivity.this).sendMessage(
+                            Wearable.getMessageClient(Wearable_Activity_Main.this).sendMessage(
                                     node.getId(), path, message.getBytes()
                             );
                     try {
@@ -212,7 +211,7 @@ public class Wearable_MainActivity extends WearableActivity
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent (getApplicationContext(), Wearable_mapActivity.class);
+                Intent intent = new Intent (getApplicationContext(), Wearable_Activity_Map.class);
                 startActivity(intent);
             }
         });
