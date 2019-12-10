@@ -5,10 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Message;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -16,41 +14,20 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
-import com.google.android.gms.common.util.IOUtils;
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Schedule;
-import com.poliba.mylibrary.Stub;
-
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
-import org.xmlpull.v1.XmlPullParserFactory;
-
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.OutputStream;
-import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.ExecutionException;
 
 public class Phone_Activity_Main extends AppCompatActivity{
 
-    //todo richiedi permessi di storage
-    //TODO Spostare il parsing del file in scheduleviewer
-    // il fragment di questa activity deve far vedere la lista di schedule sul dispositivo
+    //TODO richiedi permessi di storage SE non sono già concessi
 
-    //TAG useful for debugging Logs
-    private static final String TAG = "Phone_Activity_Main";
-    private final String path = "next";
     Schedule currentSchedule;
-    
     protected Handler messageHandler;
 
 
@@ -59,10 +36,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.phone_activity_main);
-        this.getSupportActionBar().hide();
-
-        stubList = updateStubList();
-        dailyStubList = updateDailyStubList();
+        Objects.requireNonNull(this.getSupportActionBar()).hide();
 
         messageHandler = new Handler(new Handler.Callback() {
             @Override
@@ -91,6 +65,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     }
 
     public void messageText(String message){
+        String path = "next";
         new MessageThread(path,message).start();
     }
 
