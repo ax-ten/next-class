@@ -2,10 +2,10 @@ package com.poliba.mylibrary;
 
 //TODO cambiare nome libreria 'mylibrary' in 'nextapplibrary'
 
-import java.util.ArrayList;
-import java.util.Calendar;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class Stub {
+public class Stub implements Parcelable {
     private int year, day;
     private String courseName, teacherName, room;
     private double startTime, endTime;
@@ -83,4 +83,14 @@ public class Stub {
         return endTime;
     }
 
+    @Override
+    public int describeContents() {
+        //TODO
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        //TODO
+    }
 }

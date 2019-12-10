@@ -53,8 +53,6 @@ public class Phone_Activity_Main extends AppCompatActivity{
         );
     }
 
-    
-
     //COMMUNICATION
     public class Receiver extends BroadcastReceiver {
         @Override

@@ -34,7 +34,8 @@ public class Schedule {
 
     }
 
-    private ArrayList<Stub> getSchedule() {
+
+    public ArrayList<Stub> getSchedule() {
         return schedule;
     }
 
