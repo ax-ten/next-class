@@ -3,33 +3,37 @@
     <string name="title_activity_settings">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
+    <string name="Notifications">Notifications</string>
     <string name="maintitle_header">Next</string>
+    <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
     <string name="addNew_description">Create new Schedule</string>
     <string name="settings_description">Edit Settings</string>
 
     <!-- Settings Preferences -->
-    <string name="notify_me">NOTIFY ME</string>
-    <string name="minutes_early">MINUTES EARLY</string>
-    <string name="select_language">SELECT LANGUAGE</string>
+    <string name="minutes">Minutes early</string>
+    <string name="language">Language</string>
+    <string name="everyonce">Every x days</string>
+    <string name="sync_title">Sync schedule periodically</string>
 
-    <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="attiva_notifiche">Attiva notifiche</string>
+    <!-- Stub viewer -->
+    <string name="coursename">Course Name</string>
+    <string name="teachername">Teacher Name</string>
+    <string name="classname">Class</string>
 
-    <!-- User Settings -->
-    <string name="language">English</string>
-    <integer name="minutes_early_value">20</integer>
-    <bool name="notifies">true</bool>
+    <!-- Add New Schedule Activity -->
+    <string name="create">Create</string>
+    <string name="degree">Degree</string>
+    <string name="year">Year</string>
+
+    <!-- Schedule popup menu -->
+    <string name="view">View</string>
+    <string name="edit">Edit</string>
+    <string name="rename">Rename</string>
+    <string name="delete">Delete</string>
+    <string name="refresh">Refresh</string>
+    <string name="share">Share</string>
 
     <!-- Week days -->
     <string name="monday">Monday</string>
@@ -37,5 +41,8 @@
     <string name="wednesday">Wednesday</string>
     <string name="thursday">Thursday</string>
     <string name="friday">Friday</string>
+
     <string name="title_activity_schedule_viewer">ScheduleViewer</string>
+    <string name="title_activity_phone__add_new_schedule_">Phone_AddNewSchedule_Activity</string>
+    <string name="fileName">filename</string>
 </resources>

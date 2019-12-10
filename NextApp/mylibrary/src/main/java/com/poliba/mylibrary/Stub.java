@@ -1,9 +1,11 @@
 package com.poliba.mylibrary;
 
-/** com.poliba.mylibrary.Stub class implementation. The class has 7 attributes linked to the specific lesson that will be
-send by intent to the smartwatch**/
+//TODO cambiare nome libreria 'mylibrary' in 'nextapplibrary'
 
-public class Stub {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Stub implements Parcelable {
     private int year, day;
     private String courseName, teacherName, room;
     private double startTime, endTime;
@@ -18,7 +20,6 @@ public class Stub {
         this.startTime = sT;
         this.endTime = eT;
     }
-
 
     public Stub(){
         //empty
@@ -81,5 +82,15 @@ public class Stub {
     public double getEndTime() {
         return endTime;
     }
-    
+
+    @Override
+    public int describeContents() {
+        //TODO
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        //TODO
+    }
 }

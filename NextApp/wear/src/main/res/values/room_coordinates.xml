@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="q">
+        <x>54</x>
+        <y>83</y></string>
+    <string name="w">
+        <x>54</x>
+        <y>83</y></string>
+    <string name="e">
+        <x>54</x>
+        <y>83</y></string>
+    <string name="r">
+        <x>54</x>
+        <y>83</y></string>
+    <string name="t">
+        <x>54</x>
+        <y>83</y></string>
+    <string name="y">
+        <x>54</x>
+        <y>83</y></string>
+</resources>
