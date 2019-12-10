@@ -92,21 +92,57 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
             });
 
             optionsButton = itemView.findViewById(R.id.popupmenuOpener);
-            PopupMenu popupMenu = new PopupMenu(getContext(), optionsButton );
-            popupMenu.getMenuInflater().inflate(R.menu.popup_menu, popupMenu.getMenu());
 
-            popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            optionsButton.setOnClickListener(new View.OnClickListener(){
                 @Override
-                public boolean onMenuItemClick(MenuItem item) {
-                    Toast.makeText(getContext(), "Yet to implement", Toast.LENGTH_SHORT).show();
-                    return true;
+                public void onClick(View v){
+                    final PopupMenu popupMenu = new PopupMenu(getContext(), optionsButton );
+                    popupMenu.getMenuInflater().inflate(R.menu.schedule_popup_menu, popupMenu.getMenu());
+                    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+                        @Override
+                        public boolean onMenuItemClick(MenuItem item) {
+                            switch (item.getItemId()){
+                                case R.id.view:
+                                    view(schedule);
+                                case R.id.edit:
+                                    edit(schedule);
+                                case R.id.rename:
+                                    rename(schedule);
+                                case R.id.delete:
+                                    delete(schedule);
+                                case R.id.refresh:
+                                    refresh(schedule);
+                                case R.id.share:
+                                    share(schedule);
+                            }
+                            return false;
+                        }
+                    });
+                    popupMenu.show();
                 }
             });
-            popupMenu.show();
-
             return itemView;
         }
+    }
 
+    //MENU OPTIONS
+    private void view(Schedule schedule){
+        //TODO : Implement view
+    }
+    private void edit(Schedule schedule){
+        //TODO : Implement edit
+    }
+    private void rename(Schedule schedule){
+        //TODO : Implement rename
+    }
+    private void delete(Schedule schedule){
+        //TODO : Implement delete
+    }
+    private void refresh(Schedule schedule){
+        //TODO : Implement refresh
+    }
+    private void share(Schedule schedule){
+        //TODO : Implement share
     }
 }
 
