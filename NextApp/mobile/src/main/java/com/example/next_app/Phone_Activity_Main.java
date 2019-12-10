@@ -127,9 +127,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
     //BUTTONS
     public void onClick_addNew(View view){
-        //todo
-        Log.v(TAG,"add new");
-        Toast.makeText(this, "Yet to implement", Toast.LENGTH_SHORT).show();
+        startActivity(new Intent(this, Phone_Activity_AddNewSchedule.class));
     }
     public void onClick_settings(View view){
         startActivity(new Intent (this, Phone_Activity_Settings.class));
