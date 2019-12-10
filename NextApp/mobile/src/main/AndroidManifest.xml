@@ -16,7 +16,6 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Phone_Activity_AddNewSchedule"
-            android:label="@string/title_activity_phone__add_new_schedule_"
             android:theme="@style/AppTheme.NoActionBar"></activity>
 
         <service
@@ -37,7 +36,7 @@
             android:name=".Phone_Activity_Settings"
             android:label="@string/title_activity_settings" />
         <activity
-            android:name=".Phone_Activity_ScheduleViewer"
+            android:name=".Phone_Activity_DailySchedulePager"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".Phone_Activity_Main">
             <intent-filter>
