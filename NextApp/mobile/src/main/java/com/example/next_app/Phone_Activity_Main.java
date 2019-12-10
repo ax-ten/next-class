@@ -70,6 +70,8 @@ public class Phone_Activity_Main extends AppCompatActivity{
         );
     }
 
+    
+
     //COMMUNICATION
     public class Receiver extends BroadcastReceiver {
         @Override
@@ -80,14 +82,14 @@ public class Phone_Activity_Main extends AppCompatActivity{
     }
 
     public void messageText(String message){
-        new NewThread(path,message).start();
+        new MessageThread(path,message).start();
     }
 
-    class NewThread extends Thread{
+    class MessageThread extends Thread{
         String path;
         String message;
 
-        NewThread(String p, String m){
+        MessageThread(String p, String m){
             path = p;
             message = m;
         }
@@ -102,17 +104,13 @@ public class Phone_Activity_Main extends AppCompatActivity{
                             Wearable.getMessageClient(Phone_Activity_Main.this).sendMessage(node.getId(), path, message.getBytes());
 
                     try{
-                        Integer result = Tasks.await(sendMessageTask);
+                        Tasks.await(sendMessageTask);
                         messageText("I sent a message to the wearable");
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
+                    } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }
@@ -125,10 +123,8 @@ public class Phone_Activity_Main extends AppCompatActivity{
         Log.v(TAG,"add new");
         Toast.makeText(this, "Yet to implement", Toast.LENGTH_SHORT).show();
     }
-
     public void onClick_settings(View view){
-        Intent intent = new Intent (this, Phone_Activity_Settings.class);
-        startActivity(intent);
+        startActivity(new Intent (this, Phone_Activity_Settings.class));
     }
     public void setCurrentSchedule(Schedule schedule) {
         this.currentSchedule = schedule;
