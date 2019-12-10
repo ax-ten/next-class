@@ -6,12 +6,13 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
-public class Phone_SettingsActivity extends AppCompatActivity {
+public class Phone_Activity_Settings extends AppCompatActivity {
 
+    //TODO le impostazioni sono modificabili ma non cambiano nulla
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phone_settings_activity);
+        setContentView(R.layout.phone_activity_settings);
         this.getSupportActionBar().hide();
 
         getSupportFragmentManager()

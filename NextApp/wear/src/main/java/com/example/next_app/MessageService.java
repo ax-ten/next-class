@@ -1,9 +1,5 @@
 package com.example.next_app;
 
-//TODO ci sono 2 messaggi da interpretare
-// -utente presente
-// -richiesta quotidiana dell'orario
-
 import android.content.Intent;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
@@ -13,8 +9,8 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 public class MessageService extends WearableListenerService {
     String path = "/my_path";
-    String payloadName = "stubArrayList";
-
+    //TODO: provare a spostare questo service dentro la libreria in comune
+    //TODO: questo service deve anche comunicare le presenze dell'utente
     public MessageService() {
     }
 
@@ -24,7 +20,7 @@ public class MessageService extends WearableListenerService {
             final String message = new String(messageEvent.getData());
             Intent messageIntent = new Intent();
             messageIntent.setAction(Intent.ACTION_SEND);
-            messageIntent.putExtra(payloadName, message);
+            messageIntent.putExtra("message", message);
 
             LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
         } else {

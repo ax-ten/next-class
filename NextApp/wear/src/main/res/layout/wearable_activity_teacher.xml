@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ScheduleViewerActivity"
-    tools:showIn="@layout/phone_scheduleviewer_activity">
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context=".Wearable_Activity_Map"
+    tools:showIn="@layout/wearable_activity_map">
 
 </androidx.constraintlayout.widget.ConstraintLayout>
