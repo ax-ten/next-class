@@ -39,12 +39,10 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
     //TAG useful for debugging Logs
     private static final String TAG = "Phone_Activity_Main";
-    private InputStream inputStream;
-    private ArrayList<Stub> stubList;
-    private ArrayList<Stub> dailyStubList;
-    private int current_file_id = R.raw.schedule_stubs;
+    private final String path = "next";
+    Schedule currentSchedule;
+    
     protected Handler messageHandler;
-    String path = "/my_path";
 
 
     @Override
