@@ -42,8 +42,9 @@ import java.util.concurrent.ExecutionException;
 
 public class Phone_Activity_Main extends AppCompatActivity{
 
+    //todo richiedi permessi di storage
     //TODO Spostare il parsing del file in scheduleviewer
-    // questo file deve più che altro far vedere la lista di schedule sul dispositivo
+    // il fragment di questa activity deve far vedere la lista di schedule sul dispositivo
 
     //TAG useful for debugging Logs
     private static final String TAG = "Phone_Activity_Main";

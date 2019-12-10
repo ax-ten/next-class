@@ -9,6 +9,7 @@ import com.google.android.gms.wearable.WearableListenerService;
 
 public class MessageService extends WearableListenerService {
     String path = "/my_path";
+    //TODO: provare a spostare questo service dentro la libreria in comune
     //TODO: questo service deve anche comunicare le presenze dell'utente
     public MessageService() {
     }

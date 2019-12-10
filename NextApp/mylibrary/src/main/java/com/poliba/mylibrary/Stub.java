@@ -1,7 +1,9 @@
 package com.poliba.mylibrary;
 
-/** com.poliba.mylibrary.Stub class implementation. The class has 7 attributes linked to the specific lesson that will be
-send by intent to the smartwatch**/
+//TODO cambiare nome libreria 'mylibrary' in 'nextapplibrary'
+
+import java.util.ArrayList;
+import java.util.Calendar;
 
 public class Stub {
     private int year, day;
@@ -18,7 +20,6 @@ public class Stub {
         this.startTime = sT;
         this.endTime = eT;
     }
-
 
     public Stub(){
         //empty
@@ -81,5 +82,5 @@ public class Stub {
     public double getEndTime() {
         return endTime;
     }
-    
+
 }
