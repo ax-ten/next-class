@@ -12,6 +12,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter;
 import androidx.viewpager.widget.PagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
+import com.poliba.mylibrary.Schedule;
+
 import java.util.Calendar;
 
 public class Phone_Activity_DailySchedulePager extends FragmentActivity {
@@ -19,12 +21,13 @@ public class Phone_Activity_DailySchedulePager extends FragmentActivity {
     private static final int NUM_PAGES =5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
+    private Schedule schedule;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_activity_schedulepager);
-
+        Bundle scheduleBundle = getIntent().getExtras();
         mPager = findViewById(R.id.pager);
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager.setPageTransformer(true, new ZoomOutPageTransformer());
