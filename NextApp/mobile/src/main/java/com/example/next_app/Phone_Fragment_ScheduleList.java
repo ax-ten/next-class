@@ -34,6 +34,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         return inflater.inflate(R.layout.phone_fragment_schedulelist, container, false);
     }
 
+
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState){
         super.onActivityCreated(savedInstanceState);
@@ -59,6 +60,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         return filenames;
     }
 
+//TODO cambia in recyclerView
     class CustomListAdapter extends ArrayAdapter {
         private Activity context;
         private String[] nameArray;
@@ -73,7 +75,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         @Override
         public View getView(int position, View view, ViewGroup parent) {
             TextView scheduleNameField;
-            ImageButton optionsButton;
+            final ImageButton optionsButton;
             final Schedule schedule = new Schedule(Objects.requireNonNull(folder.listFiles())[position]);
 
             LayoutInflater inflater= context.getLayoutInflater();
