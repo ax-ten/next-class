@@ -2,6 +2,7 @@ package com.example.next_app;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -126,8 +127,11 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
     }
 
     //MENU OPTIONS
+    Intent intent;
     private void view(Schedule schedule){
-        //TODO : Implement view
+        intent = new Intent(getContext(), Phone_Activity_DailySchedulePager.class);
+        intent.putExtra("SCHEDULE", schedule.getSchedule());
+        startActivity(intent);
     }
     private void edit(Schedule schedule){
         //TODO : Implement edit
