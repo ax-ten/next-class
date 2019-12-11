@@ -20,9 +20,10 @@
         android:id="@+id/constraintLayout"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:background="@color/colorAccent"
+        tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="-1dp"
-        tools:layout_editor_absoluteY="72dp"
-        tools:ignore="MissingConstraints">
+        tools:layout_editor_absoluteY="72dp">
 
         <TextView
             android:id="@+id/coursename"
