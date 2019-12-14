@@ -83,7 +83,7 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
                 oStream.flush();
                 oStream.close();
             } else {
-                Toast.makeText(getApplicationContext(), "File already existing, try another name", Toast.LENGTH_SHORT);
+                Toast.makeText(getApplicationContext(), "File already existing, try using another name", Toast.LENGTH_SHORT);
             }
         } catch (IOException e) {
             e.printStackTrace();
