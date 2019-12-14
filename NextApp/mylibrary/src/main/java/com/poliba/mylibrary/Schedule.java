@@ -15,11 +15,13 @@ import java.util.ArrayList;
 
 public class Schedule {
     private ArrayList<Stub> schedule;
+    public String name;
 
     public Schedule(File file) {
         InputStream input = null;
         try {
             input = new FileInputStream(file);
+            name = file.getName();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }

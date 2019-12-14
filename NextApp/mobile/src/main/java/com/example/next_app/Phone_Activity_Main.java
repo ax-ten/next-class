@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -108,5 +109,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     }
     public void setCurrentSchedule(Schedule schedule) {
         this.currentSchedule = schedule;
+        SharedPreferences preferences = getSharedPreferences("currentSchedule", Context.MODE_PRIVATE);
+        preferences.edit().putString("currentSchedule",currentSchedule.name);
     }
 }

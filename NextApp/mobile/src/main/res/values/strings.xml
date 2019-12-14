@@ -6,6 +6,7 @@
     <string name="Notifications">Notifications</string>
     <string name="maintitle_header">Next</string>
     <string name="sync_header">Sync</string>
+    <string name="current_file">Current Schedule</string>
 
     <!-- Messages Preferences -->
     <string name="addNew_description">Create new Schedule</string>
