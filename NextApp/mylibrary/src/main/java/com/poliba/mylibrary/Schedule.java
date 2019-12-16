@@ -12,10 +12,12 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Schedule {
     private ArrayList<Stub> schedule;
     public String name;
+    private HashMap<String, Double> attendance;
 
     public Schedule(File file) {
         InputStream input = null;
