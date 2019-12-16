@@ -87,10 +87,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
             scheduleNameField . setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((Phone_Activity_Main) Objects.requireNonNull(getActivity())).setCurrentSchedule(schedule);
-                    Toast.makeText(getContext(), "Set as current schedule", Toast.LENGTH_SHORT).show();
-
-                    //todo cambiare il text field di file corrente in preferences
+                    view(schedule);
                 }
             });
 
