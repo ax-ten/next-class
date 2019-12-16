@@ -20,5 +20,36 @@ public class Wearable_Activity_Map extends AppCompatActivity {
     private void updatePinPosition(){
         iv = findViewById(R.id.pin);
         //todo get iv x and y values by values.room_coordinates.xml
+    private class Classroom{
+        private int x;
+        private int y;
+        private String name;
+
+        public Classroom(){
+        }
+
+        public void setX(int x) {
+            this.x = x;
+        }
+
+        public int getX() {
+            return x;
+        }
+
+        public void setY(int y) {
+            this.y = y;
+        }
+
+        public int getY() {
+            return y;
+        }
+
+        public void setName(String name) {
+            this.name = name;
+        }
+
+        public String getName() {
+            return name;
+        }
     }
 }
