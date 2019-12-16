@@ -22,6 +22,7 @@ public class MessageService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent){
         switch (messageEvent.getPath()){
             case attendancePath:
+                //TODO : implementare aggiornamento presenze
                 final String message = new String(messageEvent.getData());
                 messageIntent= new Intent();
                 messageIntent.setAction(Intent.ACTION_SEND);
@@ -30,6 +31,7 @@ public class MessageService extends WearableListenerService {
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
 
             case refreshPath:
+                //TODO : implementare richiesta di aggiornamento Orario
             default:
                 super.onMessageReceived(messageEvent);
 
