@@ -29,7 +29,6 @@ import java.util.concurrent.ExecutionException;
 public class Phone_Activity_Main extends AppCompatActivity{
 
     //TODO richiedi permessi di storage SE non sono già concessi
-
     Schedule currentSchedule;
     protected Handler messageHandler;
 
@@ -51,8 +50,13 @@ public class Phone_Activity_Main extends AppCompatActivity{
         });
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
-                new Receiver(),
-                new IntentFilter(Intent.ACTION_SEND)
+                new AttendanceReceiver(),
+                new IntentFilter(Intent.ACTION_ATTACH_DATA)
+        );
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ScheduleSyncReceiver(),
+                new IntentFilter(Intent.ACTION_SYNC)
         );
     }
 
