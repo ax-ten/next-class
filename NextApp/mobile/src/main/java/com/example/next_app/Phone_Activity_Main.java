@@ -57,11 +57,19 @@ public class Phone_Activity_Main extends AppCompatActivity{
     }
 
     //COMMUNICATION
-    public class Receiver extends BroadcastReceiver {
+    public class AttendanceReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = "i received a message from the wearable";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            String toast = "i received a message from the wearable";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public class ScheduleSyncReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String toast = "i received a message from the wearable";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
 
