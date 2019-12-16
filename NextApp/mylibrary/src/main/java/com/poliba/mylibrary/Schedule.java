@@ -78,18 +78,19 @@ public class Schedule {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if (tagname.equalsIgnoreCase("course")) {
-                            // add employee object to list
-                            this.getSchedule().add(stub);
-
-                        } else if (tagname.equalsIgnoreCase("teacher")) {
-                            stub.setTeacherName(text);
-
-                        } else if (tagname.equalsIgnoreCase("name")) {
-                            stub.setCourseName(text);
-
-                        } else if (tagname.equalsIgnoreCase("day")) {
-                            stub.setDay(Integer.parseInt(text));
+                        switch (tagname){
+                            case "course":
+                                this.getSchedule().add(stub);
+                                break;
+                            case "teacher":
+                                stub.setTeacherName(text);
+                                break;
+                            case "name":
+                                stub.setCourseName(text);
+                                break;
+                            case "day":
+                                stub.setDay(Integer.parseInt(text));
+                                break;
                         }
                         break;
 
