@@ -31,7 +31,13 @@ public class MessageService extends WearableListenerService {
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
 
             case refreshPath:
-                //TODO : implementare richiesta di aggiornamento Orario
+                storedMessage = new String(messageEvent.getData());
+                messageIntent = new Intent();
+                messageIntent . setAction(Intent.ACTION_SYNC);
+                messageIntent . putExtra(payloadName, storedMessage);
+
+                LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
+
             default:
                 super.onMessageReceived(messageEvent);
 
