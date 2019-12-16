@@ -50,7 +50,7 @@ public class Schedule {
         else
             schedule = new ArrayList<>();
         XmlPullParserFactory factory;
-        String text = "";
+        String text = null;
         Stub stub= new Stub();
         XmlPullParser parser;
         int eventType;
@@ -70,7 +70,6 @@ public class Schedule {
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
                         if (tagname.equalsIgnoreCase("course")) {
-                            // create a new instance of Stub
                             stub = new Stub();
                         }
                         break;
@@ -106,7 +105,6 @@ public class Schedule {
                                 stub.setEndTime(Double.parseDouble(text));
                                 break;
                         }
-                        break;
 
                     default:
                         break;
