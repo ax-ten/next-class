@@ -22,10 +22,10 @@ public class MessageService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent){
         switch (messageEvent.getPath()){
             case attendancePath:
-                //TODO : implementare aggiornamento presenze
-                final String message = new String(messageEvent.getData());
-                messageIntent= new Intent();
-                messageIntent.setAction(Intent.ACTION_SEND);
+                storedMessage = new String(messageEvent.getData());
+                messageIntent = new Intent();
+                messageIntent . setAction(Intent.ACTION_ATTACH_DATA);
+                messageIntent . putExtra(payloadName, storedMessage);
                 messageIntent.putExtra(payloadName, message);
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
