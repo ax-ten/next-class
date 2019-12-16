@@ -20,21 +20,19 @@ public class MessageService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent){
-        if (messageEvent.getPath().equals(attendancePath)){
+        switch (messageEvent.getPath()){
+            case attendancePath:
+                final String message = new String(messageEvent.getData());
+                messageIntent= new Intent();
+                messageIntent.setAction(Intent.ACTION_SEND);
+                messageIntent.putExtra(payloadName, message);
 
-            final String message = new String(messageEvent.getData());
-            messageIntent= new Intent();
-            messageIntent.setAction(Intent.ACTION_SEND);
-            messageIntent.putExtra(payloadName, message);
+                LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
 
-            LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
+            case refreshPath:
+            default:
+                super.onMessageReceived(messageEvent);
 
-
-        } else if (messageEvent.getPath().equals(refreshPath)) {
-            //TODO : implementare richiesta di aggiornamento
-
-        } else{
-            super.onMessageReceived(messageEvent);
         }
     }
 }
