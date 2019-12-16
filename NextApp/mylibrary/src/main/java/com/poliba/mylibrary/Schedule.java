@@ -93,6 +93,18 @@ public class Schedule {
                             case "day":
                                 stub.setDay(Integer.parseInt(text));
                                 break;
+                            case "year":
+                                stub.setYear(Integer.parseInt(text));
+                                break;
+                            case "room":
+                                stub.setRoom(text);
+                                break;
+                            case "startTime":
+                                stub.setStartTime(Double.parseDouble(text));
+                                break;
+                            case "endTime":
+                                stub.setEndTime(Double.parseDouble(text));
+                                break;
                         }
                         break;
 
