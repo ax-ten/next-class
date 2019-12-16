@@ -5,6 +5,14 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import org.xmlpull.v1.XmlPullParser;
+import org.xmlpull.v1.XmlPullParserException;
+import org.xmlpull.v1.XmlPullParserFactory;
+
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.HashMap;
+
 public class Wearable_Activity_Map extends AppCompatActivity {
     ImageView iv;
     HashMap<String, int[]> positions;
