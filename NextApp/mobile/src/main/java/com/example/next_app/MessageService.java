@@ -14,7 +14,7 @@ public class MessageService extends WearableListenerService {
     final String payloadName = "attendance";
 
     final String refreshPath = "/refreshSchedule";
-
+    String storedMessage;
     public MessageService() {
     }
 
