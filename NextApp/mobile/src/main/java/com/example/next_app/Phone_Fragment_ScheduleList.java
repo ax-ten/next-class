@@ -105,8 +105,8 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()){
-                                case R.id.view:
-                                    view(schedule);
+                                case R.id.set_as_current:
+                                    setAsCurrent(schedule);
                                 case R.id.edit:
                                     edit(schedule);
                                 case R.id.rename:
