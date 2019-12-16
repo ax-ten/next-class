@@ -136,18 +136,28 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         startActivity(intent);
     }
     private void edit(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement edit
     }
     private void rename(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement rename
     }
     private void delete(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement delete
     }
     private void refresh(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement refresh
     }
     private void share(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement share
     }
 }
