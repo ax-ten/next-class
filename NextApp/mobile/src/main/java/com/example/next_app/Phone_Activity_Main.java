@@ -20,6 +20,8 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Schedule;
+
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -27,7 +29,6 @@ import java.util.concurrent.ExecutionException;
 public class Phone_Activity_Main extends AppCompatActivity{
 
     //TODO richiedi permessi di storage SE non sono già concessi
-
     Schedule currentSchedule;
     protected Handler messageHandler;
 
@@ -49,17 +50,30 @@ public class Phone_Activity_Main extends AppCompatActivity{
         });
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
-                new Receiver(),
-                new IntentFilter(Intent.ACTION_SEND)
+                new AttendanceReceiver(),
+                new IntentFilter(Intent.ACTION_ATTACH_DATA)
+        );
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ScheduleSyncReceiver(),
+                new IntentFilter(Intent.ACTION_SYNC)
         );
     }
 
     //COMMUNICATION
-    public class Receiver extends BroadcastReceiver {
+    public class AttendanceReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = "i received a message from the wearable";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            String toast = "i received a message from the wearable";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public class ScheduleSyncReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String toast = "i received a message from the wearable";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
 
