@@ -160,6 +160,16 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement share
     }
+    private void setAsCurrent(Schedule schedule){
+        ((Phone_Activity_Main) Objects.requireNonNull(getActivity())).setCurrentSchedule(schedule);
+        final String toast = "Set as current schedule";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
+        //todo cambiare il text field di file corrente in preferences
+    }
+    private Schedule getScheduleAt(int position){
+        return new Schedule(Objects.requireNonNull(folder.listFiles())[position]);
+    }
+
 }
 
 
