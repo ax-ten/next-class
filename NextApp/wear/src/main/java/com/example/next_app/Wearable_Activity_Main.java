@@ -109,15 +109,14 @@ public class Wearable_Activity_Main extends WearableActivity
         NotificationManager mNotificationManager = (
                 NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
-
-        Intent intent =  new Intent(this, AttendanceService.class );
-        PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, createChannel(mNotificationManager).getId());
         builder.setContentTitle("titolo della notifica");
         builder.setContentText("contenuto della notifica");
         builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark);
-        builder.addAction(R.drawable.ic_check, "Present", pi);
+
+        // Intent intent =  new Intent(this, AttendanceService.class );
+        // PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
+        // builder.addAction(R.drawable.ic_check, "Present", pi);
 
         Notification notification = builder.build();
 

@@ -16,9 +16,6 @@
             android:name=".MessageService"
             android:enabled="true"
             android:exported="true"></service>
-        <service
-            android:name=".AttendanceService"
-            android:exported="false" />
 
         <activity
             android:name=".Wearable_Activity_Map"/>
