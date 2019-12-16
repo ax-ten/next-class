@@ -26,7 +26,6 @@ public class MessageService extends WearableListenerService {
                 messageIntent = new Intent();
                 messageIntent . setAction(Intent.ACTION_ATTACH_DATA);
                 messageIntent . putExtra(payloadName, storedMessage);
-                messageIntent.putExtra(payloadName, message);
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
 
@@ -37,6 +36,7 @@ public class MessageService extends WearableListenerService {
                 messageIntent . putExtra(payloadName, storedMessage);
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
+
 
             default:
                 super.onMessageReceived(messageEvent);
