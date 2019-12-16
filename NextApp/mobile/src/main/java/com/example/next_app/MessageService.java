@@ -10,10 +10,11 @@ import com.google.android.gms.wearable.WearableListenerService;
 public class MessageService extends WearableListenerService {
     Intent messageIntent;
 
-    String attendancePath = "/attendance";
-    String payloadName = "attendance";
+    final String attendancePath = "/attendance";
+    final String payloadName = "attendance";
 
-    String refreshPath = "/refreshSchedule";
+    final String refreshPath = "/refreshSchedule";
+
     public MessageService() {
     }
 
