@@ -29,7 +29,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        String path = Objects.requireNonNull(getContext()).getFilesDir() + "next";
+        final String path = Objects.requireNonNull(getContext()).getFilesDir() + "next";
         if (folder == null)
             folder = new File(path);
         return inflater.inflate(R.layout.phone_fragment_schedulelist, container, false);
@@ -68,7 +68,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
 
         CustomListAdapter(Activity context, String[] nameArray){
             super(context, phone_item_schedule, nameArray);
-            this.context=context;
+            this.context = context;
             this.nameArray = nameArray;
         }
 
@@ -77,10 +77,9 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         public View getView(int position, View view, ViewGroup parent) {
             TextView scheduleNameField;
             final ImageButton optionsButton;
-            final Schedule schedule = new Schedule(Objects.requireNonNull(folder.listFiles())[position]);
+            final Schedule schedule = getScheduleAt(position);
 
-            LayoutInflater inflater= context.getLayoutInflater();
-              View itemView=inflater.inflate(phone_item_schedule, null,true);
+            View itemView = context.getLayoutInflater().inflate(phone_item_schedule, null,true);
 
             scheduleNameField = itemView.findViewById(R.id.filename);
             scheduleNameField . setText(nameArray[position]);
@@ -92,7 +91,6 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
             });
 
             optionsButton = itemView.findViewById(R.id.popupmenuOpener);
-
             optionsButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
