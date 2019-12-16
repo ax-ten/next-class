@@ -20,6 +20,74 @@ public class Wearable_Activity_Map extends AppCompatActivity {
     private void updatePinPosition(){
         iv = findViewById(R.id.pin);
         //todo get iv x and y values by values.room_coordinates.xml
+    }
+
+    private void parseXML(){
+        InputStream in = null;
+        if (positions != null)
+            positions.clear();
+        else
+            positions = new HashMap<>();
+
+        String tagname;
+        XmlPullParserFactory factory;
+        XmlPullParser parser;
+        Classroom classroom = new Classroom();
+        int eventType;
+        String text = null;
+
+        try{
+            factory = XmlPullParserFactory.newInstance();
+            factory.setNamespaceAware(true);
+
+            parser = factory.newPullParser();
+            parser.setInput(in,null);
+
+            eventType = parser.getEventType();
+
+            while (eventType != XmlPullParser.END_DOCUMENT){
+                tagname = parser.getName();
+
+                switch (eventType){
+                    case XmlPullParser.START_TAG:
+                        if (tagname.equalsIgnoreCase("classroom")){
+                            classroom = new Classroom();
+                        }
+
+                    case XmlPullParser.TEXT:
+                        text = parser.getText();
+                        break;
+
+                    case XmlPullParser.END_TAG:
+                        switch (tagname){
+                            case "classroom":
+                                int[] coords = {classroom.getX(), classroom.getY()};
+                                positions.put(classroom.getName(), coords );
+                            case "name":
+                                classroom.setName(text);
+                                break;
+                            case "x":
+                                classroom.setX(Integer.parseInt(text));
+                                break;
+                            case "y":
+                                classroom.setY(Integer.parseInt(text));
+                                break;
+                            default:
+                                throw new IllegalStateException("Unexpected value: " + tagname);
+                        }
+                    default:
+                        break;
+
+                }
+                eventType = parser.next();
+            }
+
+
+        } catch (XmlPullParserException | IOException e) {
+            e.printStackTrace();
+        }
+
+    }
     private class Classroom{
         private int x;
         private int y;
