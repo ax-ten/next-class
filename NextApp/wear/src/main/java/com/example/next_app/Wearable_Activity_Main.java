@@ -37,8 +37,7 @@ public class Wearable_Activity_Main extends WearableActivity
     //TODO passare tramite intento l'aula che si vuole visualizzare sulla mappa
     //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
     //todo trovare un modo per accedere a tutti i profili dei professori e listarne almeno le mail
-    private ArrayList<Stub> stubList;
-    private int tempStub;
+    private Schedule dailySchedule;
     String path = "/my_path";
     String TAG = "Wearable_device";
 
