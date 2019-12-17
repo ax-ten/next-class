@@ -71,7 +71,6 @@ public class Phone_Activity_Main extends AppCompatActivity{
         );
     }
 
-    //COMMUNICATION
     public class AttendanceReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
@@ -85,6 +84,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
         @Override
         public void onReceive(Context context, Intent intent) {
             //TODO : Implementa azione da compiere una volta ricevuta la richiesta di sync
+            String toast = "i received a sync request from the wearable";
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
@@ -113,7 +113,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
                     try{
                         Tasks.await(sendMessageTask);
-                        messageText("I sent a message to the wearable");
+                        messageText(path,message);
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
