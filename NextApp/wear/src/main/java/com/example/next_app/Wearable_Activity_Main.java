@@ -32,7 +32,8 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class Wearable_Activity_Main extends FragmentActivity {
+public class Wearable_Activity_Main extends FragmentActivity
+        implements Wearable_Fragment_Stub.OnFragmentInteractionListener {
 
 
     //TODO Implementare swipe per passare tra le attività
@@ -62,6 +63,11 @@ public class Wearable_Activity_Main extends FragmentActivity {
     //COMMUNICATION
     public void sendCommunication(){
         new MessageSenderThread(path, "I just sent the handheld a message").start();
+    }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
     }
 
 
