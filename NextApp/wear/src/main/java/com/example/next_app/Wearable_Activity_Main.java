@@ -67,24 +67,10 @@ public class Wearable_Activity_Main extends FragmentActivity {
             Log.v(TAG, "just received a message");
         }
 
-    private void setStubList() {
-        stubList.clear();
-        stubList.add(new Stub(1,1,"1","1","1",1.1,1.1));
-        stubList.add(new Stub(2,2,"2","2","2",2.2,2.2));
-    }
 
     //BUTTONS
-
     public void nextStubIntent(View v){
 
-    }
-
-    private Integer getCurrentStubIndex(ArrayList<Stub> stublist, double cTime){
-        for(int i=0; i<stublist.size();i++){
-            if (cTime > stubList.get(i).getStartTime() && cTime < stubList.get(i).getEndTime())
-                return i;
-        }
-        return null;
     }
 
 
@@ -159,12 +145,4 @@ public class Wearable_Activity_Main extends FragmentActivity {
             }
         }
     }
-
-    //OTHERS
-    private void setTxtView(int campotisesto, String valore){
-        TextView tw;
-        tw = findViewById(campotisesto);
-        tw . setText(valore);
-    }
-
 }
