@@ -57,6 +57,22 @@ public class Wearable_Fragment_Stub extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        ImageButton mapButton = container.findViewById(R.id.button_map);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Wearable_Activity_Map.class));
+            }
+        });
+
+        ImageButton teacherButton = container.findViewById(R.id.button_teacher);
+        teacherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Wearable_Activity_Teacher.class));
+            }
+        });
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.wearable_fragment_stub, container, false);
     }
