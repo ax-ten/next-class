@@ -1,11 +1,15 @@
 package com.example.next_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -53,6 +57,35 @@ public class Wearable_Fragment_Stub extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
+        ImageButton mapButton = container.findViewById(R.id.button_map);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Wearable_Activity_Map.class));
+            }
+        });
+
+        ImageButton teacherButton = container.findViewById(R.id.button_teacher);
+        teacherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getContext(), Wearable_Activity_Teacher.class));
+            }
+        });
+
+        TextView courseView = container.findViewById(R.id.course_text);
+        courseView.setText(course);
+        TextView classroomView = container.findViewById(R.id.classroom_text);
+        classroomView.setText(classroom);
+        TextView teacherView = container.findViewById(R.id.teacher_text);
+        teacherView.setText(teacher);
+        TextView startTimeView = container.findViewById(R.id.timeStart_text);
+        startTimeView.setText(startTime);
+        TextView endTimeView = container.findViewById(R.id.timeEnd_text);
+        endTimeView.setText(endTime);
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.wearable_fragment_stub, container, false);
     }
