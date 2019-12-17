@@ -43,20 +43,15 @@ public class Wearable_Activity_Main extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //aggiorna la lista di stub
-        stubList = new ArrayList<>();
-        setStubList();
-
-        //Costruisci il layout
-        setContentView(R.layout.wearable_activity_main);
-
-        //Ricevitore di messaggi
-        //discerne tra i messaggi che arrivano al messageService quelli che gli interessano
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 new Receiver(),
                 new IntentFilter(Intent.ACTION_SEND)
-                );
+        );
+
+        //TODO : ask daily schedule to phone
+        Wearable_Fragment_Stub.newInstance(currentStub);
+        setContentView(R.layout.wearable_activity_main);
+
     }
 
 
