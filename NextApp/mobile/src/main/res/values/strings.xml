@@ -6,6 +6,7 @@
     <string name="Notifications">Notifications</string>
     <string name="maintitle_header">Next</string>
     <string name="sync_header">Sync</string>
+    <string name="current_file">Current Schedule</string>
 
     <!-- Messages Preferences -->
     <string name="addNew_description">Create new Schedule</string>
@@ -29,6 +30,7 @@
 
     <!-- Schedule popup menu -->
     <string name="view">View</string>
+    <string name="set_as_current">Set as current</string>
     <string name="edit">Edit</string>
     <string name="rename">Rename</string>
     <string name="delete">Delete</string>

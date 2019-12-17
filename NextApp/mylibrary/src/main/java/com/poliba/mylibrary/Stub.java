@@ -22,10 +22,31 @@ public class Stub implements Parcelable {
     }
 
     public Stub(){
-        //empty
     }
 
-/** getter and setter methods implementation for parameters of com.poliba.mylibrary.Stub class **/
+    protected Stub(Parcel in) {
+        year = in.readInt();
+        day = in.readInt();
+        courseName = in.readString();
+        teacherName = in.readString();
+        room = in.readString();
+        startTime = in.readDouble();
+        endTime = in.readDouble();
+    }
+
+    public static final Creator<Stub> CREATOR = new Creator<Stub>() {
+        //TODO : Creator<Stub>
+        @Override
+        public Stub createFromParcel(Parcel in) {
+            return new Stub(in);
+        }
+
+        @Override
+        public Stub[] newArray(int size) {
+            return new Stub[size];
+        }
+    };
+
     //Setters
     public void setYear(int year) {
         this.year = year;
@@ -91,6 +112,12 @@ public class Stub implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
-        //TODO
+        dest.writeInt(year);
+        dest.writeInt(day);
+        dest.writeString(courseName);
+        dest.writeString(teacherName);
+        dest.writeString(room);
+        dest.writeDouble(startTime);
+        dest.writeDouble(endTime);
     }
 }

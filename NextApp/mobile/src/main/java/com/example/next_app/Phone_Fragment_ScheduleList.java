@@ -29,7 +29,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState){
-        String path = Objects.requireNonNull(getContext()).getFilesDir() + "next";
+        final String path = Objects.requireNonNull(getContext()).getFilesDir() + "next";
         if (folder == null)
             folder = new File(path);
         return inflater.inflate(R.layout.phone_fragment_schedulelist, container, false);
@@ -68,7 +68,7 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
 
         CustomListAdapter(Activity context, String[] nameArray){
             super(context, phone_item_schedule, nameArray);
-            this.context=context;
+            this.context = context;
             this.nameArray = nameArray;
         }
 
@@ -77,23 +77,20 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         public View getView(int position, View view, ViewGroup parent) {
             TextView scheduleNameField;
             final ImageButton optionsButton;
-            final Schedule schedule = new Schedule(Objects.requireNonNull(folder.listFiles())[position]);
+            final Schedule schedule = getScheduleAt(position);
 
-            LayoutInflater inflater= context.getLayoutInflater();
-              View itemView=inflater.inflate(phone_item_schedule, null,true);
+            View itemView = context.getLayoutInflater().inflate(phone_item_schedule, null,true);
 
             scheduleNameField = itemView.findViewById(R.id.filename);
             scheduleNameField . setText(nameArray[position]);
             scheduleNameField . setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    ((Phone_Activity_Main) Objects.requireNonNull(getActivity())).setCurrentSchedule(schedule);
-                    Toast.makeText(getContext(), "Set as current schedule", Toast.LENGTH_SHORT).show();
+                    view(schedule);
                 }
             });
 
             optionsButton = itemView.findViewById(R.id.popupmenuOpener);
-
             optionsButton.setOnClickListener(new View.OnClickListener(){
                 @Override
                 public void onClick(View v){
@@ -103,8 +100,8 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
                             switch (item.getItemId()){
-                                case R.id.view:
-                                    view(schedule);
+                                case R.id.set_as_current:
+                                    setAsCurrent(schedule);
                                 case R.id.edit:
                                     edit(schedule);
                                 case R.id.rename:
@@ -134,20 +131,40 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         startActivity(intent);
     }
     private void edit(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement edit
     }
     private void rename(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement rename
     }
     private void delete(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement delete
     }
     private void refresh(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement refresh
     }
     private void share(Schedule schedule){
+        final String toast = "Yet to implement";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
         //TODO : Implement share
     }
+    private void setAsCurrent(Schedule schedule){
+        ((Phone_Activity_Main) Objects.requireNonNull(getActivity())).setCurrentSchedule(schedule);
+        final String toast = "Set as current schedule";
+        Toast.makeText(getContext(), toast , Toast.LENGTH_SHORT).show();
+        //todo cambiare il text field di file corrente in preferences
+    }
+    private Schedule getScheduleAt(int position){
+        return new Schedule(Objects.requireNonNull(folder.listFiles())[position]);
+    }
+
 }
 
 

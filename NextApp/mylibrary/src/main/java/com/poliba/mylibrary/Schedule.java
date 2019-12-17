@@ -12,14 +12,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Schedule {
     private ArrayList<Stub> schedule;
+    public String name;
+    private HashMap<String, Double> attendance;
 
     public Schedule(File file) {
         InputStream input = null;
         try {
             input = new FileInputStream(file);
+            name = file.getName();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -46,7 +50,7 @@ public class Schedule {
         else
             schedule = new ArrayList<>();
         XmlPullParserFactory factory;
-        String text = "";
+        String text = null;
         Stub stub= new Stub();
         XmlPullParser parser;
         int eventType;
@@ -66,7 +70,6 @@ public class Schedule {
                 switch (eventType) {
                     case XmlPullParser.START_TAG:
                         if (tagname.equalsIgnoreCase("course")) {
-                            // create a new instance of Stub
                             stub = new Stub();
                         }
                         break;
@@ -76,20 +79,32 @@ public class Schedule {
                         break;
 
                     case XmlPullParser.END_TAG:
-                        if (tagname.equalsIgnoreCase("course")) {
-                            // add employee object to list
-                            this.getSchedule().add(stub);
-
-                        } else if (tagname.equalsIgnoreCase("teacher")) {
-                            stub.setTeacherName(text);
-
-                        } else if (tagname.equalsIgnoreCase("name")) {
-                            stub.setCourseName(text);
-
-                        } else if (tagname.equalsIgnoreCase("day")) {
-                            stub.setDay(Integer.parseInt(text));
+                        switch (tagname){
+                            case "course":
+                                this.getSchedule().add(stub);
+                                break;
+                            case "teacher":
+                                stub.setTeacherName(text);
+                                break;
+                            case "name":
+                                stub.setCourseName(text);
+                                break;
+                            case "day":
+                                stub.setDay(Integer.parseInt(text));
+                                break;
+                            case "year":
+                                stub.setYear(Integer.parseInt(text));
+                                break;
+                            case "room":
+                                stub.setRoom(text);
+                                break;
+                            case "startTime":
+                                stub.setStartTime(Double.parseDouble(text));
+                                break;
+                            case "endTime":
+                                stub.setEndTime(Double.parseDouble(text));
+                                break;
                         }
-                        break;
 
                     default:
                         break;

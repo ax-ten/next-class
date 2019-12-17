@@ -4,6 +4,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Schedule;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -26,9 +28,9 @@ import java.util.concurrent.ExecutionException;
 public class Phone_Activity_Main extends AppCompatActivity{
 
     //TODO richiedi permessi di storage SE non sono già concessi
-
     Schedule currentSchedule;
-    protected Handler messageHandler;
+    protected Handler attendanceMessageHandler;
+    protected Handler refreshScheduleMessageHandler;
 
 
     @Override
@@ -38,32 +40,56 @@ public class Phone_Activity_Main extends AppCompatActivity{
         setContentView(R.layout.phone_activity_main);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
 
-        messageHandler = new Handler(new Handler.Callback() {
+        attendanceMessageHandler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
                 Bundle stuff = msg.getData();
-                messageText(stuff.getString("messageText"));
+                final String attendancePath = "/attendance";
+                messageText(attendancePath, stuff.getString("messageText"));
+                return true;
+            }
+        });
+
+        refreshScheduleMessageHandler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message msg) {
+                Bundle stuff = msg.getData();
+                final String refreshPath = "/refreshSchedule";
+                messageText(refreshPath, stuff.getString("messageText"));
                 return true;
             }
         });
 
         LocalBroadcastManager.getInstance(this).registerReceiver(
-                new Receiver(),
-                new IntentFilter(Intent.ACTION_SEND)
+                new AttendanceReceiver(),
+                new IntentFilter(Intent.ACTION_ATTACH_DATA)
+        );
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ScheduleSyncReceiver(),
+                new IntentFilter(Intent.ACTION_SYNC)
         );
     }
 
-    //COMMUNICATION
-    public class Receiver extends BroadcastReceiver {
+    public class AttendanceReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String message = "i received a message from the wearable";
-            Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+            //TODO : Implementa azione da compiere una volta ricevuto aggiornamento di attendance
+            String toast = "i received a message from the wearable";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void messageText(String message){
-        String path = "next";
+    public class ScheduleSyncReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            //TODO : Implementa azione da compiere una volta ricevuta la richiesta di sync
+            String toast = "i received a sync request from the wearable";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    public void messageText(String path, String message){
         new MessageThread(path,message).start();
     }
 
@@ -87,7 +113,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
                     try{
                         Tasks.await(sendMessageTask);
-                        messageText("I sent a message to the wearable");
+                        messageText(path,message);
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -108,5 +134,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     }
     public void setCurrentSchedule(Schedule schedule) {
         this.currentSchedule = schedule;
+        SharedPreferences preferences = getSharedPreferences("currentSchedule", Context.MODE_PRIVATE);
+        preferences.edit().putString("currentSchedule",currentSchedule.name);
     }
 }
