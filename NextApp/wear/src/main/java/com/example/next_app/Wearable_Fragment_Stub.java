@@ -73,6 +73,19 @@ public class Wearable_Fragment_Stub extends Fragment {
                 startActivity(new Intent(getContext(), Wearable_Activity_Teacher.class));
             }
         });
+
+        TextView courseView = container.findViewById(R.id.course_text);
+        courseView.setText(course);
+        TextView classroomView = container.findViewById(R.id.classroom_text);
+        classroomView.setText(classroom);
+        TextView teacherView = container.findViewById(R.id.teacher_text);
+        teacherView.setText(teacher);
+        TextView startTimeView = container.findViewById(R.id.timeStart_text);
+        startTimeView.setText(startTime);
+        TextView endTimeView = container.findViewById(R.id.timeEnd_text);
+        endTimeView.setText(endTime);
+
+
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.wearable_fragment_stub, container, false);
     }
