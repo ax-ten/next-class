@@ -55,6 +55,17 @@ public class Wearable_Activity_Main extends FragmentActivity {
     }
 
 
+    //COMMUNICATION
+    public void sendCommunication(){
+        new MessageSenderThread(path, "I just sent the handheld a message").start();
+    }
+
+
+    public class Receiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.v(TAG, "just received a message");
+        }
 
     private void setStubList() {
         stubList.clear();
@@ -111,19 +122,6 @@ public class Wearable_Activity_Main extends FragmentActivity {
 
         NotificationManagerCompat nmc = NotificationManagerCompat.from(this);
         nmc.notify(1,notification);
-    }
-
-    //COMMUNICATION
-    public void sendCommunication(){
-        new MessageSenderThread(path, "I just sent the handheld a message").start();
-    }
-
-
-    public class Receiver extends BroadcastReceiver{
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.v(TAG, "just received a message");
-        }
     }
 
 
