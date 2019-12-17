@@ -39,6 +39,7 @@ public class Wearable_Activity_Main extends FragmentActivity {
     private Schedule dailySchedule;
     String path = "/my_path";
     String TAG = "Wearable_device";
+    Stub currentStub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +67,7 @@ public class Wearable_Activity_Main extends FragmentActivity {
         public void onReceive(Context context, Intent intent) {
             Log.v(TAG, "just received a message");
         }
+    }
 
 
     //BUTTONS
