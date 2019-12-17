@@ -75,6 +75,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     public class AttendanceReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //TODO : Implementa azione da compiere una volta ricevuto aggiornamento di attendance
             String toast = "i received a message from the wearable";
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
@@ -83,7 +84,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     public class ScheduleSyncReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String toast = "i received a message from the wearable";
+            //TODO : Implementa azione da compiere una volta ricevuta la richiesta di sync
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
