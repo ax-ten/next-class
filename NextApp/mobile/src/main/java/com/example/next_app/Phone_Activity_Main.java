@@ -21,7 +21,6 @@ import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
 import com.poliba.mylibrary.Schedule;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ExecutionException;
@@ -30,7 +29,8 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
     //TODO richiedi permessi di storage SE non sono già concessi
     Schedule currentSchedule;
-    protected Handler messageHandler;
+    protected Handler attendanceMessageHandler;
+    protected Handler refreshScheduleMessageHandler;
 
 
     @Override
@@ -40,11 +40,22 @@ public class Phone_Activity_Main extends AppCompatActivity{
         setContentView(R.layout.phone_activity_main);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
 
-        messageHandler = new Handler(new Handler.Callback() {
+        attendanceMessageHandler = new Handler(new Handler.Callback() {
             @Override
             public boolean handleMessage(@NonNull Message msg) {
                 Bundle stuff = msg.getData();
-                messageText(stuff.getString("messageText"));
+                final String attendancePath = "/attendance";
+                messageText(attendancePath, stuff.getString("messageText"));
+                return true;
+            }
+        });
+
+        refreshScheduleMessageHandler = new Handler(new Handler.Callback() {
+            @Override
+            public boolean handleMessage(@NonNull Message msg) {
+                Bundle stuff = msg.getData();
+                final String refreshPath = "/refreshSchedule";
+                messageText(refreshPath, stuff.getString("messageText"));
                 return true;
             }
         });
@@ -60,10 +71,10 @@ public class Phone_Activity_Main extends AppCompatActivity{
         );
     }
 
-    //COMMUNICATION
     public class AttendanceReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
+            //TODO : Implementa azione da compiere una volta ricevuto aggiornamento di attendance
             String toast = "i received a message from the wearable";
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
@@ -72,13 +83,13 @@ public class Phone_Activity_Main extends AppCompatActivity{
     public class ScheduleSyncReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            String toast = "i received a message from the wearable";
+            //TODO : Implementa azione da compiere una volta ricevuta la richiesta di sync
+            String toast = "i received a sync request from the wearable";
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
 
-    public void messageText(String message){
-        String path = "next";
+    public void messageText(String path, String message){
         new MessageThread(path,message).start();
     }
 
@@ -102,7 +113,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
                     try{
                         Tasks.await(sendMessageTask);
-                        messageText("I sent a message to the wearable");
+                        messageText(path,message);
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
