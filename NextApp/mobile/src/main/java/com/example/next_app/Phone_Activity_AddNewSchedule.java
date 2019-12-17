@@ -23,7 +23,7 @@ import java.net.URL;
 public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
     private String TAG = "testing";
     private String[] CdL; //TODO ottenerle da internet
-    private String[] years; //TODO ottenerle da CdL
+    private int[] years; //TODO ottenerle da CdL
     final String pathName = getApplicationContext().getFilesDir() + "next";
     final InputStream tempResource = getResources().openRawResource(R.raw.schedule_stubs);
 
@@ -43,7 +43,7 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
             public void onClick(View v) {
                 if (textField.getText() != null) {
                     String fileName = (String) textField.getText();
-                    createfile(tempResource, fileName);
+                    createFile(tempResource, fileName);
                     try {
                         tempResource.close();
                     } catch (IOException e) {
@@ -57,14 +57,16 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Insert file name", Toast.LENGTH_SHORT).show();
                 }
 
+
             }
         });
     }
 
-    private void createfile(InputStream iStream, String fileName){
+    private File createFile(InputStream iStream, String fileName){
         File pathFile = new File(pathName);
         FileOutputStream oStream;
         fileName = pathName + File.separator + fileName + ".xml";
+        File newFile = null;
         
         if (!pathFile.isDirectory()){
             pathFile.mkdir();
@@ -72,7 +74,7 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
         }
         
         try {
-            File newFile = new File(fileName);
+            newFile = new File(fileName);
             if(!newFile.isFile()) {
                 newFile.createNewFile();
                 Log.v(TAG, "file creato");
@@ -88,19 +90,19 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        return newFile;
     }
 
-    class DownloadFileFromURL extends AsyncTask<String, String, String> {
+    class Downloader extends AsyncTask<String, String, String> {
 
         @Override
         protected String doInBackground(String[] f_url) {
-            int count;
             try {
                 URL url = new URL(f_url[0]);
                 url.openConnection().connect();
 
-                InputStream input = new BufferedInputStream(url.openStream(),
-                        8192);
+                InputStream input = new BufferedInputStream(url.openStream(),8192);
                 //TODO salvare input
 
                 input.close();

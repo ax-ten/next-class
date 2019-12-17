@@ -18,6 +18,7 @@ import java.util.Calendar;
 
 public class Phone_Activity_DailySchedulePager extends FragmentActivity {
     String dayText;
+    int pagerId=R.layout.phone_activity_schedulepager;
     private static final int NUM_PAGES =5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
@@ -26,10 +27,11 @@ public class Phone_Activity_DailySchedulePager extends FragmentActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phone_activity_schedulepager);
+        setContentView(pagerId);
         Bundle scheduleBundle = getIntent().getExtras();
-        mPager = findViewById(R.id.pager);
+
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
+        mPager = findViewById(R.id.pager);
         mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mPager.setAdapter(pagerAdapter);
         
@@ -37,14 +39,6 @@ public class Phone_Activity_DailySchedulePager extends FragmentActivity {
         dayTextField.setText(dayText);
     }
 
-    @Override
-    public void onBackPressed() {
-        if (mPager.getCurrentItem() == 0) {
-            super.onBackPressed();
-        } else {
-            mPager.setCurrentItem(mPager.getCurrentItem() - 1);
-        }
-    }
     
     public void setDay(int d){
         switch (d){

@@ -7,12 +7,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
 
 public class Phone_Activity_Settings extends AppCompatActivity {
+    final int settingsId = R.layout.phone_activity_settings;
 
     //TODO le impostazioni sono modificabili ma non cambiano nulla
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.phone_activity_settings);
+        setContentView(settingsId);
         this.getSupportActionBar().hide();
 
         getSupportFragmentManager()
@@ -26,9 +27,10 @@ public class Phone_Activity_Settings extends AppCompatActivity {
     }
 
     public static class SettingsFragment extends PreferenceFragmentCompat {
+        final int rootPreferences = R.xml.root_preferences;
         @Override
         public void onCreatePreferences(Bundle savedInstanceState, String rootKey) {
-            setPreferencesFromResource(R.xml.root_preferences, rootKey);
+            setPreferencesFromResource(rootPreferences, rootKey);
         }
     }
 }
