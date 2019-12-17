@@ -29,8 +29,7 @@ import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class Wearable_Activity_Main extends WearableActivity
-        implements Wearable_Fragment_Stub.OnFragmentInteractionListener{
+public class Wearable_Activity_Main extends FragmentActivity {
 
 
     //TODO Implementare swipe per passare tra le attività
@@ -175,51 +174,4 @@ public class Wearable_Activity_Main extends WearableActivity
         tw . setText(valore);
     }
 
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        int action = MotionEventCompat.getActionMasked(event);
-        String DEBUG_TAG = "testing_wearable";
-        switch(action) {
-            case (MotionEvent.ACTION_DOWN):
-                Log.d(DEBUG_TAG, "Action was DOWN");
-                return true;
-            case (MotionEvent.ACTION_MOVE):
-                Log.d(DEBUG_TAG, "Action was MOVE");
-                return true;
-            case (MotionEvent.ACTION_UP):
-                Log.d(DEBUG_TAG, "Action was UP");
-                return true;
-            case (MotionEvent.ACTION_CANCEL):
-                Log.d(DEBUG_TAG, "Action was CANCEL");
-                return true;
-            case (MotionEvent.ACTION_OUTSIDE):
-                Log.d(DEBUG_TAG, "Movement occurred outside bounds " +
-                        "of current screen element");
-                return true;
-            default:
-                return super.onTouchEvent(event);
-        }
-
-    }
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        ImageButton mapButton = findViewById(R.id.mapImagebutton);
-        ImageButton teacherButton = findViewById(R.id.teacherImageButton);
-
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (getApplicationContext(), Wearable_Activity_Map.class);
-                startActivity(intent);
-            }
-        });
-
-        teacherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
-    }
 }
