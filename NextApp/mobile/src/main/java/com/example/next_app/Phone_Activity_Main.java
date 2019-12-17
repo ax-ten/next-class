@@ -89,8 +89,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
         }
     }
 
-    public void messageText(String message){
-        String path = "next";
+    public void messageText(String path, String message){
         new MessageThread(path,message).start();
     }
 
