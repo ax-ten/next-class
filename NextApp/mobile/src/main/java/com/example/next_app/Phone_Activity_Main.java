@@ -132,6 +132,13 @@ public class Phone_Activity_Main extends AppCompatActivity{
     public void onClick_settings(View view){
         startActivity(new Intent (this, Phone_Activity_Settings.class));
     }
+    public void onClick_sync(View view){
+        String path = "/refreshSchedule";
+        String msg = "";
+        messageText(path, msg);
+        Toast.makeText(this,"Message sent",Toast.LENGTH_SHORT).show();
+    }
+
     public void setCurrentSchedule(Schedule schedule) {
         this.currentSchedule = schedule;
         SharedPreferences preferences = getSharedPreferences("currentSchedule", Context.MODE_PRIVATE);
