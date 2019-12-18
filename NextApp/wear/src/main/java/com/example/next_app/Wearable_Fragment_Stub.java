@@ -39,7 +39,6 @@ public class Wearable_Fragment_Stub extends Fragment {
         args.putString("classroom", stub.getRoom());
         args.putString("start time", String.valueOf(stub.getStartTime()));
         args.putString("end time", String.valueOf(stub.getEndTime()));
-
         fragment.setArguments(args);
         return fragment;
     }
@@ -47,6 +46,7 @@ public class Wearable_Fragment_Stub extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             teacher = getArguments().getString("teacher");
             course = getArguments().getString("course");
@@ -56,11 +56,13 @@ public class Wearable_Fragment_Stub extends Fragment {
         }
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.wearable_fragment_stub, container, false);
 
-        ImageButton mapButton = container.findViewById(R.id.button_map);
+        ImageButton mapButton = view.findViewById(R.id.button_map);
         mapButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +70,7 @@ public class Wearable_Fragment_Stub extends Fragment {
             }
         });
 
-        ImageButton teacherButton = container.findViewById(R.id.button_teacher);
+        ImageButton teacherButton = view.findViewById(R.id.button_teacher);
         teacherButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,28 +78,20 @@ public class Wearable_Fragment_Stub extends Fragment {
             }
         });
 
-        TextView courseView = container.findViewById(R.id.course_text);
+
+        TextView courseView = view.findViewById(R.id.course_text);
         courseView.setText(course);
-        TextView classroomView = container.findViewById(R.id.classroom_text);
+        TextView classroomView = view.findViewById(R.id.classroom_text);
         classroomView.setText(classroom);
-        TextView teacherView = container.findViewById(R.id.teacher_text);
+        TextView teacherView = view.findViewById(R.id.teacher_text);
         teacherView.setText(teacher);
-        TextView startTimeView = container.findViewById(R.id.timeStart_text);
+        TextView startTimeView = view.findViewById(R.id.timeStart_text);
         startTimeView.setText(startTime);
-        TextView endTimeView = container.findViewById(R.id.timeEnd_text);
+        TextView endTimeView = view.findViewById(R.id.timeEnd_text);
         endTimeView.setText(endTime);
-
-
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.wearable_fragment_stub, container, false);
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -116,16 +110,6 @@ public class Wearable_Fragment_Stub extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
