@@ -61,7 +61,15 @@ public class Phone_Activity_Main extends AppCompatActivity{
             }
         });
 
-        setBroadcasters();
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new AttendanceReceiver(),
+                new IntentFilter(Intent.ACTION_ATTACH_DATA)
+        );
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ScheduleSyncReceiver(),
+                new IntentFilter(Intent.ACTION_SYNC)
+        );
     }
 
     public class AttendanceReceiver extends BroadcastReceiver {

@@ -36,12 +36,10 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_activity_addnewschedule);
-
         final TextView textField = findViewById(R.id.nameFileField);
 
         Button button = findViewById(R.id.createButton);
         button.setOnClickListener(new View.OnClickListener() {
-
             @Override
             public void onClick(View v) {
                 if (textField.getText() != null) {
@@ -55,12 +53,11 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "File created", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getBaseContext(), Phone_Activity_Main.class);
                     intent.putExtra("REFRESH", true);
+                    //TODO payload put in intent should refresh scheduleList
                     startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext(), "Insert file name", Toast.LENGTH_SHORT).show();
                 }
-
-
             }
         });
     }
