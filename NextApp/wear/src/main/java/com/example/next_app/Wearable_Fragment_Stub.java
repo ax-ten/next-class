@@ -28,6 +28,8 @@ public class Wearable_Fragment_Stub extends Fragment {
         // Required empty public constructor
     }
 
+    //TODO passare tramite intento l'aula che si vuole visualizzare sulla mappa
+    //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
     public static Wearable_Fragment_Stub newInstance(Stub stub) {
         Wearable_Fragment_Stub fragment = new Wearable_Fragment_Stub();
         Bundle args = new Bundle();
