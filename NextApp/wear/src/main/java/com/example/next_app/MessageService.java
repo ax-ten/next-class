@@ -19,18 +19,15 @@ public class MessageService extends WearableListenerService {
 
     @Override
     public void onMessageReceived(MessageEvent messageEvent){
-        switch (messageEvent.getPath()){
-            case refreshPath:
-                Log.v(refreshPath, "NICEEE");
-                storedMessage = new String(messageEvent.getData());
-                messageIntent = new Intent();
-                messageIntent.setAction(Intent.ACTION_SYNC);
-                messageIntent.putExtra(refreshPayloadName, storedMessage);
+        if (refreshPath.equals(messageEvent.getPath())) {
+            storedMessage = new String(messageEvent.getData());
+            messageIntent = new Intent();
+            messageIntent.setAction(Intent.ACTION_SYNC);
+            messageIntent.putExtra(refreshPayloadName, storedMessage);
 
-                LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
-                break;
-            default:
-                super.onMessageReceived(messageEvent);
+            LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
+        } else {
+            super.onMessageReceived(messageEvent);
         }
     }
 }

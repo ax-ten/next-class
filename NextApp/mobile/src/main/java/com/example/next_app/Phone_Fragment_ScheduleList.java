@@ -78,7 +78,8 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
             final ImageButton optionsButton;
             final Schedule schedule = getScheduleAt(position);
 
-            View itemView = context.getLayoutInflater().inflate(phone_item_schedule, null,true);
+            View itemView = context.getLayoutInflater().inflate(
+                    phone_item_schedule, null,true);
 
             scheduleNameField = itemView.findViewById(R.id.filename);
             scheduleNameField . setText(nameArray[position]);
@@ -94,7 +95,8 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
                 @Override
                 public void onClick(View v){
                     final PopupMenu popupMenu = new PopupMenu(getContext(), optionsButton );
-                    popupMenu.getMenuInflater().inflate(R.menu.schedule_popup_menu, popupMenu.getMenu());
+                    popupMenu.getMenuInflater().inflate(
+                            R.menu.schedule_popup_menu, popupMenu.getMenu());
                     popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
                         @Override
                         public boolean onMenuItemClick(MenuItem item) {
@@ -123,9 +125,8 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
     }
 
     //MENU OPTIONS
-    Intent intent;
     private void view(Schedule schedule){
-        intent = new Intent(getContext(), Phone_Activity_DailySchedulePager.class);
+        Intent intent = new Intent(getContext(), Phone_Activity_DailySchedulePager.class);
         intent.putExtra("SCHEDULE", schedule.getSchedule());
         startActivity(intent);
     }
