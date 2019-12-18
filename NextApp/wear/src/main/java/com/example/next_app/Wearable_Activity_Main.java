@@ -53,6 +53,8 @@ public class Wearable_Activity_Main extends FragmentActivity
                 new IntentFilter(Intent.ACTION_SEND)
         );
 
+        currentStub = new Stub(1,1,"1","1","1",1.1,1.1);
+
         //TODO : ask daily schedule to phone
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
