@@ -22,7 +22,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
-import com.poliba.mylibrary.Schedule;
+
 import com.poliba.mylibrary.Stub;
 
 import java.util.List;
@@ -32,23 +32,34 @@ import java.util.concurrent.ExecutionException;
 public class Wearable_Activity_Main extends FragmentActivity {
 
 
-    private Schedule dailySchedule;
-    String path = "/my_path";
+
+    final String attendancePath = "/attendance";
+    final String refreshSchedulePath = "/refreshSchedule";
     String TAG = "Wearable_device";
     Stub currentStub;
+    Stub nextStub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new Receiver(),
-                new IntentFilter(Intent.ACTION_SEND)
-        );
 
-        //TODO : ask daily schedule to phone
-        Wearable_Fragment_Stub.newInstance(currentStub);
+        setBroadcasters();
+
+        nextStub    = new Stub(2,2,"2","2","2",2.2,2.2);
+
+        //TODO : ask currentStub to phone
+        String message = "wow";
+        sendCommunication(attendancePath, message);
+        sendCommunication(refreshSchedulePath, message + "www");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Wearable_Fragment_Stub fragment = Wearable_Fragment_Stub.newInstance(currentStub);
+        fragmentTransaction.add(R.id.fragment, fragment);
+        fragmentTransaction.commit();
+
+        currentStub = new Stub(1,1,"1","1","1",1.1,1.1);
         setContentView(R.layout.wearable_activity_main);
-
     }
 
 
@@ -58,19 +69,28 @@ public class Wearable_Activity_Main extends FragmentActivity {
     }
 
 
-    public class Receiver extends BroadcastReceiver{
+    }
+
+    private class ScheduleSyncReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
-            Log.v(TAG, "just received a message");
+            String toast = "i received a sync request from the Handheld";
+            Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
         }
     }
 
+    private void setBroadcasters(){
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ScheduleSyncReceiver(),
+                new IntentFilter(Intent.ACTION_SYNC)
+        );
+    }
 
     //NOTIFICHE
     private NotificationChannel createChannel(NotificationManager nManager){
         String id ="my_channel_01";
         CharSequence name =  "channel-name";
-        int importance = nManager.IMPORTANCE_DEFAULT;
+        int importance = NotificationManager.IMPORTANCE_DEFAULT;
 
         NotificationChannel nChannel = new NotificationChannel(id, name,importance);
 
@@ -87,14 +107,11 @@ public class Wearable_Activity_Main extends FragmentActivity {
         NotificationManager mNotificationManager = (
                 NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
+        assert mNotificationManager != null;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(this, createChannel(mNotificationManager).getId());
         builder.setContentTitle("titolo della notifica");
         builder.setContentText("contenuto della notifica");
         builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark);
-
-        // Intent intent =  new Intent(this, AttendanceService.class );
-        // PendingIntent pi = PendingIntent.getActivity(this, 0, intent, 0);
-        // builder.addAction(R.drawable.ic_check, "Present", pi);
 
         Notification notification = builder.build();
 
@@ -124,15 +141,11 @@ public class Wearable_Activity_Main extends FragmentActivity {
                     try {
                         Integer result = Tasks.await(sendMessageTask);
                         Log.v(TAG, String.valueOf(result));
-                    } catch (ExecutionException e) {
-                        e.printStackTrace();
-                    } catch (InterruptedException e) {
+                    } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
                 }
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            } catch (ExecutionException e) {
+            } catch (InterruptedException | ExecutionException e) {
                 e.printStackTrace();
             }
         }

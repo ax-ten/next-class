@@ -1,9 +1,11 @@
 package com.example.next_app;
 
 import android.os.Bundle;
+import android.support.wearable.activity.WearableActivity;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -13,25 +15,44 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class Wearable_Activity_Map extends AppCompatActivity {
-    ImageView iv;
+public class Wearable_Activity_Map extends WearableActivity {
     HashMap<String, int[]> positions;
+    String classname;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        updatePinPosition();
         setContentView(R.layout.wearable_activity_map);
 
+        int[] coords = getPinPosition("A");
+        ImageView iv = findViewById(R.id.pin);
+
+        if (coords != null){
+            iv.setX(coords[0]);
+            iv.setY(coords[1]);
+        } else {
+            iv.setVisibility(View.INVISIBLE);
+            Toast.makeText(this,"Classroom not found", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private void updatePinPosition(){
-        iv = findViewById(R.id.pin);
-        //todo get iv x and y values by values.room_coordinates.xml
+    private int[] getPinPosition(String classname)  {
+        try{
+            InputStream classroomXML = this.getResources().openRawResource(R.raw.classroom);
+            parseXML(classroomXML);
+            for (String iterableName : positions.keySet()){
+                if (classname.equals(iterableName)){
+                    return positions.get(iterableName);
+                }
+            }
+            classroomXML.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
-    private void parseXML(){
-        InputStream in = null;
+    private void parseXML(InputStream in){
         if (positions != null)
             positions.clear();
         else
@@ -75,9 +96,11 @@ public class Wearable_Activity_Map extends AppCompatActivity {
                                 classroom.setName(text);
                                 break;
                             case "x":
+                                assert text != null;
                                 classroom.setX(Integer.parseInt(text));
                                 break;
                             case "y":
+                                assert text != null;
                                 classroom.setY(Integer.parseInt(text));
                                 break;
                             default:
@@ -101,30 +124,30 @@ public class Wearable_Activity_Map extends AppCompatActivity {
         private int y;
         private String name;
 
-        public Classroom(){
+        Classroom(){
         }
 
-        public void setX(int x) {
+        void setX(int x) {
             this.x = x;
         }
 
-        public int getX() {
+        int getX() {
             return x;
         }
 
-        public void setY(int y) {
+        void setY(int y) {
             this.y = y;
         }
 
-        public int getY() {
+        int getY() {
             return y;
         }
 
-        public void setName(String name) {
+        void setName(String name) {
             this.name = name;
         }
 
-        public String getName() {
+        String getName() {
             return name;
         }
     }
