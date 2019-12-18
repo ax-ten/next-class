@@ -19,6 +19,7 @@ public class Wearable_Activity_Map extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         super.onCreate(savedInstanceState);
         updatePinPosition();
         setContentView(R.layout.wearable_activity_map);
