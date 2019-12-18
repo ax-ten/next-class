@@ -61,7 +61,6 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         return filenames;
     }
 
-//TODO cambia in recyclerView
     class CustomListAdapter extends ArrayAdapter {
         private Activity context;
         private String[] nameArray;

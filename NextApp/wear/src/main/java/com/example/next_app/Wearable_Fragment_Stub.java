@@ -1,11 +1,14 @@
 package com.example.next_app;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -24,6 +27,8 @@ public class Wearable_Fragment_Stub extends Fragment {
         // Required empty public constructor
     }
 
+    //TODO passare tramite intento l'aula che si vuole visualizzare sulla mappa
+    //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
     public static Wearable_Fragment_Stub newInstance(Stub stub) {
         Wearable_Fragment_Stub fragment = new Wearable_Fragment_Stub();
         Bundle args = new Bundle();
@@ -33,14 +38,15 @@ public class Wearable_Fragment_Stub extends Fragment {
         args.putString("classroom", stub.getRoom());
         args.putString("start time", String.valueOf(stub.getStartTime()));
         args.putString("end time", String.valueOf(stub.getEndTime()));
-
         fragment.setArguments(args);
+
         return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         if (getArguments() != null) {
             teacher = getArguments().getString("teacher");
             course = getArguments().getString("course");
@@ -48,21 +54,47 @@ public class Wearable_Fragment_Stub extends Fragment {
             startTime = getArguments().getString("start time");
             endTime = getArguments().getString("end time");
         }
+
     }
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.wearable_fragment_stub, container, false);
+        View view = inflater.inflate(R.layout.wearable_fragment_stub, container, false);
+
+        ImageButton mapButton = view.findViewById(R.id.button_map);
+        mapButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Wearable_Activity_Map.class);
+                startActivity(intent);
+            }
+        });
+
+        ImageButton teacherButton = view.findViewById(R.id.button_teacher);
+        teacherButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), Wearable_Activity_Teacher.class);
+                startActivity(intent);
+            }
+        });
+
+
+        TextView courseView = view.findViewById(R.id.course_text);
+        courseView.setText(course);
+        TextView classroomView = view.findViewById(R.id.classroom_text);
+        classroomView.setText(classroom);
+        TextView teacherView = view.findViewById(R.id.teacher_text);
+        teacherView.setText(teacher);
+        TextView startTimeView = view.findViewById(R.id.timeStart_text);
+        startTimeView.setText(startTime);
+        TextView endTimeView = view.findViewById(R.id.timeEnd_text);
+        endTimeView.setText(endTime);
+        return view;
     }
 
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
 
     @Override
     public void onAttach(Context context) {
@@ -81,16 +113,6 @@ public class Wearable_Fragment_Stub extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

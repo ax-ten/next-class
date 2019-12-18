@@ -70,6 +70,23 @@
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/ic_add" />
 
+        <ImageButton
+            android:id="@+id/headerSync"
+            style="@android:style/Widget.DeviceDefault.ImageButton"
+            android:layout_width="44dp"
+            android:layout_height="43dp"
+            android:layout_marginTop="14dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="13dp"
+            android:background="@null"
+            android:contentDescription="@string/addNew_description"
+            android:onClick="onClick_sync"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/headerAddNew"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="1.0"
+            app:srcCompat="@drawable/ic_sync_white" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <fragment

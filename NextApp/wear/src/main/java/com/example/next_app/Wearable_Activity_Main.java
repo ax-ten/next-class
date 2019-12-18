@@ -3,88 +3,89 @@ package com.example.next_app;
 import android.app.Notification;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
-import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
-import android.widget.ImageButton;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
-import androidx.core.view.MotionEventCompat;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
 import com.google.android.gms.tasks.Task;
 import com.google.android.gms.tasks.Tasks;
 import com.google.android.gms.wearable.Node;
 import com.google.android.gms.wearable.Wearable;
+import com.poliba.mylibrary.Schedule;
 import com.poliba.mylibrary.Stub;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 
-public class Wearable_Activity_Main extends WearableActivity
-        implements Wearable_Fragment_Stub.OnFragmentInteractionListener{
+public class Wearable_Activity_Main extends FragmentActivity
+        implements Wearable_Fragment_Stub.OnFragmentInteractionListener {
 
 
-    //TODO Implementare swipe per passare tra le attività
-    //TODO passare tramite intento l'aula che si vuole visualizzare sulla mappa
-    //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
-    //todo trovare un modo per accedere a tutti i profili dei professori e listarne almeno le mail
-    private ArrayList<Stub> stubList;
-    private int tempStub;
-    String path = "/my_path";
+    private Schedule dailySchedule;
+    final String attendancePath = "/attendance";
+    final String refreshSchedulePath = "/refreshSchedule";
     String TAG = "Wearable_device";
+    Stub currentStub;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //aggiorna la lista di stub
-        stubList = new ArrayList<>();
-        setStubList();
-
-        //Costruisci il layout
-        setContentView(R.layout.wearable_activity_main);
-
-        //Ricevitore di messaggi
-        //discerne tra i messaggi che arrivano al messageService quelli che gli interessano
         LocalBroadcastManager.getInstance(this).registerReceiver(
                 new Receiver(),
                 new IntentFilter(Intent.ACTION_SEND)
-                );
+        );
+
+        currentStub = new Stub(1,1,"1","1","1",1.1,1.1);
+
+        //TODO : ask daily schedule to phone
+        String message = "wow";
+        sendCommunication(attendancePath, message);
+        sendCommunication(refreshSchedulePath, message + "www");
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Wearable_Fragment_Stub fragment = Wearable_Fragment_Stub.newInstance(currentStub);
+        fragmentTransaction.add(R.id.fragment, fragment);
+        fragmentTransaction.commit();
+
+
+        Toast.makeText(this, "STO TOSTANDO" , Toast.LENGTH_SHORT).show();
+
+        setContentView(R.layout.wearable_activity_main);
+
     }
 
 
-
-    private void setStubList() {
-        stubList.clear();
-        stubList.add(new Stub(1,1,"1","1","1",1.1,1.1));
-        stubList.add(new Stub(2,2,"2","2","2",2.2,2.2));
+    //COMMUNICATION
+    public void sendCommunication(String path, String message){
+        new MessageSenderThread(path, message).start();
     }
 
-    //BUTTONS
-
-    public void nextStubIntent(View v){
+    @Override
+    public void onFragmentInteraction(Uri uri) {
 
     }
 
-    private Integer getCurrentStubIndex(ArrayList<Stub> stublist, double cTime){
-        for(int i=0; i<stublist.size();i++){
-            if (cTime > stubList.get(i).getStartTime() && cTime < stubList.get(i).getEndTime())
-                return i;
+
+    public class Receiver extends BroadcastReceiver{
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.v(TAG, "just received a message");
         }
-        return null;
     }
 
 
@@ -124,19 +125,6 @@ public class Wearable_Activity_Main extends WearableActivity
         nmc.notify(1,notification);
     }
 
-    //COMMUNICATION
-    public void sendCommunication(){
-        new MessageSenderThread(path, "I just sent the handheld a message").start();
-    }
-
-
-    public class Receiver extends BroadcastReceiver{
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            Log.v(TAG, "just received a message");
-        }
-    }
-
 
     class MessageSenderThread extends Thread{
         String path;
@@ -171,60 +159,5 @@ public class Wearable_Activity_Main extends WearableActivity
                 e.printStackTrace();
             }
         }
-    }
-
-    //OTHERS
-    private void setTxtView(int campotisesto, String valore){
-        TextView tw;
-        tw = findViewById(campotisesto);
-        tw . setText(valore);
-    }
-
-    @Override
-    public boolean onTouchEvent(MotionEvent event) {
-
-        int action = MotionEventCompat.getActionMasked(event);
-        String DEBUG_TAG = "testing_wearable";
-        switch(action) {
-            case (MotionEvent.ACTION_DOWN):
-                Log.d(DEBUG_TAG, "Action was DOWN");
-                return true;
-            case (MotionEvent.ACTION_MOVE):
-                Log.d(DEBUG_TAG, "Action was MOVE");
-                return true;
-            case (MotionEvent.ACTION_UP):
-                Log.d(DEBUG_TAG, "Action was UP");
-                return true;
-            case (MotionEvent.ACTION_CANCEL):
-                Log.d(DEBUG_TAG, "Action was CANCEL");
-                return true;
-            case (MotionEvent.ACTION_OUTSIDE):
-                Log.d(DEBUG_TAG, "Movement occurred outside bounds " +
-                        "of current screen element");
-                return true;
-            default:
-                return super.onTouchEvent(event);
-        }
-
-    }
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-        ImageButton mapButton = findViewById(R.id.mapImagebutton);
-        ImageButton teacherButton = findViewById(R.id.teacherImageButton);
-
-        mapButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent (getApplicationContext(), Wearable_Activity_Map.class);
-                startActivity(intent);
-            }
-        });
-
-        teacherButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 }

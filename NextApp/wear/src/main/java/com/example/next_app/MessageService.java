@@ -1,6 +1,7 @@
 package com.example.next_app;
 
 import android.content.Intent;
+import android.util.Log;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -20,6 +21,7 @@ public class MessageService extends WearableListenerService {
     public void onMessageReceived(MessageEvent messageEvent){
         switch (messageEvent.getPath()){
             case refreshPath:
+                Log.v(refreshPath, "NICEEE");
                 storedMessage = new String(messageEvent.getData());
                 messageIntent = new Intent();
                 messageIntent.setAction(Intent.ACTION_SYNC);

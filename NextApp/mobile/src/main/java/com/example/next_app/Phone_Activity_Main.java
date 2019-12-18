@@ -29,6 +29,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
     //TODO richiedi permessi di storage SE non sono già concessi
     Schedule currentSchedule;
+    final int layoutId = R.layout.phone_activity_main;
     protected Handler attendanceMessageHandler;
     protected Handler refreshScheduleMessageHandler;
 
@@ -37,7 +38,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.phone_activity_main);
+        setContentView(layoutId);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
 
         attendanceMessageHandler = new Handler(new Handler.Callback() {
@@ -60,15 +61,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
             }
         });
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new AttendanceReceiver(),
-                new IntentFilter(Intent.ACTION_ATTACH_DATA)
-        );
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new ScheduleSyncReceiver(),
-                new IntentFilter(Intent.ACTION_SYNC)
-        );
+        setBroadcasters();
     }
 
     public class AttendanceReceiver extends BroadcastReceiver {
@@ -91,6 +84,18 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
     public void messageText(String path, String message){
         new MessageThread(path,message).start();
+    }
+
+    private void setBroadcasters(){
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new AttendanceReceiver(),
+                new IntentFilter(Intent.ACTION_ATTACH_DATA)
+        );
+
+        LocalBroadcastManager.getInstance(this).registerReceiver(
+                new ScheduleSyncReceiver(),
+                new IntentFilter(Intent.ACTION_SYNC)
+        );
     }
 
     class MessageThread extends Thread{
@@ -132,6 +137,13 @@ public class Phone_Activity_Main extends AppCompatActivity{
     public void onClick_settings(View view){
         startActivity(new Intent (this, Phone_Activity_Settings.class));
     }
+    public void onClick_sync(View view){
+        String path = "/refreshSchedule";
+        String msg = "";
+        messageText(path, msg);
+        Toast.makeText(this,"Message sent",Toast.LENGTH_SHORT).show();
+    }
+
     public void setCurrentSchedule(Schedule schedule) {
         this.currentSchedule = schedule;
         SharedPreferences preferences = getSharedPreferences("currentSchedule", Context.MODE_PRIVATE);

@@ -1,9 +1,8 @@
 package com.example.next_app;
 
 import android.os.Bundle;
+import android.support.wearable.activity.WearableActivity;
 import android.widget.ImageView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import org.xmlpull.v1.XmlPullParser;
 import org.xmlpull.v1.XmlPullParserException;
@@ -13,12 +12,13 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 
-public class Wearable_Activity_Map extends AppCompatActivity {
+public class Wearable_Activity_Map extends WearableActivity {
     ImageView iv;
     HashMap<String, int[]> positions;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        overridePendingTransition(R.anim.slide_in, R.anim.slide_out);
         super.onCreate(savedInstanceState);
         updatePinPosition();
         setContentView(R.layout.wearable_activity_map);

@@ -18,7 +18,7 @@
             app:layout_constraintTop_toTopOf="@id/oriz_2">
 
             <TextView
-                android:id="@+id/teacher"
+                android:id="@+id/teacher_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Teacher"
@@ -28,23 +28,22 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/teacherText"
+                android:id="@+id/teacher_text"
                 android:layout_width="132dp"
                 android:layout_height="30dp"
                 android:text="RAGUSO Giovanna"
                 android:textAppearance="@android:style/TextAppearance.Material.Body1"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/teacher" />
+                app:layout_constraintTop_toBottomOf="@+id/teacher_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageButton
-            android:id="@+id/mapImagebutton"
+            android:id="@+id/button_map"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:adjustViewBounds="true"
             android:background="@null"
-            android:onClick="mapIntent"
             android:scaleType="fitCenter"
             android:src="@drawable/round_map_pic"
             app:layout_constraintStart_toStartOf="@id/vert_1"
@@ -86,12 +85,11 @@
             app:layout_constraintGuide_begin="112dp" />
 
         <ImageButton
-            android:id="@+id/teacherImageButton"
+            android:id="@+id/button_teacher"
             android:layout_width="44dp"
             android:layout_height="44dp"
             android:adjustViewBounds="true"
             android:background="@null"
-            android:onClick="teacherIntent"
             android:scaleType="fitCenter"
             android:src="@drawable/round_profile_pic"
             app:layout_constraintStart_toStartOf="@id/vert_1"
@@ -113,10 +111,10 @@
                 android:textAppearance="@android:style/TextAppearance.Material.Body2"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/classroom" />
+                app:layout_constraintTop_toBottomOf="@+id/classroom_title" />
 
             <TextView
-                android:id="@+id/classroom"
+                android:id="@+id/classroom_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/Room"
@@ -141,7 +139,7 @@
                 android:textAlignment="viewEnd"
                 android:textAppearance="@android:style/TextAppearance.Material.Body2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/TIme" />
+                app:layout_constraintTop_toBottomOf="@+id/time_title" />
 
             <TextView
                 android:id="@+id/timeEnd_text"
@@ -155,13 +153,13 @@
                 app:layout_constraintTop_toBottomOf="@+id/timeStart_text" />
 
             <TextView
-                android:id="@+id/TIme"
+                android:id="@+id/time_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/time"
                 android:textAppearance="@android:style/TextAppearance.Material.Display4"
                 android:textSize="12sp"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -184,10 +182,10 @@
                 android:textAppearance="@android:style/TextAppearance.Material.Body2"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/Course" />
+                app:layout_constraintTop_toBottomOf="@+id/course_title" />
 
             <TextView
-                android:id="@+id/Course"
+                android:id="@+id/course_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="82dp"
