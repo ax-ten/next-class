@@ -1,6 +1,7 @@
 package com.example.next_app;
 
 import android.content.Intent;
+import android.widget.Toast;
 
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -27,6 +28,8 @@ public class MessageService extends WearableListenerService {
                 messageIntent . setAction(Intent.ACTION_ATTACH_DATA);
                 messageIntent . putExtra(payloadName, storedMessage);
 
+                Toast.makeText(getApplicationContext(),"messaggio ricevuto!",Toast.LENGTH_SHORT);
+
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
 
             case refreshPath:
@@ -34,6 +37,8 @@ public class MessageService extends WearableListenerService {
                 messageIntent = new Intent();
                 messageIntent . setAction(Intent.ACTION_SYNC);
                 messageIntent . putExtra(payloadName, storedMessage);
+
+                Toast.makeText(getApplicationContext(),"messaggio ricevuto!",Toast.LENGTH_SHORT);
 
                 LocalBroadcastManager.getInstance(this).sendBroadcast(messageIntent);
 

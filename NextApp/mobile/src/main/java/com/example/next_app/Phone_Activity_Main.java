@@ -32,12 +32,13 @@ public class Phone_Activity_Main extends AppCompatActivity{
     final int layoutId = R.layout.phone_activity_main;
     protected Handler attendanceMessageHandler;
     protected Handler refreshScheduleMessageHandler;
+    final String attendancePath = "/attendance";
+    final String refreshSchedulePath = "/refreshSchedule";
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(layoutId);
         Objects.requireNonNull(this.getSupportActionBar()).hide();
 
@@ -46,7 +47,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
             public boolean handleMessage(@NonNull Message msg) {
                 Bundle stuff = msg.getData();
                 final String attendancePath = "/attendance";
-                messageText(attendancePath, stuff.getString("messageText"));
+                sendCommunication(attendancePath, stuff.getString("messageText"));
                 return true;
             }
         });
@@ -56,20 +57,15 @@ public class Phone_Activity_Main extends AppCompatActivity{
             public boolean handleMessage(@NonNull Message msg) {
                 Bundle stuff = msg.getData();
                 final String refreshPath = "/refreshSchedule";
-                messageText(refreshPath, stuff.getString("messageText"));
+                sendCommunication(refreshPath, stuff.getString("messageText"));
                 return true;
             }
         });
 
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new AttendanceReceiver(),
-                new IntentFilter(Intent.ACTION_ATTACH_DATA)
-        );
-
-        LocalBroadcastManager.getInstance(this).registerReceiver(
-                new ScheduleSyncReceiver(),
-                new IntentFilter(Intent.ACTION_SYNC)
-        );
+        setBroadcasters();
+        String message = "wow";
+        sendCommunication(attendancePath, message);
+        sendCommunication(refreshSchedulePath, message + "www");
     }
 
     public class AttendanceReceiver extends BroadcastReceiver {
@@ -90,7 +86,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
         }
     }
 
-    public void messageText(String path, String message){
+    public void sendCommunication(String path, String message){
         new MessageThread(path,message).start();
     }
 
@@ -126,7 +122,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
 
                     try{
                         Tasks.await(sendMessageTask);
-                        messageText(path,message);
+                        sendCommunication(path,message);
                     } catch (ExecutionException | InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -148,7 +144,7 @@ public class Phone_Activity_Main extends AppCompatActivity{
     public void onClick_sync(View view){
         String path = "/refreshSchedule";
         String msg = "";
-        messageText(path, msg);
+        sendCommunication(path, msg);
         Toast.makeText(this,"Message sent",Toast.LENGTH_SHORT).show();
     }
 
