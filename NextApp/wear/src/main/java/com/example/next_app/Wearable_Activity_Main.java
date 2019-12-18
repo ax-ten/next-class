@@ -54,7 +54,12 @@ public class Wearable_Activity_Main extends FragmentActivity
         );
 
         //TODO : ask daily schedule to phone
-        Wearable_Fragment_Stub.newInstance(currentStub);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        Wearable_Fragment_Stub fragment = Wearable_Fragment_Stub.newInstance(currentStub);
+        fragmentTransaction.add(R.id.fragment, fragment);
+        fragmentTransaction.commit();
+
         setContentView(R.layout.wearable_activity_main);
 
     }
