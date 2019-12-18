@@ -23,14 +23,17 @@ import java.net.URL;
 public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
     private String TAG = "testing";
     private String[] CdL; //TODO ottenerle da internet
-    private String[] years; //TODO ottenerle da CdL
-    final String pathName = getApplicationContext().getFilesDir() + "next";
-    final InputStream tempResource = getResources().openRawResource(R.raw.schedule_stubs);
+    private int[] years; //TODO ottenerle da CdL
+    private String pathName;
+    private InputStream tempResource;
 
     //TODO implementare priorità di inserimento (cdl->anni)
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        pathName = getApplicationContext().getFilesDir() + "next";
+        tempResource = getResources().openRawResource(R.raw.schedule_stubs);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_activity_addnewschedule);
 
