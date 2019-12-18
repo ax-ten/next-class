@@ -24,8 +24,8 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
     private String TAG = "testing";
     private String[] CdL; //TODO ottenerle da internet
     private int[] years; //TODO ottenerle da CdL
-    final String pathName = getApplicationContext().getFilesDir() + "next";
-    final InputStream tempResource = getResources().openRawResource(R.raw.schedule_stubs);
+    private String pathName;
+    private InputStream tempResource;
 
     //TODO implementare priorità di inserimento (cdl->anni)
 
