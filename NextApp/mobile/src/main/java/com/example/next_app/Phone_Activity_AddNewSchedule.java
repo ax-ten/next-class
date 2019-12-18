@@ -31,6 +31,9 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        pathName = getApplicationContext().getFilesDir() + "next";
+        tempResource = getResources().openRawResource(R.raw.schedule_stubs);
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_activity_addnewschedule);
 
