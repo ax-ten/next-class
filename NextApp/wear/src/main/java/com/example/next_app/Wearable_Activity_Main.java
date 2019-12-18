@@ -35,10 +35,6 @@ public class Wearable_Activity_Main extends FragmentActivity
         implements Wearable_Fragment_Stub.OnFragmentInteractionListener {
 
 
-    //TODO Implementare swipe per passare tra le attività
-    //TODO passare tramite intento l'aula che si vuole visualizzare sulla mappa
-    //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
-    //todo trovare un modo per accedere a tutti i profili dei professori e listarne almeno le mail
     private Schedule dailySchedule;
     final String attendancePath = "/attendance";
     final String refreshSchedulePath = "/refreshSchedule";
@@ -90,12 +86,6 @@ public class Wearable_Activity_Main extends FragmentActivity
         public void onReceive(Context context, Intent intent) {
             Log.v(TAG, "just received a message");
         }
-    }
-
-
-    //BUTTONS
-    public void nextStubIntent(View v){
-
     }
 
 
