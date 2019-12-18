@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.support.wearable.activity.WearableActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -41,7 +42,8 @@ public class Wearable_Activity_Main extends FragmentActivity
     //Todo passare tramite intent il professore di cui si vuole visualizzare il profilo
     //todo trovare un modo per accedere a tutti i profili dei professori e listarne almeno le mail
     private Schedule dailySchedule;
-    String path = "/my_path";
+    final String attendancePath = "/attendance";
+    final String refreshSchedulePath = "/refreshSchedule";
     String TAG = "Wearable_device";
     Stub currentStub;
 
@@ -56,11 +58,18 @@ public class Wearable_Activity_Main extends FragmentActivity
         currentStub = new Stub(1,1,"1","1","1",1.1,1.1);
 
         //TODO : ask daily schedule to phone
+        String message = "wow";
+        sendCommunication(attendancePath, message);
+        sendCommunication(refreshSchedulePath, message + "www");
+
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         Wearable_Fragment_Stub fragment = Wearable_Fragment_Stub.newInstance(currentStub);
         fragmentTransaction.add(R.id.fragment, fragment);
         fragmentTransaction.commit();
+
+
+        Toast.makeText(this, "STO TOSTANDO" , Toast.LENGTH_SHORT).show();
 
         setContentView(R.layout.wearable_activity_main);
 
@@ -68,8 +77,8 @@ public class Wearable_Activity_Main extends FragmentActivity
 
 
     //COMMUNICATION
-    public void sendCommunication(){
-        new MessageSenderThread(path, "I just sent the handheld a message").start();
+    public void sendCommunication(String path, String message){
+        new MessageSenderThread(path, message).start();
     }
 
     @Override
