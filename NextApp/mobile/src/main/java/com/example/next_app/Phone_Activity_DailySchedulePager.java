@@ -17,48 +17,26 @@ import com.poliba.mylibrary.Schedule;
 import java.util.Calendar;
 
 public class Phone_Activity_DailySchedulePager extends FragmentActivity {
-    String dayText;
     int pagerId=R.layout.phone_activity_schedulepager;
     private static final int NUM_PAGES =5;
     private ViewPager mPager;
     private PagerAdapter pagerAdapter;
-    private Schedule schedule;
+    Bundle scheduleBundle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(pagerId);
-        Bundle scheduleBundle = getIntent().getExtras();
+        scheduleBundle = getIntent().getExtras();
 
         pagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
         mPager = findViewById(R.id.pager);
         mPager.setPageTransformer(true, new ZoomOutPageTransformer());
         mPager.setAdapter(pagerAdapter);
-        
-        TextView dayTextField = findViewById(R.id.dayText);
-        dayTextField.setText(dayText);
+
+
     }
 
-    
-    public void setDay(int d){
-        switch (d){
-            case (Calendar.TUESDAY):
-                dayText = getString(R.string.tuesday);
-                break;
-            case (Calendar.WEDNESDAY):
-                dayText = getString(R.string.wednesday);
-                break;
-            case (Calendar.THURSDAY):
-                dayText = getString(R.string.thursday);
-                break;
-            case (Calendar.FRIDAY):
-                dayText = getString(R.string.friday);
-                break;
-            default:
-                dayText = getString(R.string.monday);
-                break;
-        }
-    }
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
         public ScreenSlidePagerAdapter(FragmentManager fm) {

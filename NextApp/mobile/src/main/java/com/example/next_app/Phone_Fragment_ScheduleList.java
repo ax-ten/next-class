@@ -1,5 +1,6 @@
 package com.example.next_app;
 
+
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.content.Intent;
@@ -24,6 +25,7 @@ import java.util.Objects;
 
 import static com.example.next_app.R.layout.phone_item_schedule;
 
+
 public class Phone_Fragment_ScheduleList extends ListFragment{
     private File folder;
 
@@ -32,7 +34,8 @@ public class Phone_Fragment_ScheduleList extends ListFragment{
         final String path = Objects.requireNonNull(getContext()).getFilesDir() + "next";
         if (folder == null)
             folder = new File(path);
-        return inflater.inflate(R.layout.phone_fragment_schedulelist, container, false);
+        int layoutID = R.layout.phone_fragment_schedulelist;
+        return inflater.inflate(layoutID, container, false);
     }
 
 
