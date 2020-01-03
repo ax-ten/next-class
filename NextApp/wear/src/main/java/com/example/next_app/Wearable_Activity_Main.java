@@ -29,11 +29,13 @@ import com.google.android.gms.wearable.Wearable;
 
 import com.poliba.mylibrary.Stub;
 
+import java.util.Calendar;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 public class Wearable_Activity_Main extends FragmentActivity
         implements Wearable_Fragment_Stub.OnFragmentInteractionListener {
+
 
     protected Handler refreshScheduleMessageHandler;
     final String attendancePath = "/attendance";
@@ -42,11 +44,13 @@ public class Wearable_Activity_Main extends FragmentActivity
     Stub currentStub;
     Stub nextStub;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.wearable_activity_main);
 
+        //test values
         nextStub    = new Stub(2,2,"2","2","2",2.2,2.2);
         currentStub = new Stub(1,1,"1","1","1",1.1,1.1);
 
@@ -55,7 +59,7 @@ public class Wearable_Activity_Main extends FragmentActivity
             public boolean handleMessage(@NonNull Message msg) {
                 final String refreshPath = "/refreshSchedule";
                 Bundle stuff = msg.getData();
-                sendCommunication(refreshPath, stuff.getString("messageText"));
+                sendCommunication(refreshPath, stuff.getString("update"));
                 return true;
             }
         });
@@ -65,10 +69,14 @@ public class Wearable_Activity_Main extends FragmentActivity
         fragmentTransaction.commit();
 
         setBroadcasters();
+        sendCommunication(attendancePath, "message1");
+        sendCommunication(refreshSchedulePath, "message2");
+    }
 
-        String message = "wow";
-        sendCommunication(attendancePath, message);
-        sendCommunication(refreshSchedulePath, message + "www");
+    //LAYOUT
+    public void onClick_next(View view){
+        sendCommunication(refreshSchedulePath, "update");
+        notify(nextStub);
     }
 
 
@@ -82,19 +90,15 @@ public class Wearable_Activity_Main extends FragmentActivity
 
     }
 
-    public void onClick_next(View view){
-        String message = "wow";
-        sendCommunication(attendancePath, message);
-        sendCommunication(refreshSchedulePath, message + "www");
-        String toast = "i sent a message to the handheld";
-        Toast.makeText(getApplicationContext(), toast, Toast.LENGTH_SHORT).show();
-    }
 
     private class ScheduleSyncReceiver extends BroadcastReceiver {
         @Override
         public void onReceive(Context context, Intent intent) {
             String toast = "i received a sync request from the Handheld";
             Toast.makeText(context, toast, Toast.LENGTH_SHORT).show();
+
+            currentStub = nextStub;
+           // currentStub = getStubFromBroadcaster()
         }
     }
 
@@ -122,15 +126,15 @@ public class Wearable_Activity_Main extends FragmentActivity
 
         return nChannel;
     }
-    public void getNotified(View view){
+    public void notify(Stub nextStub){
         NotificationManager mNotificationManager = (
                 NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
 
         assert mNotificationManager != null;
         NotificationCompat.Builder builder = new NotificationCompat.Builder(
                 this, createChannel(mNotificationManager).getId());
-        builder.setContentTitle("titolo della notifica");
-        builder.setContentText("contenuto della notifica");
+        builder.setContentTitle(nextStub.getCourseName());
+        builder.setContentText("Room: "+nextStub.getRoom() +"\n"+nextStub.getStartTime()+"0 - "+nextStub.getEndTime()+"0");
         builder.setSmallIcon(R.drawable.common_google_signin_btn_icon_dark);
 
         Notification notification = builder.build();

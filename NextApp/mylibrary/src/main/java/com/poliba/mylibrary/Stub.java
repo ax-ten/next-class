@@ -11,14 +11,14 @@ public class Stub implements Parcelable {
     private double startTime, endTime;
 
     //Constructors
-    public Stub(int y, int d, String cN, String tN, String r, double sT, double eT){
-        this.year = y;
-        this.day = d;
-        this.courseName = cN;
-        this.teacherName = tN;
-        this.room = r;
-        this.startTime = sT;
-        this.endTime = eT;
+    public Stub(int year, int day, String courseName, String teacherName, String room, double startTime, double endTime){
+        this.year = year;
+        this.day = day;
+        this.courseName = courseName;
+        this.teacherName = teacherName;
+        this.room = room;
+        this.startTime = startTime;
+        this.endTime = endTime;
     }
 
     public Stub(){

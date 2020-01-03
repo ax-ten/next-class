@@ -42,8 +42,8 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (textField.getText() != null) {
-                    String fileName = (String) textField.getText();
+                if (textField.getText() != "") {
+                    String fileName = textField.getText().toString();
                     createFile(tempResource, fileName);
                     try {
                         tempResource.close();
