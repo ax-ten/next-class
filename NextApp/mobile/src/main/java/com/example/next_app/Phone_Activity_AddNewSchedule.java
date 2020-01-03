@@ -5,7 +5,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,8 +24,7 @@ import java.net.URL;
 
 public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
     private String TAG = "testing";
-    private String[] CdL; //TODO ottenerle da internet
-    private int[] years; //TODO ottenerle da CdL
+
     private String pathName;
     private InputStream tempResource;
 
@@ -37,6 +38,16 @@ public class Phone_Activity_AddNewSchedule extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.phone_activity_addnewschedule);
         final TextView textField = findViewById(R.id.nameFileField);
+
+        String[] degrees = getResources().getStringArray(R.array.degrees); //TODO ottenerle da internet
+        String[] years = getResources().getStringArray(R.array.years); //TODO ottenerle da CdL
+
+        ArrayAdapter<String> yearsAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, years);
+        ArrayAdapter<String> degreeAdapter = new ArrayAdapter<>(this, R.layout.support_simple_spinner_dropdown_item, degrees);
+        Spinner yearsSpinner = findViewById(R.id.yearSpinner);
+        Spinner degreesSpinner = findViewById(R.id.degreeSpinner);
+        yearsSpinner.setAdapter(yearsAdapter);
+        degreesSpinner.setAdapter(degreeAdapter);
 
         Button button = findViewById(R.id.createButton);
         button.setOnClickListener(new View.OnClickListener() {

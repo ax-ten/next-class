@@ -25,6 +25,24 @@
         <item>Francais</item>
     </string-array>
 
+    <string-array name="years">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
+
+    <string-array name="degrees">
+        <item>Civile e Ambientale</item>
+        <item>Civile e Ambientale TA</item>
+        <item>Ambiente e Territorio</item>
+        <item>Ambiente e Territorio TA</item>
+        <item>Ingegneria dei Sistemi Aerospaziali</item>
+        <item>Ingegneria dellAmbiente</item>
+        <item>Informatica e Dellautomazione DM270</item>
+        <item>Ignegneria</item>
+        <item>Civile Magistrale</item>
+    </string-array>
+
     <string-array name="languageAlias">
         <item>IT</item>
         <item>EN</item>
